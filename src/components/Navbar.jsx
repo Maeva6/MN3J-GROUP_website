@@ -5,17 +5,61 @@ import logo from "../assets/images/logo.jpeg";
 import { useLanguage } from "../i18n/LanguageContext";
 import { services, maintenanceService } from "../data/services";
 
+function PoleDropdown({ pole, t }) {
+  const subItems = t(`data.services.${pole.id}.subItems`);
+  return (
+    <div className="relative group">
+      <NavLink
+        to={`/services/${pole.id}`}
+        className={({ isActive }) =>
+          `inline-flex items-center gap-1 ${
+            isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
+          }`
+        }
+      >
+        {t(`data.services.${pole.id}.title`)}
+        <ChevronDown size={14} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+      </NavLink>
+
+      <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-40">
+        <div className="bg-white rounded-lg shadow-card border border-black/5 p-4">
+          <ul className="space-y-1">
+            {subItems.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={`/services/${pole.id}/${item.id}`}
+                  className="block px-2.5 py-2 rounded-md hover:bg-surface transition-colors text-sm text-ink"
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+            {pole.id === "piscines" && (
+              <li>
+                <Link
+                  to={`/services/${maintenanceService.id}`}
+                  className="block px-2.5 py-2 rounded-md hover:bg-surface transition-colors text-sm text-green-dark font-semibold"
+                >
+                  {t("data.services.entretien.title")}
+                </Link>
+              </li>
+            )}
+          </ul>
+          <div className="border-t border-black/5 mt-2 pt-2">
+            <Link to={`/services/${pole.id}`} className="text-xs font-semibold text-blue hover:underline px-2.5">
+              {t("services.discoverCta")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobilePoleOpen, setMobilePoleOpen] = useState(null);
   const { lang, setLang, t } = useLanguage();
-
-  const links = [
-    { to: "/", label: t("nav.home") },
-    { to: "/chantiers", label: t("nav.projects") },
-    { to: "/a-propos", label: t("nav.about") },
-    { to: "/contact", label: t("nav.contact") },
-  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
@@ -28,7 +72,7 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-muted">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -46,60 +90,9 @@ export default function Navbar() {
             {t("nav.projects")}
           </NavLink>
 
-          {/* Services : menu déroulant sur les rubriques */}
-          <div className="relative group">
-            <NavLink
-              to="/services"
-              className={({ isActive }) =>
-                `inline-flex items-center gap-1 ${
-                  isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
-                }`
-              }
-            >
-              {t("nav.services")}
-              <ChevronDown size={14} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
-            </NavLink>
-
-            <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[600px] z-40">
-              <div className="bg-white rounded-lg shadow-card border border-black/5 p-5">
-                <span className="text-[10px] uppercase tracking-wider text-muted font-semibold">
-                  {t("nav.servicesMenuTitle")}
-                </span>
-                <div className="grid grid-cols-2 gap-3 mt-3">
-                  {services.map(({ id, icon: Icon }) => (
-                    <Link
-                      key={id}
-                      to={`/services#${id}`}
-                      className="flex items-start gap-3 p-2.5 rounded-md hover:bg-surface transition-colors"
-                    >
-                      <span className="w-9 h-9 rounded-lg bg-navy flex items-center justify-center shrink-0">
-                        <Icon size={16} className="text-white" />
-                      </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-navy">
-                          {t(`data.services.${id}.title`)}
-                        </span>
-                        <span className="block text-xs text-muted mt-0.5 leading-snug">
-                          {t(`data.services.${id}.navBlurb`)}
-                        </span>
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-                <div className="border-t border-black/5 mt-4 pt-3 flex items-center justify-between">
-                  <Link
-                    to={`/services#${maintenanceService.id}`}
-                    className="text-xs font-semibold text-green-dark hover:underline"
-                  >
-                    {t("nav.maintenanceCta")}
-                  </Link>
-                  <Link to="/services" className="text-xs font-semibold text-blue hover:underline">
-                    {t("nav.viewAllServices")}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          {services.map((pole) => (
+            <PoleDropdown key={pole.id} pole={pole} t={t} />
+          ))}
 
           <NavLink
             to="/a-propos"
@@ -119,7 +112,7 @@ export default function Navbar() {
           </NavLink>
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <div
             role="group"
             aria-label="Choix de la langue"
@@ -149,7 +142,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-navy"
+          className="lg:hidden text-navy"
           onClick={() => setOpen((v) => !v)}
           aria-label={t("nav.openMenu")}
         >
@@ -158,51 +151,61 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-black/5 bg-white">
+        <div className="lg:hidden border-t border-black/5 bg-white">
           <nav className="container-page py-4 flex flex-col gap-4 text-sm font-medium">
-            {links.slice(0, 2).map((l) => (
-              <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="text-ink">
-                {l.label}
-              </NavLink>
-            ))}
+            <NavLink to="/" onClick={() => setOpen(false)} className="text-ink">
+              {t("nav.home")}
+            </NavLink>
+            <NavLink to="/chantiers" onClick={() => setOpen(false)} className="text-ink">
+              {t("nav.projects")}
+            </NavLink>
 
-            <div>
-              <button
-                type="button"
-                onClick={() => setMobileServicesOpen((v) => !v)}
-                className="w-full flex items-center justify-between text-ink"
-              >
-                {t("nav.services")}
-                <ChevronDown size={16} className={`transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
-              </button>
-              {mobileServicesOpen && (
-                <div className="mt-3 pl-3 border-l border-black/10 flex flex-col gap-3">
-                  {services.map(({ id }) => (
-                    <Link
-                      key={id}
-                      to={`/services#${id}`}
-                      onClick={() => setOpen(false)}
-                      className="text-muted text-sm"
-                    >
-                      {t(`data.services.${id}.title`)}
-                    </Link>
-                  ))}
-                  <Link
-                    to={`/services#${maintenanceService.id}`}
-                    onClick={() => setOpen(false)}
-                    className="text-green-dark text-sm font-semibold"
+            {services.map((pole) => {
+              const subItems = t(`data.services.${pole.id}.subItems`);
+              const isOpen = mobilePoleOpen === pole.id;
+              return (
+                <div key={pole.id}>
+                  <button
+                    type="button"
+                    onClick={() => setMobilePoleOpen(isOpen ? null : pole.id)}
+                    className="w-full flex items-center justify-between text-ink"
                   >
-                    {t("nav.maintenanceCta")}
-                  </Link>
+                    {t(`data.services.${pole.id}.title`)}
+                    <ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {isOpen && (
+                    <div className="mt-3 pl-3 border-l border-black/10 flex flex-col gap-3">
+                      {subItems.map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/services/${pole.id}/${item.id}`}
+                          onClick={() => setOpen(false)}
+                          className="text-muted text-sm"
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                      {pole.id === "piscines" && (
+                        <Link
+                          to={`/services/${maintenanceService.id}`}
+                          onClick={() => setOpen(false)}
+                          className="text-green-dark text-sm font-semibold"
+                        >
+                          {t("data.services.entretien.title")}
+                        </Link>
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              );
+            })}
 
-            {links.slice(2).map((l) => (
-              <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="text-ink">
-                {l.label}
-              </NavLink>
-            ))}
+            <NavLink to="/a-propos" onClick={() => setOpen(false)} className="text-ink">
+              {t("nav.about")}
+            </NavLink>
+            <NavLink to="/contact" onClick={() => setOpen(false)} className="text-ink">
+              {t("nav.contact")}
+            </NavLink>
 
             <div
               role="group"

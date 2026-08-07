@@ -20,6 +20,8 @@ export default function ProjectCard({ project }) {
       >
         <PhotoFrame
           tone="navy"
+          src={project.image}
+          alt={project.name}
           label={project.name}
           className="h-52 group-hover:scale-[1.02] transition-transform duration-500"
         />

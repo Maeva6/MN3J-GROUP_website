@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Services from "./pages/Services";
+import PoleDetail from "./pages/PoleDetail";
+import SubServiceDetail from "./pages/SubServiceDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
@@ -37,6 +39,8 @@ export default function App() {
         <Route path="/chantiers" element={<SiteLayout><Projects /></SiteLayout>} />
         <Route path="/chantiers/:id" element={<SiteLayout><ProjectDetail /></SiteLayout>} />
         <Route path="/services" element={<SiteLayout><Services /></SiteLayout>} />
+        <Route path="/services/:poleId" element={<SiteLayout><PoleDetail /></SiteLayout>} />
+        <Route path="/services/:poleId/:subId" element={<SiteLayout><SubServiceDetail /></SiteLayout>} />
         <Route path="/a-propos" element={<SiteLayout><About /></SiteLayout>} />
         <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
         {/* Back-office : à protéger par une authentification avant mise en production */}

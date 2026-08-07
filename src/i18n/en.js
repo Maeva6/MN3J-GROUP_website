@@ -45,6 +45,12 @@ export const en = {
     title: "Our services",
     intro:
       "Four trades, one signature of excellence: high-end pools, decoration, construction and training.",
+    subTypesTitle: "Our variations",
+    discoverCta: "Discover →",
+    advantagesTitle: "Why choose this",
+    relatedTitle: "Other variations",
+    quoteForThis: "A project in this category?",
+    backToPole: "← Back to {pole}",
   },
 
   about: {
@@ -185,12 +191,66 @@ export const en = {
         description:
           "Design and construction of high-end pools — modern, classic, infinity, mirror infinity, bespoke VIP or bio — conceived as true architectural pieces.",
         subItems: [
-          { title: "Modern pools", description: "Clean lines, contemporary materials and architectural integration." },
-          { title: "Classic pools", description: "Timeless shapes and traditional high-end finishes." },
-          { title: "Infinity pools", description: "A mirror effect on one or more sides, for an unobstructed view." },
-          { title: "Mirror infinity pools", description: "A perfect sheet of water reflecting the landscape, the signature of our exceptional projects." },
-          { title: "Bespoke VIP pools", description: "Fully customised pools for high-end residences and complexes." },
-          { title: "Bio (natural) pools", description: "Natural filtration through lagooning, with no harsh chemical treatment." },
+          {
+            id: "modernes",
+            title: "Modern pools",
+            description: "Clean lines, contemporary materials and architectural integration.",
+            advantages: [
+              "Blends naturally into contemporary architecture, whatever your plot.",
+              "Clean lines and durable materials, designed for easier upkeep.",
+              "Custom-designed around your plot's exposure and topography.",
+            ],
+          },
+          {
+            id: "classiques",
+            title: "Classic pools",
+            description: "Timeless shapes and traditional high-end finishes.",
+            advantages: [
+              "A timeless style that adds lasting value to your property.",
+              "Shapes and finishes adapted to your site's constraints.",
+              "An elegant balance between tradition and today's technical standards.",
+            ],
+          },
+          {
+            id: "debordement",
+            title: "Infinity pools",
+            description: "A mirror effect on one or more sides, for an unobstructed view.",
+            advantages: [
+              "An open view that visually extends your plot toward the horizon.",
+              "Ideal for sloped plots or a view worth showcasing.",
+              "Filtration system optimised for your pool's configuration.",
+            ],
+          },
+          {
+            id: "debordement-miroir",
+            title: "Mirror infinity pools",
+            description: "A perfect sheet of water reflecting the landscape, the signature of our exceptional projects.",
+            advantages: [
+              "A spectacular mirror effect, designed around your site's orientation and light.",
+              "A signature feature that sets your property apart.",
+              "Bespoke technical study to guarantee a perfectly level water sheet.",
+            ],
+          },
+          {
+            id: "vip",
+            title: "Bespoke VIP pools",
+            description: "Fully customised pools for high-end residences and complexes.",
+            advantages: [
+              "A fully customised pool built around your needs and preferences.",
+              "High-end finishes and equipment adapted to your budget and site.",
+              "Dedicated support from the first sketch to delivery.",
+            ],
+          },
+          {
+            id: "bio",
+            title: "Bio (natural) pools",
+            description: "Natural filtration through lagooning, with no harsh chemical treatment.",
+            advantages: [
+              "Natural filtration through lagooning, with no harsh chemical treatment.",
+              "A solution suited to environmentally sensitive sites.",
+              "Lighter maintenance, adapted to your local climate.",
+            ],
+          },
         ],
       },
       decoration: {
@@ -201,10 +261,46 @@ export const en = {
         description:
           "We enhance your living spaces, indoors and outdoors, with constant attention to detail.",
         subItems: [
-          { title: "Landscaping", description: "Gardens, green spaces and outdoor surroundings designed to enhance the building." },
-          { title: "Interior decoration", description: "Layout, furniture and finishes for interiors that meet your standards." },
-          { title: "Exterior decoration", description: "Refined terraces, pergolas and outdoor living spaces." },
-          { title: "Bespoke furniture & finishes", description: "Unique pieces designed and made for each project." },
+          {
+            id: "paysager",
+            title: "Landscaping",
+            description: "Gardens, green spaces and outdoor surroundings designed to enhance the building.",
+            advantages: [
+              "A project designed around your site's climate, soil and exposure.",
+              "Enhances your outdoor spaces all year round.",
+              "Plants selected to suit your geographic area.",
+            ],
+          },
+          {
+            id: "interieure",
+            title: "Interior decoration",
+            description: "Layout, furniture and finishes for interiors that meet your standards.",
+            advantages: [
+              "Bespoke layout based on how you use each space.",
+              "Materials and finishes chosen to fit your budget.",
+              "A consistent visual identity down to the smallest detail.",
+            ],
+          },
+          {
+            id: "exterieure",
+            title: "Exterior decoration",
+            description: "Refined terraces, pergolas and outdoor living spaces.",
+            advantages: [
+              "Outdoor living spaces designed for your climate and exposure.",
+              "Terraces and pergolas designed around your plot's layout.",
+              "A natural extension of your interior outward.",
+            ],
+          },
+          {
+            id: "mobilier",
+            title: "Bespoke furniture & finishes",
+            description: "Unique pieces designed and made for each project.",
+            advantages: [
+              "Unique pieces designed around your space and preferences.",
+              "Materials selected for durability suited to your usage area.",
+              "A finish that sets every project apart.",
+            ],
+          },
         ],
       },
       btp: {
@@ -215,10 +311,46 @@ export const en = {
         description:
           "From structural work to high-end finishing, we deliver solid, meticulously crafted buildings, institutional structures and sports complexes.",
         subItems: [
-          { title: "Residential & commercial buildings", description: "Construction of villas, apartment buildings and business premises." },
-          { title: "Institutional structures", description: "Public and institutional works built to current standards." },
-          { title: "Sports complexes", description: "Sports facilities combining our pool and construction expertise." },
-          { title: "Structural work, second fix & finishing", description: "A single point of contact from groundwork to the final finish." },
+          {
+            id: "batiments",
+            title: "Residential & commercial buildings",
+            description: "Construction of villas, apartment buildings and business premises.",
+            advantages: [
+              "Design adapted to soil conditions and local regulations.",
+              "A single point of contact from permit to handover.",
+              "Technical solutions adjusted to use and location.",
+            ],
+          },
+          {
+            id: "edifices",
+            title: "Institutional structures",
+            description: "Public and institutional works built to current standards.",
+            advantages: [
+              "Structures compliant with the standards relevant to their purpose.",
+              "Full coordination with every project stakeholder.",
+              "Timelines and methods adapted to site constraints.",
+            ],
+          },
+          {
+            id: "complexes-sportifs",
+            title: "Sports complexes",
+            description: "Sports facilities combining our pool and construction expertise.",
+            advantages: [
+              "Facilities designed around the sport and expected usage.",
+              "Combines our pool, construction and aquatic safety expertise.",
+              "Design adapted to climate and intended use.",
+            ],
+          },
+          {
+            id: "gros-oeuvre",
+            title: "Structural work, second fix & finishing",
+            description: "A single point of contact from groundwork to the final finish.",
+            advantages: [
+              "A single point of contact from groundwork to the final finish.",
+              "Rigorous oversight adapted to each site's complexity.",
+              "Materials selected for local conditions.",
+            ],
+          },
         ],
       },
       formation: {
@@ -229,10 +361,46 @@ export const en = {
         description:
           "We train safety and swimming professionals, from state diplomas to ongoing skill development.",
         subItems: [
-          { title: "Lifeguards (MNS)", description: "Diploma training in aquatic supervision and rescue." },
-          { title: "Certified trainers", description: "Training of trainers qualified to deliver state certificates." },
-          { title: "Professional swimmer coaching", description: "Technical coaching for high-level swimmers." },
-          { title: "Certificate renewal & refresher courses", description: "Regulatory update of existing qualifications." },
+          {
+            id: "mns",
+            title: "Lifeguards (MNS)",
+            description: "Diploma training in aquatic supervision and rescue.",
+            advantages: [
+              "Diploma training compliant with regulatory requirements.",
+              "Teaching adapted to each candidate's level and profile.",
+              "Prepares for work in public, private or sports-complex pools.",
+            ],
+          },
+          {
+            id: "formateurs",
+            title: "Certified trainers",
+            description: "Training of trainers qualified to deliver state certificates.",
+            advantages: [
+              "Qualifies you to deliver state certificates yourself.",
+              "A demanding curriculum aligned with industry standards.",
+              "Builds your team's in-house training capacity.",
+            ],
+          },
+          {
+            id: "perfectionnement",
+            title: "Professional swimmer coaching",
+            description: "Technical coaching for high-level swimmers.",
+            advantages: [
+              "Individualised technical coaching matched to the swimmer's level.",
+              "Programme adjusted to targeted performance goals.",
+              "Regular monitoring for safe progress.",
+            ],
+          },
+          {
+            id: "recyclage",
+            title: "Certificate renewal & refresher courses",
+            description: "Regulatory update of existing qualifications.",
+            advantages: [
+              "Updates your qualifications in line with current regulations.",
+              "A short format suited to working professionals.",
+              "Ensures your team's ongoing compliance.",
+            ],
+          },
         ],
       },
       entretien: {

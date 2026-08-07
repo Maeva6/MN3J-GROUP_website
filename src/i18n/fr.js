@@ -45,6 +45,12 @@ export const fr = {
     title: "Nos services",
     intro:
       "Quatre métiers, une seule signature d'excellence : piscines haut de gamme, décoration, BTP et formation.",
+    subTypesTitle: "Nos déclinaisons",
+    discoverCta: "Découvrir →",
+    advantagesTitle: "Pourquoi ce choix",
+    relatedTitle: "Autres déclinaisons",
+    quoteForThis: "Un projet dans cette catégorie ?",
+    backToPole: "← Retour à {pole}",
   },
 
   about: {
@@ -185,12 +191,66 @@ export const fr = {
         description:
           "Conception et réalisation de piscines haut de gamme — modernes, classiques, à débordement, à débordement miroir, VIP sur-mesure ou bio — pensées comme de véritables pièces architecturales.",
         subItems: [
-          { title: "Piscines modernes", description: "Lignes épurées, matériaux contemporains et intégration architecturale." },
-          { title: "Piscines classiques", description: "Formes intemporelles et finitions traditionnelles haut de gamme." },
-          { title: "Piscines à débordement", description: "Effet miroir sur un ou plusieurs côtés, pour une vue dégagée sans limite visuelle." },
-          { title: "Piscines à débordement miroir", description: "Lame d'eau parfaite qui reflète le paysage, signature de nos réalisations d'exception." },
-          { title: "Piscines VIP sur-mesure", description: "Bassins entièrement personnalisés pour résidences et complexes haut de gamme." },
-          { title: "Piscines bio (naturelles)", description: "Filtration naturelle par lagunage, sans traitement chimique agressif." },
+          {
+            id: "modernes",
+            title: "Piscines modernes",
+            description: "Lignes épurées, matériaux contemporains et intégration architecturale.",
+            advantages: [
+              "S'intègre naturellement à une architecture contemporaine, quel que soit votre terrain.",
+              "Lignes épurées et matériaux durables, pensés pour un entretien simplifié.",
+              "Conçue sur-mesure selon l'exposition et la topographie de votre parcelle.",
+            ],
+          },
+          {
+            id: "classiques",
+            title: "Piscines classiques",
+            description: "Formes intemporelles et finitions traditionnelles haut de gamme.",
+            advantages: [
+              "Un style intemporel qui valorise durablement votre propriété.",
+              "Formes et finitions adaptées aux contraintes de votre zone d'implantation.",
+              "Un compromis élégant entre tradition et exigences techniques actuelles.",
+            ],
+          },
+          {
+            id: "debordement",
+            title: "Piscines à débordement",
+            description: "Effet miroir sur un ou plusieurs côtés, pour une vue dégagée sans limite visuelle.",
+            advantages: [
+              "Une vue dégagée qui prolonge visuellement votre terrain vers l'horizon.",
+              "Idéale pour les parcelles en pente ou avec un point de vue à valoriser.",
+              "Système de filtration optimisé selon la configuration de votre bassin.",
+            ],
+          },
+          {
+            id: "debordement-miroir",
+            title: "Piscines à débordement miroir",
+            description: "Lame d'eau parfaite qui reflète le paysage, signature de nos réalisations d'exception.",
+            advantages: [
+              "Effet miroir spectaculaire, conçu selon l'orientation et la lumière de votre site.",
+              "Une pièce signature qui distingue votre propriété.",
+              "Étude technique sur-mesure pour garantir la planéité parfaite de la lame d'eau.",
+            ],
+          },
+          {
+            id: "vip",
+            title: "Piscines VIP sur-mesure",
+            description: "Bassins entièrement personnalisés pour résidences et complexes haut de gamme.",
+            advantages: [
+              "Un bassin entièrement personnalisé selon vos usages et vos envies.",
+              "Finitions et équipements haut de gamme adaptés à votre budget et votre zone.",
+              "Accompagnement dédié du premier plan à la livraison.",
+            ],
+          },
+          {
+            id: "bio",
+            title: "Piscines bio (naturelles)",
+            description: "Filtration naturelle par lagunage, sans traitement chimique agressif.",
+            advantages: [
+              "Filtration naturelle par lagunage, sans traitement chimique agressif.",
+              "Une solution adaptée aux terrains sensibles à l'environnement.",
+              "Un entretien allégé, pensé pour s'adapter à votre climat local.",
+            ],
+          },
         ],
       },
       decoration: {
@@ -201,10 +261,46 @@ export const fr = {
         description:
           "Nous sublimons vos espaces de vie, à l'intérieur comme à l'extérieur, avec une attention constante au détail.",
         subItems: [
-          { title: "Aménagement paysager", description: "Jardins, espaces verts et abords extérieurs pensés pour sublimer le bâti." },
-          { title: "Décoration intérieure", description: "Agencement, mobilier et finitions pour des intérieurs à la hauteur de vos exigences." },
-          { title: "Décoration extérieure", description: "Terrasses, pergolas et espaces de vie extérieurs raffinés." },
-          { title: "Mobilier & finitions sur-mesure", description: "Pièces uniques conçues et réalisées pour chaque projet." },
+          {
+            id: "paysager",
+            title: "Aménagement paysager",
+            description: "Jardins, espaces verts et abords extérieurs pensés pour sublimer le bâti.",
+            advantages: [
+              "Un projet pensé selon le climat, le sol et l'exposition de votre terrain.",
+              "Valorise vos espaces extérieurs tout au long de l'année.",
+              "Sélection de végétaux adaptés à votre zone géographique.",
+            ],
+          },
+          {
+            id: "interieure",
+            title: "Décoration intérieure",
+            description: "Agencement, mobilier et finitions pour des intérieurs à la hauteur de vos exigences.",
+            advantages: [
+              "Agencement sur-mesure selon vos usages et la configuration de vos espaces.",
+              "Matériaux et finitions choisis pour s'adapter à votre budget.",
+              "Une identité visuelle cohérente du salon aux moindres détails.",
+            ],
+          },
+          {
+            id: "exterieure",
+            title: "Décoration extérieure",
+            description: "Terrasses, pergolas et espaces de vie extérieurs raffinés.",
+            advantages: [
+              "Des espaces de vie extérieurs pensés pour votre climat et votre exposition.",
+              "Terrasses et pergolas conçues selon la configuration de votre terrain.",
+              "Un prolongement naturel de votre intérieur vers l'extérieur.",
+            ],
+          },
+          {
+            id: "mobilier",
+            title: "Mobilier & finitions sur-mesure",
+            description: "Pièces uniques conçues et réalisées pour chaque projet.",
+            advantages: [
+              "Pièces uniques conçues selon vos contraintes d'espace et vos envies.",
+              "Matériaux sélectionnés pour leur durabilité selon votre zone d'usage.",
+              "Une finition qui distingue chaque projet.",
+            ],
+          },
         ],
       },
       btp: {
@@ -215,10 +311,46 @@ export const fr = {
         description:
           "De la construction gros œuvre aux finitions haut de gamme, nous livrons des bâtiments, édifices et complexes sportifs solides et soignés.",
         subItems: [
-          { title: "Bâtiments résidentiels & tertiaires", description: "Construction de villas, immeubles et locaux professionnels." },
-          { title: "Édifices institutionnels", description: "Ouvrages publics et institutionnels réalisés selon les normes en vigueur." },
-          { title: "Complexes sportifs", description: "Infrastructures sportives intégrant nos expertises piscine et BTP." },
-          { title: "Gros œuvre, second œuvre & finitions", description: "Un seul interlocuteur du terrassement à la dernière finition." },
+          {
+            id: "batiments",
+            title: "Bâtiments résidentiels & tertiaires",
+            description: "Construction de villas, immeubles et locaux professionnels.",
+            advantages: [
+              "Conception adaptée à la nature du sol et à la réglementation locale.",
+              "Un seul interlocuteur du permis de construire à la livraison.",
+              "Solutions techniques ajustées selon l'usage et la zone d'implantation.",
+            ],
+          },
+          {
+            id: "edifices",
+            title: "Édifices institutionnels",
+            description: "Ouvrages publics et institutionnels réalisés selon les normes en vigueur.",
+            advantages: [
+              "Ouvrages conformes aux normes en vigueur selon leur destination.",
+              "Coordination complète avec les parties prenantes du projet.",
+              "Délais et méthodes adaptés aux contraintes du site.",
+            ],
+          },
+          {
+            id: "complexes-sportifs",
+            title: "Complexes sportifs",
+            description: "Infrastructures sportives intégrant nos expertises piscine et BTP.",
+            advantages: [
+              "Infrastructures pensées selon la discipline et la fréquentation attendue.",
+              "Intègre nos expertises piscine, BTP et sécurité aquatique.",
+              "Conception adaptée au climat et à l'usage prévu.",
+            ],
+          },
+          {
+            id: "gros-oeuvre",
+            title: "Gros œuvre, second œuvre & finitions",
+            description: "Un seul interlocuteur du terrassement à la dernière finition.",
+            advantages: [
+              "Un seul interlocuteur du terrassement à la dernière finition.",
+              "Suivi rigoureux adapté à la complexité de chaque chantier.",
+              "Matériaux sélectionnés selon les conditions locales.",
+            ],
+          },
         ],
       },
       formation: {
@@ -229,10 +361,46 @@ export const fr = {
         description:
           "Nous formons les professionnels de la sécurité et de la natation, du diplôme d'État au perfectionnement continu.",
         subItems: [
-          { title: "Maîtres-nageurs-sauveteurs (MNS)", description: "Formation diplômante à la surveillance et au sauvetage aquatique." },
-          { title: "Formateurs certifiés", description: "Formation de formateurs habilités à transmettre les brevets d'État." },
-          { title: "Perfectionnement de nageurs professionnels", description: "Encadrement technique pour nageurs de haut niveau." },
-          { title: "Recyclage & mise à niveau des brevets", description: "Mise à jour réglementaire des qualifications existantes." },
+          {
+            id: "mns",
+            title: "Maîtres-nageurs-sauveteurs (MNS)",
+            description: "Formation diplômante à la surveillance et au sauvetage aquatique.",
+            advantages: [
+              "Formation diplômante conforme aux exigences réglementaires.",
+              "Pédagogie adaptée au niveau et au profil de chaque candidat.",
+              "Prépare à l'exercice en piscine publique, privée ou complexe sportif.",
+            ],
+          },
+          {
+            id: "formateurs",
+            title: "Formateurs certifiés",
+            description: "Formation de formateurs habilités à transmettre les brevets d'État.",
+            advantages: [
+              "Habilite à transmettre les brevets d'État à votre tour.",
+              "Un cursus exigeant, aligné sur les standards de la profession.",
+              "Renforce l'autonomie de vos équipes en interne.",
+            ],
+          },
+          {
+            id: "perfectionnement",
+            title: "Perfectionnement de nageurs professionnels",
+            description: "Encadrement technique pour nageurs de haut niveau.",
+            advantages: [
+              "Encadrement technique individualisé selon le niveau du nageur.",
+              "Programme ajusté aux objectifs de performance visés.",
+              "Suivi régulier pour progresser en toute sécurité.",
+            ],
+          },
+          {
+            id: "recyclage",
+            title: "Recyclage & mise à niveau des brevets",
+            description: "Mise à jour réglementaire des qualifications existantes.",
+            advantages: [
+              "Met à jour vos qualifications selon la réglementation en vigueur.",
+              "Formule courte, adaptée aux professionnels en activité.",
+              "Garantit la conformité continue de vos équipes.",
+            ],
+          },
         ],
       },
       entretien: {

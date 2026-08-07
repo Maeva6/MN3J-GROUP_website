@@ -1,3 +1,8 @@
+import villaImg from "../assets/images/projet-villa-les-palmiers.jpg";
+import residenceImg from "../assets/images/projet-residence-bel-horizon.jpg";
+import centreImg from "../assets/images/projet-centre-nautique-azur.jpg";
+import bahiaImg from "../assets/images/projet-villa-bahia.jpg";
+
 export const projects = [
   {
     id: "villa-les-palmiers",
@@ -9,7 +14,7 @@ export const projects = [
     year: "2024",
     duration: "4 mois",
     client: "Particulier — Cocody",
-    image: "villa",
+    image: villaImg,
     description:
       "Conception et réalisation d'une piscine à débordement miroir avec plage en pierre naturelle et éclairage LED sur-mesure.",
   },
@@ -23,7 +28,7 @@ export const projects = [
     year: "2025",
     duration: "8 mois",
     client: "Sté Horizon SA",
-    image: "residence",
+    image: residenceImg,
     description:
       "Gros œuvre et finitions haut de gamme pour un ensemble résidentiel en bord de lagune, avec suivi hebdomadaire de l'avancement.",
   },
@@ -37,7 +42,7 @@ export const projects = [
     year: "2023",
     duration: "6 mois",
     client: "Ville de Grand-Bassam",
-    image: "centre",
+    image: centreImg,
     description:
       "Mise en place d'un centre de formation de maîtres-nageurs-sauveteurs et de nageurs professionnels, bassin olympique inclus.",
   },
@@ -51,7 +56,7 @@ export const projects = [
     year: "2025",
     duration: "3 mois",
     client: "Particulier — Riviera",
-    image: "bahia",
+    image: bahiaImg,
     description:
       "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
   },

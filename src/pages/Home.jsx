@@ -103,7 +103,7 @@ export default function Home() {
               <p className="text-muted text-[13.5px] leading-relaxed mt-2">
                 {t(`data.services.${id}.description`)}
               </p>
-              <Link to={`/services#${id}`} className="text-blue text-sm font-semibold mt-4 inline-block">
+              <Link to={`/services/${id}`} className="text-blue text-sm font-semibold mt-4 inline-block">
                 {t("common.learnMore")}
               </Link>
             </motion.div>
