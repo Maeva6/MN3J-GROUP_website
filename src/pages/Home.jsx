@@ -146,12 +146,12 @@ export default function Home() {
       </section>
 
       {/* RESEAUX SOCIAUX */}
-      <div className="bg-navy py-7">
+      {/* <div className="bg-navy py-7">
         <div className="container-page flex items-center justify-center gap-4">
           <span className="text-[#A9BCD6] text-sm">{t("home.followProjects")}</span>
           <SocialIcons variant="dark" />
         </div>
-      </div>
+      </div> */}
 
       {/* CTA */}
       <div className="bg-green py-14">
