@@ -64,7 +64,7 @@ export default function Home() {
         </PhotoFrame>
 
         <div className="container-page">
-          <div className="relative -mt-12 z-10">
+          <div className="relative mt-6 md:-mt-12 z-10">
             <StatsBar />
           </div>
         </div>

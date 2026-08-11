@@ -63,7 +63,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
-      <div className="container-page flex items-center justify-between h-20">
+      <div className="container-nav flex items-center justify-between h-20">
         <NavLink to="/" className="flex items-center gap-2 shrink-0" onClick={() => setOpen(false)}>
           {/* Icône seule recadrée via object-position pour éviter d'écraser le texte du logo */}
           <img src={logo} alt="MN3J-GROUP" className="h-10 w-10 object-cover object-top rounded" />
@@ -72,57 +72,57 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-muted">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
-            }
-          >
-            {t("nav.home")}
-          </NavLink>
-          <NavLink
-            to="/chantiers"
-            className={({ isActive }) =>
-              isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
-            }
-          >
-            {t("nav.projects")}
-          </NavLink>
+        <div className="hidden xl:flex items-center gap-8">
+          <nav className="flex items-center gap-6 text-sm font-medium text-muted">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
+              }
+            >
+              {t("nav.home")}
+            </NavLink>
+            <NavLink
+              to="/chantiers"
+              className={({ isActive }) =>
+                isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
+              }
+            >
+              {t("nav.projects")}
+            </NavLink>
 
-          {services.map((pole) => (
-            <PoleDropdown key={pole.id} pole={pole} t={t} />
-          ))}
+            {services.map((pole) => (
+              <PoleDropdown key={pole.id} pole={pole} t={t} />
+            ))}
 
-          <NavLink
-            to="/a-propos"
-            className={({ isActive }) =>
-              isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
-            }
-          >
-            {t("nav.about")}
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
-            }
-          >
-            {t("nav.contact")}
-          </NavLink>
-        </nav>
+            <NavLink
+              to="/a-propos"
+              className={({ isActive }) =>
+                isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
+              }
+            >
+              {t("nav.about")}
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
+              }
+            >
+              {t("nav.contact")}
+            </NavLink>
+          </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
           <div
             role="group"
             aria-label="Choix de la langue"
-            className="flex items-center text-xs font-semibold border border-black/10 rounded-full overflow-hidden"
+            className="flex items-center text-xs font-semibold border border-black/10 rounded-full overflow-hidden shrink-0"
           >
             <button
               type="button"
               onClick={() => setLang("fr")}
               aria-pressed={lang === "fr"}
-              className={`px-3 py-1 transition-colors ${
+              className={`px-3.5 py-1.5 transition-colors ${
                 lang === "fr" ? "bg-navy text-white" : "text-muted hover:text-navy"
               }`}
             >
@@ -132,7 +132,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setLang("en")}
               aria-pressed={lang === "en"}
-              className={`px-3 py-1 transition-colors ${
+              className={`px-3.5 py-1.5 transition-colors ${
                 lang === "en" ? "bg-navy text-white" : "text-muted hover:text-navy"
               }`}
             >
@@ -142,7 +142,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-navy"
+          className="xl:hidden text-navy"
           onClick={() => setOpen((v) => !v)}
           aria-label={t("nav.openMenu")}
         >
@@ -151,8 +151,8 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-black/5 bg-white">
-          <nav className="container-page py-4 flex flex-col gap-4 text-sm font-medium">
+        <div className="xl:hidden border-t border-black/5 bg-white">
+          <nav className="container-nav py-4 flex flex-col gap-4 text-sm font-medium">
             <NavLink to="/" onClick={() => setOpen(false)} className="text-ink">
               {t("nav.home")}
             </NavLink>
