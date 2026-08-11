@@ -79,35 +79,49 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
-          {services.map(({ id, icon: Icon }, i) => (
-            <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="border border-black/5 rounded-md p-7 hover:shadow-card hover:-translate-y-1 transition-all bg-white"
-            >
-              <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                  i % 2 === 0 ? "bg-navy" : "bg-green"
-                }`}
+          {services.map(({ id, icon: Icon, featuredSub, subImages }, i) => {
+            const featured = t(`data.services.${id}.subItems`).find((s) => s.id === featuredSub);
+            return (
+              <motion.div
+                key={id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+                className="rounded-md overflow-hidden border border-black/5 hover:shadow-card hover:-translate-y-1 transition-all bg-white flex flex-col"
               >
-                <Icon size={22} className="text-white" />
-              </div>
-              <span className="text-[10px] uppercase tracking-wider text-blue font-semibold">
-                {t(`data.services.${id}.accent`)}
-              </span>
-              <h3 className="text-navy font-display font-semibold text-[17px] mt-1">
-                {t(`data.services.${id}.title`)}
-              </h3>
-              <p className="text-muted text-[13.5px] leading-relaxed mt-2">
-                {t(`data.services.${id}.description`)}
-              </p>
-              <Link to={`/services/${id}`} className="text-blue text-sm font-semibold mt-4 inline-block">
-                {t("common.learnMore")}
-              </Link>
-            </motion.div>
-          ))}
+                <div className="p-7 pb-5">
+                  <div
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+                      i % 2 === 0 ? "bg-navy" : "bg-green"
+                    }`}
+                  >
+                    <Icon size={22} className="text-white" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-wider text-blue font-semibold">
+                    {t(`data.services.${id}.accent`)}
+                  </span>
+                  <h3 className="text-navy font-display font-semibold text-[17px] mt-1">
+                    {t(`data.services.${id}.title`)}
+                  </h3>
+                </div>
+
+                <PhotoFrame
+                  src={subImages[featuredSub]}
+                  alt={featured.title}
+                  tone="navy"
+                  className="h-36"
+                />
+
+                <div className="p-5 flex flex-col flex-1">
+                  <span className="text-[13.5px] text-ink font-medium">{featured.title}</span>
+                  <p className="text-muted text-xs leading-relaxed mt-1 flex-1">{featured.description}</p>
+                  <Link to={`/services/${id}`} className="text-blue text-sm font-semibold mt-3 inline-block">
+                    {t("common.learnMore")}
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 

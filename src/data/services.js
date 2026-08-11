@@ -38,6 +38,8 @@ export const services = [
     number: "01",
     icon: Waves,
     image: piscinesImg,
+    // Sous-type mis en avant sur la page d'accueil
+    featuredSub: "debordement-miroir",
     subImages: {
       modernes: piscinesModernesImg,
       classiques: piscinesClassiquesImg,
@@ -52,6 +54,7 @@ export const services = [
     number: "02",
     icon: Sparkles,
     image: decorationImg,
+    featuredSub: "exterieure",
     subImages: {
       paysager: decorationPaysagerImg,
       interieure: decorationInterieureImg,
@@ -64,6 +67,7 @@ export const services = [
     number: "03",
     icon: HardHat,
     image: btpImg,
+    featuredSub: "batiments",
     subImages: {
       batiments: btpBatimentsImg,
       edifices: btpEdificesImg,
@@ -76,6 +80,7 @@ export const services = [
     number: "04",
     icon: GraduationCap,
     image: formationImg,
+    featuredSub: "mns",
     subImages: {
       mns: formationMnsImg,
       formateurs: formationFormateursImg,
