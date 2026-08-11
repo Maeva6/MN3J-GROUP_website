@@ -66,7 +66,7 @@ export const stats = [
   { value: "150+", label: "Chantiers réalisés" },
   { value: "12", label: "Ans d'expérience" },
   { value: "300+", label: "Nageurs formés" },
-  { value: "98%", label: "Clients satisfaits" },
+  { value: "100%", label: "Clients satisfaits" },
 ];
 
 export const statusStyles = {

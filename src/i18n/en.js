@@ -28,7 +28,7 @@ export const en = {
     heroTitleLine1: "Building excellence,",
     heroTitleLine2: "cultivating trust",
     heroText:
-      "MN3J-GROUP brings together a multidisciplinary team — qualified technicians, decorators and trainers — around one standard: designing your high-end pools (modern, classic, infinity, mirror infinity, VIP or bio), your developments and your exceptional sites with proven expertise, from the first blueprint to the final finish.",
+      "MN3J-GROUP brings together a multidisciplinary team of qualified technicians, decorators and trainers around one standard: designing your high-end pools, your developments and your exceptional sites with proven expertise, from the first blueprint to the final finish.",
     anchorServicesLabel: "Our expertise",
     polesEyebrow: "Our areas of expertise",
     polesTitle: "Four areas of expertise, one standard",

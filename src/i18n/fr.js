@@ -28,7 +28,7 @@ export const fr = {
     heroTitleLine1: "Bâtir l'excellence,",
     heroTitleLine2: "cultiver la confiance",
     heroText:
-      "MN3J-GROUP réunit une équipe pluridisciplinaire — techniciens, décorateurs et formateurs qualifiés — autour d'une même exigence : concevoir vos piscines haut de gamme (modernes, classiques, à débordement, à débordement miroir, VIP ou bio), vos aménagements et vos chantiers d'exception avec un savoir-faire vérifié, du premier plan à la dernière finition.",
+      "MN3J-GROUP réunit une équipe pluridisciplinaire de techniciens, décorateurs et formateurs qualifiés autour d'une même exigence : concevoir vos piscines haut de gamme, vos aménagements et vos chantiers d'exception avec un savoir-faire vérifié, du premier plan à la dernière finition.",
     anchorServicesLabel: "Nos expertises",
     polesEyebrow: "Nos pôles d'activité",
     polesTitle: "Quatre expertises, une seule exigence",

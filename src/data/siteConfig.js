@@ -10,15 +10,17 @@ export const siteConfig = {
     city: "Douala-Ndokoti",
     country: "Cameroun",
   },
-  phone: "+___ __ __ __ __ __",
-  email: "contact@mn3j-group.com",
+  phone: "+237 6 73 77 24 76",
+  email: "mn3jgroup@gmail.com",
   hours: [
     { day: "Lundi – Vendredi", time: "8h00 – 18h00" },
     { day: "Samedi", time: "9h00 – 14h00" },
     { day: "Dimanche", time: "Fermé" },
   ],
-  // Coordonnées GPS du siège, pour la carte de la page Contact
-  map: { lat: null, lng: null },
+  // Coordonnées GPS du siège, pour la carte de la page Contact.
+  // ⚠️ À AJUSTER : valeurs approximatives du carrefour Ndokoti / PK8 (Douala),
+  // à remplacer par les coordonnées exactes du siège dès que possible.
+  map: { lat: 4.0435, lng: 9.7424 },
   social: {
     youtube: "https://youtube.com",
     linkedin: "https://linkedin.com",
