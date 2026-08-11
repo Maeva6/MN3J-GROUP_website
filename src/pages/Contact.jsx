@@ -24,7 +24,7 @@ export default function Contact() {
       </div>
 
       <div className="container-page pb-20 grid md:grid-cols-3 gap-10">
-        <div className="space-y-8">
+        <div className="space-y-8 flex flex-col">
           <div>
             <h3 className="text-navy font-semibold text-sm flex items-center gap-2 mb-1">
               <MapPin size={15} /> {t("contact.addressLabel")}
@@ -59,7 +59,21 @@ export default function Contact() {
             </ul>
           </div>
 
-          <PhotoFrame tone="navy" label={t("contact.mapLabel")} className="h-48 rounded-lg" />
+          <div className="flex-1 flex flex-col">
+            <h3 className="text-navy font-semibold text-sm flex items-center gap-2 mb-1">
+              <MapPin size={15} /> {t("contact.mapLabel")}
+            </h3>
+            {siteConfig.map.lat != null && siteConfig.map.lng != null ? (
+              <iframe
+                title={t("contact.mapLabel")}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${siteConfig.map.lng - 0.015}%2C${siteConfig.map.lat - 0.015}%2C${siteConfig.map.lng + 0.015}%2C${siteConfig.map.lat + 0.015}&layer=mapnik&marker=${siteConfig.map.lat}%2C${siteConfig.map.lng}`}
+                loading="lazy"
+                className="w-full flex-1 min-h-[220px] rounded-lg border border-black/10"
+              />
+            ) : (
+              <PhotoFrame tone="navy" label={t("contact.mapLabel")} className="flex-1 min-h-[220px] rounded-lg" />
+            )}
+          </div>
         </div>
 
         <div className="md:col-span-2 bg-surface rounded-lg p-8">
