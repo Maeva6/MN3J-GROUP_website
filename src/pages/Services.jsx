@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
+import Seo from "../components/Seo";
 import { services, maintenanceService } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 import servicesHeroImg from "../assets/images/services-piscine-vue.jpg";
@@ -9,6 +10,8 @@ export default function Services() {
 
   return (
     <div>
+      <Seo title={t("seo.services.title")} description={t("seo.services.description")} />
+
       <PhotoFrame tone="dusk" src={servicesHeroImg} alt={t("services.heroLabel")} label={t("services.heroLabel")} className="h-64">
         <div className="absolute inset-0 bg-black/40 flex items-end">
           <div className="container-page pb-10">

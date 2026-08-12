@@ -37,6 +37,11 @@ export const en = {
     realisationsTitle: "Our latest projects",
     viewAllProjects: "View all projects",
     followProjects: "Follow our projects",
+    testimonials: {
+      eyebrow: "Trusted by our clients",
+      title: "What our clients say",
+      subtitle: "Feedback from across our four areas of expertise.",
+    },
   },
 
   services: {
@@ -154,6 +159,46 @@ export const en = {
     followTitle: "Follow our projects",
     rights: "All rights reserved.",
     legal: "Legal notice · Privacy policy",
+  },
+
+  notFound: {
+    eyebrow: "404 error",
+    title: "This page doesn't exist",
+    text: "The link may be incorrect or the page may have moved. Let's get you back on track.",
+    backHome: "Back to home",
+    backProjects: "View our projects",
+  },
+
+  seo: {
+    home: {
+      title: "MN3J-GROUP — High-end pools, decoration, construction & aquatic training",
+      description:
+        "MN3J-GROUP designs your high-end pools, developments and exceptional sites in Douala: decoration, construction and aquatic training with proven expertise.",
+    },
+    services: {
+      title: "Our services — Pools, decoration, construction & training | MN3J-GROUP",
+      description:
+        "Discover MN3J-GROUP's four areas of expertise: high-end pools, decoration, construction and aquatic training, each with dedicated variations.",
+    },
+    projects: {
+      title: "Our projects — MN3J-GROUP portfolio",
+      description:
+        "High-end pools, decoration, construction and aquatic training: discover MN3J-GROUP's completed, ongoing and planned projects.",
+    },
+    about: {
+      title: "About — MN3J-GROUP",
+      description:
+        "Discover the team, values and certifications of MN3J-GROUP, dedicated to your pool, decoration, construction and aquatic training projects.",
+    },
+    contact: {
+      title: "Contact — Request a quote | MN3J-GROUP",
+      description:
+        "Contact MN3J-GROUP for a personalised quote within 48h: high-end pools, decoration, construction and aquatic training.",
+    },
+    notFound: {
+      title: "Page not found — MN3J-GROUP",
+      description: "The requested page no longer exists. Find your way back to the MN3J-GROUP homepage and services.",
+    },
   },
 
   data: {
@@ -437,6 +482,25 @@ export const en = {
         description:
           "Full landscaping and interior decoration of a contemporary villa, currently in the design phase.",
         duration: "3 months",
+      },
+    },
+    // ⚠️ Sample testimonials — replace with real client feedback before launch.
+    testimonials: {
+      t1: {
+        quote:
+          "The result exceeded our expectations: the mirror infinity pool has become the centrepiece of our property. Meticulous work from the first blueprint to the final finish.",
+      },
+      t2: {
+        quote:
+          "A single point of contact from the building permit to delivery, deadlines met, and remarkable finishing quality across the entire site.",
+      },
+      t3: {
+        quote:
+          "Our lifeguards were trained with exemplary rigour. The MN3J-GROUP team adapted perfectly to each candidate's level.",
+      },
+      t4: {
+        quote:
+          "From the terrace to the living room, every space was thought through to the smallest detail. An attentive team and a result that transformed our everyday life.",
       },
     },
   },

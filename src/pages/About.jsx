@@ -1,4 +1,5 @@
 import PhotoFrame from "../components/PhotoFrame";
+import Seo from "../components/Seo";
 import { ShieldCheck, HeartHandshake, Sparkle, Users } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import aboutHeroImg from "../assets/images/about-hero-equipe.jpg";
@@ -25,6 +26,8 @@ export default function About() {
 
   return (
     <div>
+      <Seo title={t("seo.about.title")} description={t("seo.about.description")} />
+
       <PhotoFrame tone="navy" src={aboutHeroImg} alt={t("about.heroLabel")} label={t("about.heroLabel")} className="h-64">
         <div className="absolute inset-0 bg-black/40 flex items-end">
           <div className="container-page pb-10">

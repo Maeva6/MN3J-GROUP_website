@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
+import Seo from "../components/Seo";
 import { siteConfig } from "../data/siteConfig";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -18,6 +19,8 @@ export default function Contact() {
 
   return (
     <div>
+      <Seo title={t("seo.contact.title")} description={t("seo.contact.description")} />
+
       <div className="container-page py-14">
         <span className="eyebrow">{t("contact.eyebrow")}</span>
         <h1 className="text-3xl text-navy font-display font-semibold mt-2">{t("contact.title")}</h1>

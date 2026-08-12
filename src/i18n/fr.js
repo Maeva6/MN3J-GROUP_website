@@ -37,6 +37,11 @@ export const fr = {
     realisationsTitle: "Nos derniers chantiers",
     viewAllProjects: "Voir tous les chantiers",
     followProjects: "Suivez nos chantiers",
+    testimonials: {
+      eyebrow: "Ils nous font confiance",
+      title: "Ce que nos clients en disent",
+      subtitle: "Des retours d'expérience sur nos quatre pôles d'activité.",
+    },
   },
 
   services: {
@@ -154,6 +159,46 @@ export const fr = {
     followTitle: "Suivez nos chantiers",
     rights: "Tous droits réservés.",
     legal: "Mentions légales · Politique de confidentialité",
+  },
+
+  notFound: {
+    eyebrow: "Erreur 404",
+    title: "Cette page n'existe pas",
+    text: "Le lien est peut-être incorrect ou la page a été déplacée. Repartons sur une piste connue.",
+    backHome: "Retour à l'accueil",
+    backProjects: "Voir nos chantiers",
+  },
+
+  seo: {
+    home: {
+      title: "MN3J-GROUP — Piscines haut de gamme, décoration, BTP & formation aquatique",
+      description:
+        "MN3J-GROUP conçoit vos piscines haut de gamme, vos aménagements et vos chantiers d'exception à Douala : décoration, BTP et formation aquatique avec un savoir-faire vérifié.",
+    },
+    services: {
+      title: "Nos services — Piscines, décoration, BTP & formation | MN3J-GROUP",
+      description:
+        "Découvrez les quatre pôles d'expertise de MN3J-GROUP : piscines haut de gamme, décoration, BTP et formation aquatique, chacun avec ses déclinaisons dédiées.",
+    },
+    projects: {
+      title: "Nos chantiers — Réalisations MN3J-GROUP",
+      description:
+        "Piscines haut de gamme, décoration, BTP et formation aquatique : découvrez les chantiers réalisés, en cours et planifiés par MN3J-GROUP.",
+    },
+    about: {
+      title: "À propos — MN3J-GROUP",
+      description:
+        "Découvrez l'équipe, les valeurs et les certifications de MN3J-GROUP, au service de vos projets de piscines, décoration, BTP et formation aquatique.",
+    },
+    contact: {
+      title: "Contact — Demander un devis | MN3J-GROUP",
+      description:
+        "Contactez MN3J-GROUP pour un devis personnalisé sous 48h : piscines haut de gamme, décoration, BTP et formation aquatique.",
+    },
+    notFound: {
+      title: "Page introuvable — MN3J-GROUP",
+      description: "La page demandée n'existe pas ou plus. Retrouvez l'accueil et nos services MN3J-GROUP.",
+    },
   },
 
   data: {
@@ -437,6 +482,25 @@ export const fr = {
         description:
           "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
         duration: "3 mois",
+      },
+    },
+    // ⚠️ Témoignages de démonstration — à remplacer par de vrais retours clients avant mise en ligne.
+    testimonials: {
+      t1: {
+        quote:
+          "Le résultat dépasse nos attentes : la piscine à débordement miroir est devenue la pièce maîtresse de notre propriété. Un travail minutieux du premier plan à la dernière finition.",
+      },
+      t2: {
+        quote:
+          "Un seul interlocuteur du permis de construire à la livraison, des délais tenus et une qualité de finition remarquable sur l'ensemble du chantier.",
+      },
+      t3: {
+        quote:
+          "Nos maîtres-nageurs ont été formés avec une rigueur exemplaire. L'équipe MN3J-GROUP a su s'adapter au niveau de chaque candidat.",
+      },
+      t4: {
+        quote:
+          "De la terrasse au salon, chaque espace a été pensé dans le moindre détail. Une équipe à l'écoute et un rendu qui a transformé notre quotidien.",
       },
     },
   },

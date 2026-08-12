@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { MapPin, Calendar, Clock, User } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
+import Seo from "../components/Seo";
 import { projects, statusStyles } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -23,6 +24,11 @@ export default function ProjectDetail() {
 
   return (
     <div>
+      <Seo
+        title={`${project.name} — MN3J-GROUP`}
+        description={t(`data.projects.${project.id}.description`)}
+      />
+
       <PhotoFrame tone="navy" src={project.image} alt={project.name} label={project.name} className="h-80">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 container-page pb-8">

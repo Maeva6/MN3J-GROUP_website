@@ -1,6 +1,7 @@
-import { NavLink, Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutGrid, HardHat, FileText, Users, Settings, LogOut } from "lucide-react";
+import { NavLink, Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { LayoutGrid, HardHat, FileText, Users, Settings, LogOut, ExternalLink } from "lucide-react";
 import logo from "../../assets/images/logo.jpeg";
+import { logoutAdmin } from "../../utils/adminAuth";
 
 const nav = [
   { to: "/admin", end: true, icon: LayoutGrid, label: "Dashboard" },
@@ -20,8 +21,14 @@ const titles = {
 
 export default function AdminLayout() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const normalizedPath = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   const title = titles[normalizedPath] || "Espace Admin";
+
+  const logout = () => {
+    logoutAdmin();
+    navigate("/admin/login", { replace: true });
+  };
 
   return (
     <div className="flex min-h-screen bg-surface">
@@ -47,13 +54,19 @@ export default function AdminLayout() {
             </NavLink>
           ))}
         </nav>
-        <div className="p-3 border-t border-white/10">
+        <div className="p-3 border-t border-white/10 space-y-1">
           <Link
             to="/"
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-sm text-white/70 hover:bg-white/5 transition-colors"
           >
-            <LogOut size={16} /> Retour au site
+            <ExternalLink size={16} /> Retour au site
           </Link>
+          <button
+            onClick={logout}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-sm text-white/70 hover:bg-white/5 transition-colors"
+          >
+            <LogOut size={16} /> Déconnexion
+          </button>
         </div>
       </aside>
 

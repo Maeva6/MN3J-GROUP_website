@@ -7,6 +7,7 @@ export const projects = [
   {
     id: "villa-les-palmiers",
     name: "Villa Les Palmiers",
+    poleId: "piscines",
     category: "Piscine à débordement miroir",
     location: "Cocody",
     status: "Réalisé",
@@ -21,6 +22,7 @@ export const projects = [
   {
     id: "residence-bel-horizon",
     name: "Résidence Bel Horizon",
+    poleId: "btp",
     category: "BTP & finitions",
     location: "Assinie",
     status: "En cours",
@@ -35,6 +37,7 @@ export const projects = [
   {
     id: "centre-nautique-azur",
     name: "Centre nautique Azur",
+    poleId: "formation",
     category: "Formation aquatique",
     location: "Grand-Bassam",
     status: "Réalisé",
@@ -49,6 +52,7 @@ export const projects = [
   {
     id: "villa-bahia",
     name: "Villa Bahia",
+    poleId: "decoration",
     category: "Décoration intérieure & extérieure",
     location: "Riviera",
     status: "Planifié",

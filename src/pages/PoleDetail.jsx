@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
+import Seo from "../components/Seo";
 import { services, maintenanceService } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -25,6 +26,11 @@ export default function PoleDetail() {
 
   return (
     <div>
+      <Seo
+        title={`${t(`data.services.${pole.id}.title`)} — MN3J-GROUP`}
+        description={t(`data.services.${pole.id}.description`)}
+      />
+
       <PhotoFrame
         tone="dusk"
         src={pole.image}

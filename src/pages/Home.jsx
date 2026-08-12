@@ -5,6 +5,8 @@ import PhotoFrame from "../components/PhotoFrame";
 import StatsBar from "../components/StatsBar";
 import ProjectCard from "../components/ProjectCard";
 import SocialIcons from "../components/SocialIcons";
+import Testimonials from "../components/Testimonials";
+import Seo from "../components/Seo";
 import { services } from "../data/services";
 import { projects } from "../data/projects";
 import { siteConfig } from "../data/siteConfig";
@@ -18,6 +20,8 @@ export default function Home() {
 
   return (
     <div>
+      <Seo title={t("seo.home.title")} description={t("seo.home.description")} />
+
       {/* HERO */}
       <section className="relative">
         <PhotoFrame
@@ -144,6 +148,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* RESEAUX SOCIAUX */}
       {/* <div className="bg-navy py-7">

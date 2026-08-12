@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
+import Seo from "../components/Seo";
 import { services } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -27,6 +28,8 @@ export default function SubServiceDetail() {
 
   return (
     <div>
+      <Seo title={`${sub.title} — ${poleTitle} | MN3J-GROUP`} description={sub.description} />
+
       <PhotoFrame src={pole.subImages[sub.id]} alt={sub.title} tone="navy" className="h-80">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 container-page pb-8">
