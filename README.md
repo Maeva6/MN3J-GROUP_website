@@ -3,6 +3,11 @@
 Site vitrine + back-office pour MN3J-GROUP Sarl (piscines haut de gamme,
 décoration, BTP, formation aquatique).
 
+> Une API back-end complète existe dans [`server/`](server/README.md)
+> (Node/Express + Prisma), mais **n'est pas encore branchée** au frontend
+> ci-dessous — le frontend continue de lire ses données statiques dans
+> `src/data/*.js` en attendant la validation du site auprès du client.
+
 ## Stack
 
 - React 19 + Vite

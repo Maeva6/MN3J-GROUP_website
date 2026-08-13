@@ -1,0 +1,99 @@
+// Schéma de données du back-office MN3J-GROUP.
+// Miroir des structures utilisées côté frontend (src/data/*.js) afin de
+// pouvoir, le jour venu, brancher l'un sur l'autre sans redesign.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  // Identifiant lisible utilisé dans les URLs publiques (ex: /chantiers/villa-les-palmiers)
+  slug        String   @unique
+  name        String
+  // Pôle d'activité : "piscines" | "decoration" | "btp" | "formation"
+  poleId      String
+  // Libellé affiché (ex: "Piscine à débordement miroir")
+  category    String
+  location    String
+  // "Réalisé" | "En cours" | "Planifié"
+  status      String
+  progress    Int      @default(0)
+  year        String
+  duration    String
+  client      String
+  imageUrl    String?
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Quote {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  projectType String
+  budget      String
+  message     String
+  // "Nouveau" | "Contacté" | "Accepté" | "Refusé"
+  status      String   @default("Nouveau")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Client {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String
+  projectsCount Int      @default(0)
+  // Conservé en texte formaté (ex: "45 000 000 FCFA") pour coller à l'affichage frontend.
+  totalValue    String   @default("")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  // Pôle d'activité concerné : "piscines" | "decoration" | "btp" | "formation"
+  poleId    String
+  rating    Int      @default(5)
+  quoteFr   String
+  quoteEn   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Ligne unique (id fixe = 1) contenant les informations de src/data/siteConfig.js.
+model SiteSetting {
+  id          Int      @id @default(1)
+  companyName String
+  street      String
+  city        String
+  country     String
+  phone       String
+  email       String
+  // JSON.stringify de [{ day, time }, ...]
+  hoursJson   String
+  lat         Float?
+  lng         Float?
+  // JSON.stringify de { youtube, linkedin, tiktok, instagram, facebook }
+  socialJson  String
+  updatedAt   DateTime @updatedAt
+}
