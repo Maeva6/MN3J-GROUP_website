@@ -7,6 +7,9 @@ décoration, BTP, formation aquatique).
 > (Node/Express + Prisma), mais **n'est pas encore branchée** au frontend
 > ci-dessous — le frontend continue de lire ses données statiques dans
 > `src/data/*.js` en attendant la validation du site auprès du client.
+>
+> Toute la partie infrastructure (Docker, Traefik, CI/CD, Kubernetes,
+> monitoring, Terraform) est documentée dans [`DEVOPS.md`](DEVOPS.md).
 
 ## Stack
 

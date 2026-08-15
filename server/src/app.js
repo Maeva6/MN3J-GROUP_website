@@ -12,6 +12,7 @@ import { testimonialsRouter } from "./routes/testimonials.routes.js";
 import { settingsRouter } from "./routes/settings.routes.js";
 import { notFoundHandler, errorHandler } from "./middleware/errorHandler.js";
 import { UPLOADS_DIR } from "./middleware/upload.js";
+import { registry, metricsMiddleware } from "./lib/metrics.js";
 
 const corsOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
   .split(",")
@@ -24,9 +25,16 @@ export function createApp() {
   app.use(cors({ origin: corsOrigins, credentials: true }));
   app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
   app.use(express.json());
+  app.use(metricsMiddleware);
 
   // Photos uploadées (voir POST /api/projects/:id/image).
   app.use("/uploads", express.static(UPLOADS_DIR));
+
+  // Scrapé par Prometheus (voir docker-compose.monitoring.yml).
+  app.get("/metrics", async (req, res) => {
+    res.set("Content-Type", registry.contentType);
+    res.end(await registry.metrics());
+  });
 
   app.use("/api/health", healthRouter);
   app.use("/api/auth", authRouter);

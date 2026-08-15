@@ -1,0 +1,41 @@
+# Stack de monitoring optionnelle — Prometheus + Grafana.
+# Se branche sur le réseau créé par docker-compose.yml : lancez d'abord
+# `docker compose up -d` (au moins le service "api"), PUIS :
+#
+#   docker compose -f docker-compose.monitoring.yml up -d
+#
+# Prometheus : http://localhost:9090
+# Grafana    : http://localhost:3001 (admin / admin — changez-le au premier login)
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks: [mn3j-network]
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "3001:3000" # 3000 est souvent déjà pris par un serveur de dev local
+    networks: [mn3j-network]
+
+networks:
+  mn3j-network:
+    external: true
+    name: mn3j-group_mn3j-network
+
+volumes:
+  prometheus_data:
+  grafana_data:

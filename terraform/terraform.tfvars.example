@@ -1,0 +1,7 @@
+# Copier en "terraform.tfvars" pour surcharger les valeurs par défaut de
+# variables.tf. Les défauts suffisent pour un usage local — ce fichier n'est
+# utile que si vous voulez des ports différents ou de vrais secrets.
+
+# postgres_password  = "un-mot-de-passe-different"
+# jwt_secret         = "un-secret-different"
+# admin_password     = "un-mot-de-passe-different"

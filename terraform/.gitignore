@@ -1,0 +1,8 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+!terraform.tfvars.example
+crash.log
+# Note : .terraform.lock.hcl n'est PAS ignoré — il se commit (comme un
+# package-lock.json), il fixe les versions de provider pour l'équipe.
