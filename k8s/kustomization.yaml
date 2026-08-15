@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mn3j-group
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  # secret.yaml n'est pas listé ici : il est appliqué séparément (voir
+  # k8s/README.md) puisqu'il n'existe qu'en local, non commité.
+  - postgres.yaml
+  - api.yaml
+  - ingress.yaml

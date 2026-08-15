@@ -1,0 +1,15 @@
+# Config non sensible de l'API (l'équivalent des variables non secrètes de server/.env).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: mn3j-group
+data:
+  PORT: "4000"
+  CORS_ORIGIN: "http://localhost:5173"
+  JWT_EXPIRES_IN: "8h"
+  SEED_ON_START: "false"
+  NOTIFY_EMAIL_TO: "mn3jgroup@gmail.com"
+  SMTP_FROM: "MN3J-GROUP <no-reply@mn3jgroup.com>"
+  SMTP_HOST: ""
+  SMTP_PORT: "587"

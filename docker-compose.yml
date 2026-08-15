@@ -1,0 +1,86 @@
+# Stack de développement locale : Postgres + API + Traefik (reverse proxy) + Adminer.
+# ⚠️ Identifiants Postgres fixes ci-dessous : valables UNIQUEMENT pour cet
+# usage local. Ne jamais réutiliser ces valeurs pour un environnement exposé.
+#
+# Démarrage : docker compose up --build
+# API exposée via Traefik sur : http://api.localhost
+# Adminer (interface DB)      : http://adminer.localhost
+# Dashboard Traefik            : http://localhost:8080
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mn3j
+      POSTGRES_PASSWORD: mn3j_dev_password
+      POSTGRES_DB: mn3j
+    ports:
+      # Port hôte 5433 (pas 5432) : évite tout conflit avec un Postgres déjà
+      # installé nativement sur la machine. Pratique pour lancer `npm run dev`
+      # en dehors de Docker en pointant sur ce Postgres.
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mn3j"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [mn3j-network]
+
+  api:
+    build:
+      context: ./server
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    environment:
+      DATABASE_URL: postgresql://mn3j:mn3j_dev_password@db:5432/mn3j?schema=public
+      PORT: 4000
+      SEED_ON_START: "true"
+    volumes:
+      - ./server/uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [mn3j-network]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.localhost`)"
+      - "traefik.http.routers.api.entrypoints=web"
+      - "traefik.http.services.api.loadbalancer.server.port=4000"
+
+  adminer:
+    image: adminer:4
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    networks: [mn3j-network]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`adminer.localhost`)"
+      - "traefik.http.routers.adminer.entrypoints=web"
+      - "traefik.http.services.adminer.loadbalancer.server.port=8080"
+
+  traefik:
+    image: traefik:v3.1
+    restart: unless-stopped
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--api.dashboard=true"
+      - "--api.insecure=true" # dashboard sans auth : OK en local, à ne jamais faire en prod
+    ports:
+      - "80:80"
+      - "8080:8080" # dashboard Traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks: [mn3j-network]
+
+networks:
+  mn3j-network:
+
+volumes:
+  pgdata:

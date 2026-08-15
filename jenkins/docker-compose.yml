@@ -1,0 +1,22 @@
+# Jenkins en local — stack séparée de docker-compose.yml (Jenkins n'est pas
+# un composant de l'appli, c'est l'outil de CI qu'on apprend à côté).
+#
+# Démarrage : docker compose -f jenkins/docker-compose.yml up --build -d
+# UI : http://localhost:8090
+# Mot de passe admin initial : voir jenkins/README.md
+
+services:
+  jenkins:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8090:8080" # 8080 est déjà pris par le dashboard Traefik
+      - "50000:50000" # port agents Jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # Socket Docker de l'hôte : permet à Jenkins de lancer des `docker build`
+      # sans faire tourner un Docker imbriqué (Docker-outside-of-Docker).
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  jenkins_home:

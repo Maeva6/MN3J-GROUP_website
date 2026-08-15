@@ -1,0 +1,22 @@
+# Nécessite un ingress controller sur le cluster (ex. ingress-nginx —
+# `minikube addons enable ingress`, ou installé via Helm sur k3d/k3s).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  namespace: mn3j-group
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.mn3j.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  number: 80
