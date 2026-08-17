@@ -1,0 +1,30 @@
+# Configuration statique des routes Traefik.
+#
+# À l'origine, ce projet utilisait la découverte automatique via le socket
+# Docker (labels sur chaque service). Sur cette machine, le client Docker
+# interne de Traefik (v3.1 puis v3.5 testés) échoue systématiquement à
+# dialoguer avec le démon Docker Desktop à travers le socket monté
+# ("API returned a 400 (Bad Request)") — un problème de compatibilité côté
+# Docker Desktop pour Windows, pas une erreur de configuration.
+# Cette config statique obtient le même résultat (routage par nom d'hôte
+# vers les services internes du réseau Compose) sans dépendre du socket.
+http:
+  routers:
+    api:
+      rule: "Host(`api.localhost`)"
+      entryPoints: ["web"]
+      service: api
+    adminer:
+      rule: "Host(`adminer.localhost`)"
+      entryPoints: ["web"]
+      service: adminer
+
+  services:
+    api:
+      loadBalancer:
+        servers:
+          - url: "http://api:4000"
+    adminer:
+      loadBalancer:
+        servers:
+          - url: "http://adminer:8080"
