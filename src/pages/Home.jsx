@@ -159,12 +159,27 @@ export default function Home() {
       </section>
 
       {/* RESEAUX SOCIAUX */}
-      <div className="bg-gradient-to-r from-navy to-blue py-10">
-        <div className="container-page flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-          <span className="text-[#A9BCD6] text-sm font-medium">{t("home.followProjects")}</span>
-          <SocialIcons variant="dark" size="lg" />
-        </div>
-      </div>
+      {/* Carte flottante (pas une barre pleine largeur) pour éviter tout effet
+          "footer" avant d'arriver au vrai Footer, plus bas sur la page. */}
+      <section className="container-page py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl bg-gradient-to-r from-navy to-blue px-6 md:px-10 py-10 shadow-card flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div className="text-center md:text-left">
+            <span className="text-[#A9E072] text-[11px] font-semibold uppercase tracking-wider">
+              {t("home.followEyebrow")}
+            </span>
+            <p className="text-white font-display font-semibold text-lg mt-1">
+              {t("home.followProjects")}
+            </p>
+          </div>
+          <SocialIcons variant="dark" size="lg" animated />
+        </motion.div>
+      </section>
 
       <Testimonials />
 

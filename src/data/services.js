@@ -17,6 +17,12 @@ import decorationPaysagerImg from "../assets/images/sub-decoration-paysager.jpg"
 import decorationInterieureImg from "../assets/images/sub-decoration-interieure.jpg";
 import decorationExterieureImg from "../assets/images/sub-decoration-exterieure.jpg";
 import decorationMobilierImg from "../assets/images/sub-decoration-mobilier.jpg";
+import decorationFauxPlafondImg from "../assets/images/sub-decoration-faux-plafond.jpg";
+import decorationVitrerieImg from "../assets/images/sub-decoration-vitrerie.jpg";
+import decorationAluminiumImg from "../assets/images/sub-decoration-aluminium.jpg";
+import decorationMenuiserieBoisImg from "../assets/images/sub-decoration-menuiserie-bois.jpg";
+import decorationPeintureImg from "../assets/images/sub-decoration-peinture.jpg";
+import decorationElectriciteImg from "../assets/images/sub-decoration-electricite.jpg";
 
 import btpBatimentsImg from "../assets/images/sub-btp-batiments.jpg";
 import btpEdificesImg from "../assets/images/sub-btp-edifices.jpg";
@@ -25,6 +31,7 @@ import projetResidenceImg from "../assets/images/projet-residence-bel-horizon.jp
 
 import formationMnsImg from "../assets/images/sub-formation-mns.jpg";
 import formationFormateursImg from "../assets/images/sub-formation-formateurs.jpg";
+import formationInitiationImg from "../assets/images/sub-formation-initiation.jpg";
 import projetCentreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import formationRecyclageImg from "../assets/images/sub-formation-recyclage.jpg";
 
@@ -60,12 +67,15 @@ export const services = [
       interieure: decorationInterieureImg,
       exterieure: decorationExterieureImg,
       mobilier: decorationMobilierImg,
-      // "faux-plafond", "vitrerie", "aluminium", "menuiserie-bois", "peinture"
-      // et "electricite" n'ont pas encore de photo de chantier dédiée : plutôt
-      // que de réafficher une photo décoration existante qui ne correspond pas
-      // au sous-type, on laisse volontairement ces clés absentes — PhotoFrame
-      // affiche alors son dégradé de marque + légende à la place (voir
-      // PhotoFrame.jsx). À remplacer par de vraies photos dès qu'elles existent.
+      // ⚠️ Pas encore de photo de chantier MN3J-GROUP pour ces 6 déclinaisons :
+      // photos libres de droits (licence Pexels, usage commercial libre, sans
+      // attribution requise) le temps d'avoir de vraies photos de chantier.
+      "faux-plafond": decorationFauxPlafondImg,
+      vitrerie: decorationVitrerieImg,
+      aluminium: decorationAluminiumImg,
+      "menuiserie-bois": decorationMenuiserieBoisImg,
+      peinture: decorationPeintureImg,
+      electricite: decorationElectriciteImg,
     },
   },
   {
@@ -93,8 +103,14 @@ export const services = [
     subImages: {
       mns: formationMnsImg,
       formateurs: formationFormateursImg,
-      // "initiation" et "reeducation" n'ont pas encore de photo dédiée : voir
-      // le commentaire équivalent dans le pôle "decoration" ci-dessus.
+      // Idem "decoration" ci-dessus : photo libre de droits (licence Pexels)
+      // en attendant une vraie photo de chantier ASCII.
+      initiation: formationInitiationImg,
+      // "reeducation" reste volontairement sans photo : aucune image libre de
+      // droits trouvée ne représentait fidèlement de la rééducation aquatique
+      // (post-opératoire) sans risquer d'induire en erreur — le dégradé de
+      // marque + légende de PhotoFrame prend le relais en attendant une vraie
+      // photo de chantier ASCII.
       perfectionnement: projetCentreImg,
       recyclage: formationRecyclageImg,
     },
