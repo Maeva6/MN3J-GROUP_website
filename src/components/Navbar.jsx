@@ -12,12 +12,17 @@ function PoleDropdown({ pole, t }) {
       <NavLink
         to={`/services/${pole.id}`}
         className={({ isActive }) =>
-          `inline-flex items-center gap-1 ${
+          `inline-flex items-center gap-1.5 ${
             isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
           }`
         }
       >
         {t(`data.services.${pole.id}.title`)}
+        {pole.brand && (
+          <span className="text-[9px] uppercase tracking-wider font-bold text-green-dark bg-green/15 rounded-full px-1.5 py-0.5">
+            {pole.brand}
+          </span>
+        )}
         <ChevronDown size={14} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
       </NavLink>
 
@@ -46,6 +51,11 @@ function PoleDropdown({ pole, t }) {
             )}
           </ul>
           <div className="border-t border-black/5 mt-2 pt-2">
+            {pole.brand && (
+              <p className="text-[11px] text-muted px-2.5 mb-1.5 leading-relaxed">
+                {t(`data.services.${pole.id}.brandNote`)}
+              </p>
+            )}
             <Link to={`/services/${pole.id}`} className="text-xs font-semibold text-blue hover:underline px-2.5">
               {t("services.discoverCta")}
             </Link>
@@ -91,9 +101,20 @@ export default function Navbar() {
               {t("nav.projects")}
             </NavLink>
 
-            {services.map((pole) => (
-              <PoleDropdown key={pole.id} pole={pole} t={t} />
-            ))}
+            {services
+              .filter((pole) => !pole.brand)
+              .map((pole) => (
+                <PoleDropdown key={pole.id} pole={pole} t={t} />
+              ))}
+
+            {services
+              .filter((pole) => pole.brand)
+              .map((pole) => (
+                <span key={pole.id} className="flex items-center gap-6">
+                  <span className="w-px h-4 bg-black/10" aria-hidden="true" />
+                  <PoleDropdown pole={pole} t={t} />
+                </span>
+              ))}
 
             <NavLink
               to="/a-propos"
@@ -160,17 +181,25 @@ export default function Navbar() {
               {t("nav.projects")}
             </NavLink>
 
-            {services.map((pole) => {
+            {services.map((pole, i) => {
               const subItems = t(`data.services.${pole.id}.subItems`);
               const isOpen = mobilePoleOpen === pole.id;
+              const isFirstBranded = pole.brand && !services[i - 1]?.brand;
               return (
-                <div key={pole.id}>
+                <div key={pole.id} className={isFirstBranded ? "border-t border-black/5 pt-4" : ""}>
                   <button
                     type="button"
                     onClick={() => setMobilePoleOpen(isOpen ? null : pole.id)}
                     className="w-full flex items-center justify-between text-ink"
                   >
-                    {t(`data.services.${pole.id}.title`)}
+                    <span className="inline-flex items-center gap-1.5">
+                      {t(`data.services.${pole.id}.title`)}
+                      {pole.brand && (
+                        <span className="text-[9px] uppercase tracking-wider font-bold text-green-dark bg-green/15 rounded-full px-1.5 py-0.5">
+                          {pole.brand}
+                        </span>
+                      )}
+                    </span>
                     <ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                   </button>
                   {isOpen && (

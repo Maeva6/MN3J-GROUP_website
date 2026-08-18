@@ -43,14 +43,20 @@ const links = [
   { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
 ];
 
-export default function SocialIcons({ variant = "dark" }) {
+export default function SocialIcons({ variant = "dark", size = "md" }) {
   const base =
     variant === "dark"
-      ? "bg-white/10 text-white hover:bg-green hover:text-[#12310F]"
-      : "bg-navy/5 text-navy hover:bg-green hover:text-white";
+      ? "bg-white/10 text-white hover:bg-green hover:text-[#12310F] hover:shadow-lg hover:shadow-green/20"
+      : "bg-navy/5 text-navy hover:bg-green hover:text-white hover:shadow-lg hover:shadow-green/20";
+
+  const sizes = {
+    md: { wrap: "w-11 h-11", icon: 20 },
+    lg: { wrap: "w-14 h-14", icon: 24 },
+  };
+  const { wrap, icon } = sizes[size] ?? sizes.md;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-4">
       {links.map(({ href, label, Icon }) => (
         <a
           key={label}
@@ -58,9 +64,9 @@ export default function SocialIcons({ variant = "dark" }) {
           target="_blank"
           rel="noreferrer"
           aria-label={label}
-          className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${base}`}
+          className={`${wrap} rounded-full flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-0.5 ${base}`}
         >
-          <Icon />
+          <Icon width={icon} height={icon} />
         </a>
       ))}
     </div>

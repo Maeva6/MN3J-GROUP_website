@@ -60,6 +60,12 @@ export const services = [
       interieure: decorationInterieureImg,
       exterieure: decorationExterieureImg,
       mobilier: decorationMobilierImg,
+      // "faux-plafond", "vitrerie", "aluminium", "menuiserie-bois", "peinture"
+      // et "electricite" n'ont pas encore de photo de chantier dédiée : plutôt
+      // que de réafficher une photo décoration existante qui ne correspond pas
+      // au sous-type, on laisse volontairement ces clés absentes — PhotoFrame
+      // affiche alors son dégradé de marque + légende à la place (voir
+      // PhotoFrame.jsx). À remplacer par de vraies photos dès qu'elles existent.
     },
   },
   {
@@ -80,10 +86,15 @@ export const services = [
     number: "04",
     icon: GraduationCap,
     image: formationImg,
+    // Pôle piloté par ASCII, la marque formation du groupe MN3J-GROUP :
+    // affiché en badge sur les pages qui listent ce pôle (nav, chantiers, fiche pôle).
+    brand: "ASCII",
     featuredSub: "mns",
     subImages: {
       mns: formationMnsImg,
       formateurs: formationFormateursImg,
+      // "initiation" et "reeducation" n'ont pas encore de photo dédiée : voir
+      // le commentaire équivalent dans le pôle "decoration" ci-dessus.
       perfectionnement: projetCentreImg,
       recyclage: formationRecyclageImg,
     },

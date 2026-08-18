@@ -50,6 +50,11 @@ export default function PoleDetail() {
               <span className="text-[10px] uppercase tracking-wider text-white/80 font-semibold border border-white/30 rounded-full px-2 py-0.5">
                 {t(`data.services.${pole.id}.accent`)}
               </span>
+              {pole.brand && (
+                <span className="text-[10px] uppercase tracking-wider text-[#12310F] font-bold bg-green rounded-full px-2.5 py-0.5">
+                  {pole.brand}
+                </span>
+              )}
             </div>
             <p className="text-white/80 mt-2 max-w-lg text-sm">
               {t(`data.services.${pole.id}.description`)}
@@ -57,6 +62,22 @@ export default function PoleDetail() {
           </div>
         </div>
       </PhotoFrame>
+
+      {/* Section à part entière pour les pôles portés par une marque dédiée
+          (ex. Formation → ASCII), pour ne jamais la confondre avec les autres
+          pôles MN3J-GROUP — cohérent avec la page Chantiers. */}
+      {pole.brand && (
+        <div className="container-page pt-10">
+          <div className="border-2 border-green/25 rounded-2xl bg-green/5 p-6 md:p-8 flex flex-wrap items-center gap-5">
+            <span className="text-[11px] uppercase tracking-wider font-bold text-green-dark bg-green rounded-full px-3 py-1 shrink-0">
+              {pole.brand}
+            </span>
+            <p className="text-ink text-sm max-w-2xl">
+              {t(`data.services.${pole.id}.brandNote`)}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="container-page py-16">
         <div className="max-w-xl mx-auto text-center mb-12">
@@ -86,6 +107,7 @@ export default function PoleDetail() {
                 <PhotoFrame
                   src={pole.subImages[item.id]}
                   alt={item.title}
+                  label={item.title}
                   tone="navy"
                   className="h-44 group-hover:scale-[1.02] transition-transform duration-500"
                 />

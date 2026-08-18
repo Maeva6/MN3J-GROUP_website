@@ -138,6 +138,8 @@ export const fr = {
     intro: "Piscines haut de gamme, décoration, BTP et formation : découvrez nos projets, du lancement à la livraison.",
     all: "Tous",
     noResults: "Aucun chantier ne correspond à ces filtres.",
+    coreSectionTitle: "Nos chantiers MN3J-GROUP",
+    formationGroupLabel: "Formations · ASCII",
   },
 
   projectDetail: {
@@ -346,6 +348,66 @@ export const fr = {
               "Une finition qui distingue chaque projet.",
             ],
           },
+          {
+            id: "faux-plafond",
+            title: "Faux plafond (placoplâtre, staff & lambris)",
+            description: "Plafonds suspendus en placoplâtre, staff décoratif et habillages en lambris.",
+            advantages: [
+              "Habillage en placoplâtre, staff ou lambris selon le style recherché.",
+              "Intègre proprement l'éclairage et les gaines techniques.",
+              "Finitions soignées adaptées à chaque pièce, du salon aux espaces recevant du public.",
+            ],
+          },
+          {
+            id: "vitrerie",
+            title: "Vitrerie",
+            description: "Pose et remplacement de vitrages pour baies, fenêtres et cloisons vitrées.",
+            advantages: [
+              "Vitrages sélectionnés selon l'usage : isolation, sécurité ou esthétique.",
+              "Pose soignée qui garantit étanchéité et durabilité dans le temps.",
+              "S'intègre aussi bien en rénovation qu'en construction neuve.",
+            ],
+          },
+          {
+            id: "aluminium",
+            title: "Aluminium",
+            description: "Menuiseries aluminium sur-mesure : baies, portes et façades.",
+            advantages: [
+              "Structures légères, résistantes et adaptées au climat local.",
+              "Finitions modernes qui s'intègrent à toute architecture.",
+              "Entretien réduit comparé aux menuiseries traditionnelles.",
+            ],
+          },
+          {
+            id: "menuiserie-bois",
+            title: "Menuiserie bois",
+            description: "Portes, fenêtres, dressings et agencements en bois sur-mesure.",
+            advantages: [
+              "Essences de bois choisies selon l'usage et le budget.",
+              "Fabrication sur-mesure adaptée à chaque espace.",
+              "Un rendu chaleureux et intemporel dans la durée.",
+            ],
+          },
+          {
+            id: "peinture",
+            title: "Peinture",
+            description: "Peinture intérieure et extérieure, revêtements et finitions décoratives.",
+            advantages: [
+              "Préparation soignée des supports avant application.",
+              "Peintures sélectionnées selon la pièce et son exposition.",
+              "Un rendu homogène et durable, intérieur comme extérieur.",
+            ],
+          },
+          {
+            id: "electricite",
+            title: "Électricité (bandes LED, projecteurs, spots, lampes pendantes)",
+            description: "Installation électrique intérieure et extérieure, éclairage décoratif sur-mesure : bandes LED, projecteurs, spots et lampes pendantes.",
+            advantages: [
+              "Éclairage pensé pour sublimer chaque espace, intérieur comme extérieur.",
+              "Installation conforme aux normes, du tableau électrique aux points lumineux.",
+              "Solutions décoratives sur-mesure : bandes LED, projecteurs, spots et suspensions.",
+            ],
+          },
         ],
       },
       btp: {
@@ -402,13 +464,16 @@ export const fr = {
         title: "Formation aquatique",
         tagline: "Formation",
         accent: "Training",
-        navBlurb: "Maîtres-nageurs-sauveteurs, formateurs certifiés et perfectionnement continu.",
+        brand: "ASCII",
+        brandNote:
+          "Formation aquatique pilotée par ASCII, notre pôle formation dédié au sein de MN3J-GROUP.",
+        navBlurb: "Initiation, maîtres-nageurs-sauveteurs, formateurs certifiés, rééducation et perfectionnement continu.",
         description:
-          "Nous formons les professionnels de la sécurité et de la natation, du diplôme d'État au perfectionnement continu.",
+          "Nous formons les professionnels de la sécurité et de la natation, de l'initiation au perfectionnement continu, ainsi qu'à la rééducation aquatique.",
         subItems: [
           {
             id: "mns",
-            title: "Maîtres-nageurs-sauveteurs (MNS)",
+            title: "Formation de maîtres-nageurs-sauveteurs (MNS)",
             description: "Formation diplômante à la surveillance et au sauvetage aquatique.",
             advantages: [
               "Formation diplômante conforme aux exigences réglementaires.",
@@ -418,17 +483,37 @@ export const fr = {
           },
           {
             id: "formateurs",
-            title: "Formateurs certifiés",
-            description: "Formation de formateurs habilités à transmettre les brevets d'État.",
+            title: "Formation de formateurs certifiés",
+            description: "Formation de formateurs habilités à transmettre les diplômes d'État à leur tour.",
             advantages: [
-              "Habilite à transmettre les brevets d'État à votre tour.",
+              "Habilite à transmettre les diplômes d'État à votre tour.",
               "Un cursus exigeant, aligné sur les standards de la profession.",
               "Renforce l'autonomie de vos équipes en interne.",
             ],
           },
           {
+            id: "initiation",
+            title: "Formation, apprentissage et initiation à la natation",
+            description: "Premiers apprentissages et initiation à la natation, pour enfants comme pour adultes.",
+            advantages: [
+              "Pédagogie progressive adaptée à l'âge et au niveau de chaque nageur.",
+              "Mise en confiance dans l'eau avant l'apprentissage technique.",
+              "Encadrement individuel ou en petit groupe selon vos besoins.",
+            ],
+          },
+          {
+            id: "reeducation",
+            title: "Formation en rééducation aquatique",
+            description: "Rééducation post-opératoire et accompagnement thérapeutique en milieu aquatique.",
+            advantages: [
+              "Programme adapté à chaque parcours de rééducation post-opératoire.",
+              "Encadrement spécialisé, en lien avec les recommandations médicales.",
+              "Un milieu aquatique qui facilite une récupération en douceur.",
+            ],
+          },
+          {
             id: "perfectionnement",
-            title: "Perfectionnement de nageurs professionnels",
+            title: "Formation au perfectionnement de nageurs professionnels",
             description: "Encadrement technique pour nageurs de haut niveau.",
             advantages: [
               "Encadrement technique individualisé selon le niveau du nageur.",
@@ -438,7 +523,7 @@ export const fr = {
           },
           {
             id: "recyclage",
-            title: "Recyclage & mise à niveau des brevets",
+            title: "Formation au recyclage et mise à niveau",
             description: "Mise à jour réglementaire des qualifications existantes.",
             advantages: [
               "Met à jour vos qualifications selon la réglementation en vigueur.",

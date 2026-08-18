@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, MapPin, LayoutGrid } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
+import HeroSlideshow from "../components/HeroSlideshow";
 import StatsBar from "../components/StatsBar";
 import ProjectCard from "../components/ProjectCard";
 import SocialIcons from "../components/SocialIcons";
@@ -11,12 +12,19 @@ import { services } from "../data/services";
 import { projects } from "../data/projects";
 import { siteConfig } from "../data/siteConfig";
 import { useLanguage } from "../i18n/LanguageContext";
-import heroImg from "../assets/images/hero-piscine-miroir.jpg";
 
 export default function Home() {
   const { t } = useLanguage();
   const weekdayHours = siteConfig.hours[0];
   const polesSummary = services.map(({ id }) => t(`data.services.${id}.title`)).join(" · ");
+
+  // Piscine haut de gamme en premier (image d'accueil signature — "services"
+  // liste déjà Piscines en tête), puis un aperçu de chaque autre pôle —
+  // décoration, BTP, formation — en fondu-enchaîné.
+  const heroSlides = services.map(({ id, image }) => ({
+    src: image,
+    alt: id === "piscines" ? t("home.heroLabel") : t(`data.services.${id}.title`),
+  }));
 
   return (
     <div>
@@ -24,13 +32,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative">
-        <PhotoFrame
-          tone="dusk"
-          src={heroImg}
-          alt={t("home.heroLabel")}
-          label={t("home.heroLabel")}
-          className="h-[720px]"
-        >
+        <HeroSlideshow slides={heroSlides} className="h-[720px]">
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A192D]/85 via-[#0A192D]/35 to-transparent" />
           <div className="relative h-full container-page flex items-center">
             <motion.div
@@ -65,7 +67,7 @@ export default function Home() {
 
             </motion.div>
           </div>
-        </PhotoFrame>
+        </HeroSlideshow>
 
         <div className="container-page">
           <div className="relative mt-6 md:-mt-12 z-10">
@@ -83,7 +85,7 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
-          {services.map(({ id, icon: Icon, featuredSub, subImages }, i) => {
+          {services.map(({ id, icon: Icon, featuredSub, subImages, brand }, i) => {
             const featured = t(`data.services.${id}.subItems`).find((s) => s.id === featuredSub);
             return (
               <motion.div
@@ -101,9 +103,16 @@ export default function Home() {
                   >
                     <Icon size={22} className="text-white" />
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-blue font-semibold">
-                    {t(`data.services.${id}.accent`)}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-wider text-blue font-semibold">
+                      {t(`data.services.${id}.accent`)}
+                    </span>
+                    {brand && (
+                      <span className="text-[9px] uppercase tracking-wider font-bold text-green-dark bg-green/15 rounded-full px-1.5 py-0.5">
+                        {brand}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="text-navy font-display font-semibold text-[17px] mt-1">
                     {t(`data.services.${id}.title`)}
                   </h3>
@@ -149,15 +158,15 @@ export default function Home() {
         </div>
       </section>
 
-      <Testimonials />
-
       {/* RESEAUX SOCIAUX */}
-      {/* <div className="bg-navy py-7">
-        <div className="container-page flex items-center justify-center gap-4">
-          <span className="text-[#A9BCD6] text-sm">{t("home.followProjects")}</span>
-          <SocialIcons variant="dark" />
+      <div className="bg-gradient-to-r from-navy to-blue py-10">
+        <div className="container-page flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+          <span className="text-[#A9BCD6] text-sm font-medium">{t("home.followProjects")}</span>
+          <SocialIcons variant="dark" size="lg" />
         </div>
-      </div> */}
+      </div>
+
+      <Testimonials />
 
       {/* CTA */}
       <div className="bg-green py-14">

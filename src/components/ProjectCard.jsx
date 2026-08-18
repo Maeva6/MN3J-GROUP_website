@@ -3,10 +3,12 @@ import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import PhotoFrame from "./PhotoFrame";
 import { statusStyles } from "../data/projects";
+import { services } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export default function ProjectCard({ project }) {
   const { t } = useLanguage();
+  const brand = services.find((s) => s.id === project.poleId)?.brand;
 
   return (
     <motion.div
@@ -26,11 +28,18 @@ export default function ProjectCard({ project }) {
           className="h-52 group-hover:scale-[1.02] transition-transform duration-500"
         />
         <div className="p-5">
-          <span
-            className={`inline-block text-[11px] font-bold px-3 py-1 rounded-full mb-3 ${statusStyles[project.status]}`}
-          >
-            {t(`data.status.${project.status}`)}
-          </span>
+          <div className="flex items-center gap-2 mb-3">
+            <span
+              className={`inline-block text-[11px] font-bold px-3 py-1 rounded-full ${statusStyles[project.status]}`}
+            >
+              {t(`data.status.${project.status}`)}
+            </span>
+            {brand && (
+              <span className="inline-block text-[10px] uppercase tracking-wider font-bold text-green-dark bg-green/15 rounded-full px-2.5 py-1">
+                {brand}
+              </span>
+            )}
+          </div>
           <h4 className="font-display font-semibold text-navy text-base">{project.name}</h4>
           <p className="text-xs text-muted mt-1 flex items-center gap-1">
             <MapPin size={12} /> {t(`data.category.${project.category}`)} · {project.location}

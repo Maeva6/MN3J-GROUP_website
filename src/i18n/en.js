@@ -138,6 +138,8 @@ export const en = {
     intro: "High-end pools, decoration, construction and training: discover our projects, from launch to delivery.",
     all: "All",
     noResults: "No project matches these filters.",
+    coreSectionTitle: "Our MN3J-GROUP projects",
+    formationGroupLabel: "ASCII training",
   },
 
   projectDetail: {
@@ -346,6 +348,66 @@ export const en = {
               "A finish that sets every project apart.",
             ],
           },
+          {
+            id: "faux-plafond",
+            title: "Suspended ceilings (drywall, plasterwork & panelling)",
+            description: "Suspended drywall ceilings, decorative plasterwork and wood panelling.",
+            advantages: [
+              "Drywall, plasterwork or panelling finish matched to the style you want.",
+              "Neatly integrates lighting and technical ducting.",
+              "Careful finishing suited to every room, from living rooms to public spaces.",
+            ],
+          },
+          {
+            id: "vitrerie",
+            title: "Glazing",
+            description: "Installation and replacement of glazing for bay windows, windows and glass partitions.",
+            advantages: [
+              "Glazing selected for insulation, safety or aesthetics as needed.",
+              "Careful fitting that guarantees long-term weatherproofing and durability.",
+              "Suited to both renovation and new-build projects.",
+            ],
+          },
+          {
+            id: "aluminium",
+            title: "Aluminium joinery",
+            description: "Bespoke aluminium joinery: bay windows, doors and facades.",
+            advantages: [
+              "Lightweight, resistant structures adapted to the local climate.",
+              "Modern finishes that suit any architectural style.",
+              "Lower maintenance than traditional joinery.",
+            ],
+          },
+          {
+            id: "menuiserie-bois",
+            title: "Wood joinery",
+            description: "Bespoke wooden doors, windows, wardrobes and fittings.",
+            advantages: [
+              "Wood species chosen to match usage and budget.",
+              "Bespoke manufacturing suited to each space.",
+              "A warm, timeless result that lasts.",
+            ],
+          },
+          {
+            id: "peinture",
+            title: "Painting",
+            description: "Interior and exterior painting, coatings and decorative finishes.",
+            advantages: [
+              "Careful surface preparation before application.",
+              "Paints selected to suit each room and its exposure.",
+              "A consistent, durable result, indoors and outdoors.",
+            ],
+          },
+          {
+            id: "electricite",
+            title: "Electrical (LED strips, floodlights, spotlights, pendant lamps)",
+            description: "Indoor and outdoor electrical installation, bespoke decorative lighting: LED strips, floodlights, spotlights and pendant lamps.",
+            advantages: [
+              "Lighting designed to enhance every space, indoors and outdoors.",
+              "Code-compliant installation, from the distribution board to every fixture.",
+              "Bespoke decorative solutions: LED strips, floodlights, spotlights and pendants.",
+            ],
+          },
         ],
       },
       btp: {
@@ -402,13 +464,16 @@ export const en = {
         title: "Aquatic training",
         tagline: "Training",
         accent: "Training",
-        navBlurb: "Lifeguards, certified trainers and ongoing skill development.",
+        brand: "ASCII",
+        brandNote:
+          "Aquatic training is run by ASCII, MN3J-GROUP's dedicated training division.",
+        navBlurb: "Initiation, lifeguards, certified trainers, rehabilitation and ongoing skill development.",
         description:
-          "We train safety and swimming professionals, from state diplomas to ongoing skill development.",
+          "We train safety and swimming professionals, from beginner initiation to ongoing skill development, as well as aquatic rehabilitation.",
         subItems: [
           {
             id: "mns",
-            title: "Lifeguards (MNS)",
+            title: "Lifeguard training (MNS)",
             description: "Diploma training in aquatic supervision and rescue.",
             advantages: [
               "Diploma training compliant with regulatory requirements.",
@@ -418,17 +483,37 @@ export const en = {
           },
           {
             id: "formateurs",
-            title: "Certified trainers",
-            description: "Training of trainers qualified to deliver state certificates.",
+            title: "Certified trainer training",
+            description: "Training of trainers qualified to deliver state diplomas in turn.",
             advantages: [
-              "Qualifies you to deliver state certificates yourself.",
+              "Qualifies you to deliver state diplomas yourself.",
               "A demanding curriculum aligned with industry standards.",
               "Builds your team's in-house training capacity.",
             ],
           },
           {
+            id: "initiation",
+            title: "Learn-to-swim & initiation training",
+            description: "First steps and initiation to swimming, for children and adults alike.",
+            advantages: [
+              "Progressive teaching adapted to each swimmer's age and level.",
+              "Building confidence in water before technical learning begins.",
+              "One-to-one or small-group coaching to suit your needs.",
+            ],
+          },
+          {
+            id: "reeducation",
+            title: "Aquatic rehabilitation training",
+            description: "Post-operative rehabilitation and therapeutic support in water.",
+            advantages: [
+              "Programme adapted to each post-operative rehabilitation journey.",
+              "Specialised supervision, in line with medical guidance.",
+              "An aquatic environment that supports gentle recovery.",
+            ],
+          },
+          {
             id: "perfectionnement",
-            title: "Professional swimmer coaching",
+            title: "Professional swimmer coaching training",
             description: "Technical coaching for high-level swimmers.",
             advantages: [
               "Individualised technical coaching matched to the swimmer's level.",
@@ -438,7 +523,7 @@ export const en = {
           },
           {
             id: "recyclage",
-            title: "Certificate renewal & refresher courses",
+            title: "Refresher & upskilling training",
             description: "Regulatory update of existing qualifications.",
             advantages: [
               "Updates your qualifications in line with current regulations.",

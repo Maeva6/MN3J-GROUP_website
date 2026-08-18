@@ -30,7 +30,7 @@ export default function SubServiceDetail() {
     <div>
       <Seo title={`${sub.title} — ${poleTitle} | MN3J-GROUP`} description={sub.description} />
 
-      <PhotoFrame src={pole.subImages[sub.id]} alt={sub.title} tone="navy" className="h-80">
+      <PhotoFrame src={pole.subImages[sub.id]} alt={sub.title} label={sub.title} tone="navy" className="h-80">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 container-page pb-8">
           <div className="text-xs text-white/70 flex items-center gap-1.5 mb-2">
