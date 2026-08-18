@@ -172,7 +172,14 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="xl:hidden border-t border-black/5 bg-white">
+        <>
+          {/* Fond cliquable : ferme le menu au clic n'importe où en dehors du panneau */}
+          <div
+            className="xl:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-black/20"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="xl:hidden fixed inset-x-0 top-20 z-50 bg-white border-t border-black/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
           <nav className="container-nav py-4 flex flex-col gap-4 text-sm font-medium">
             <NavLink to="/" onClick={() => setOpen(false)} className="text-ink">
               {t("nav.home")}
@@ -263,7 +270,8 @@ export default function Navbar() {
               </button>
             </div>
           </nav>
-        </div>
+          </div>
+        </>
       )}
     </header>
   );

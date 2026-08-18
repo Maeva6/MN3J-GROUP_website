@@ -109,6 +109,7 @@ export default function PoleDetail() {
                   alt={item.title}
                   label={item.title}
                   tone="navy"
+                  objectPosition={pole.subImageFocus?.[item.id] ?? "center"}
                   className="h-44 group-hover:scale-[1.02] transition-transform duration-500"
                 />
                 <div className="p-5">

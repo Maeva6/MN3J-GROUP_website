@@ -70,12 +70,30 @@ export const services = [
       // ⚠️ Pas encore de photo de chantier MN3J-GROUP pour ces 6 déclinaisons :
       // photos libres de droits (licence Pexels, usage commercial libre, sans
       // attribution requise) le temps d'avoir de vraies photos de chantier.
+      // Choisies pour montrer un rendu FINI (pas un ouvrier en plein travaux) :
+      // pour "faux-plafond" et "electricite", dont le titre liste plusieurs
+      // éléments entre parenthèses, la photo réunit plusieurs de ces éléments
+      // dans une même pièce finie (ex. plafond suspendu + spots encastrés pour
+      // "faux-plafond" ; suspensions pour "electricite") plutôt qu'un seul
+      // élément isolé.
       "faux-plafond": decorationFauxPlafondImg,
       vitrerie: decorationVitrerieImg,
       aluminium: decorationAluminiumImg,
       "menuiserie-bois": decorationMenuiserieBoisImg,
       peinture: decorationPeintureImg,
       electricite: decorationElectriciteImg,
+    },
+    // Recadrage : par défaut PhotoFrame centre la photo, ce qui convient aux 4
+    // déclinaisons déjà en place. Pour 3 des nouvelles photos (portrait, sujet
+    // proche du haut du cadre), un recadrage centré coupait l'élément
+    // important une fois compressé dans une carte large et basse (desktop) :
+    // on les ancre donc en haut. Ne pas étendre à toutes les clés — paysager
+    // et interieure perdaient leur sujet (maison, mobilier) une fois ancrées
+    // en haut, elles restent donc au centrage par défaut.
+    subImageFocus: {
+      "faux-plafond": "top",
+      vitrerie: "top",
+      electricite: "top",
     },
   },
   {

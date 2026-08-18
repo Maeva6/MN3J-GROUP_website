@@ -9,18 +9,32 @@ const TONES = {
   dusk: "from-[#0B1A2E] via-[#1B3A63] to-[#3B6FB8]",
 };
 
+const OBJECT_POSITIONS = {
+  center: "object-center",
+  top: "object-top",
+  bottom: "object-bottom",
+};
+
 export default function PhotoFrame({
   src,
   alt = "",
   tone = "navy",
   label,
   className = "",
+  // Sur un cadre large et bas (cartes de grille), une photo portrait perd
+  // souvent son sujet (visage, détail du haut) si on centre le recadrage :
+  // "top" cadre depuis le haut de la photo plutôt que le centre.
+  objectPosition = "center",
   children,
 }) {
   if (src) {
     return (
       <div className={`relative overflow-hidden ${className}`}>
-        <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" />
+        <img
+          src={src}
+          alt={alt}
+          className={`absolute inset-0 w-full h-full object-cover ${OBJECT_POSITIONS[objectPosition] ?? OBJECT_POSITIONS.center}`}
+        />
         {children}
       </div>
     );
