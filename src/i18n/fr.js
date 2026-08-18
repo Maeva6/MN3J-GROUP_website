@@ -36,6 +36,7 @@ export const fr = {
     realisationsEyebrow: "Réalisations",
     realisationsTitle: "Nos derniers chantiers",
     viewAllProjects: "Voir tous les chantiers",
+    followEyebrow: "Restez connectés",
     followProjects: "Suivez nos chantiers",
     testimonials: {
       eyebrow: "Ils nous font confiance",

@@ -36,6 +36,7 @@ export const en = {
     realisationsEyebrow: "Our work",
     realisationsTitle: "Our latest projects",
     viewAllProjects: "View all projects",
+    followEyebrow: "Stay connected",
     followProjects: "Follow our projects",
     testimonials: {
       eyebrow: "Trusted by our clients",

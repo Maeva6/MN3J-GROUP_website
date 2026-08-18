@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { siteConfig } from "../data/siteConfig";
 
 // lucide-react n'inclut plus les logos de marques (retraits pour raisons de
@@ -43,7 +44,7 @@ const links = [
   { href: siteConfig.social.facebook, label: "Facebook", Icon: FacebookIcon },
 ];
 
-export default function SocialIcons({ variant = "dark", size = "md" }) {
+export default function SocialIcons({ variant = "dark", size = "md", animated = false }) {
   const base =
     variant === "dark"
       ? "bg-white/10 text-white hover:bg-green hover:text-[#12310F] hover:shadow-lg hover:shadow-green/20"
@@ -54,20 +55,29 @@ export default function SocialIcons({ variant = "dark", size = "md" }) {
     lg: { wrap: "w-14 h-14", icon: 24 },
   };
   const { wrap, icon } = sizes[size] ?? sizes.md;
+  const Tag = animated ? motion.a : "a";
 
   return (
     <div className="flex items-center gap-4">
-      {links.map(({ href, label, Icon }) => (
-        <a
+      {links.map(({ href, label, Icon }, i) => (
+        <Tag
           key={label}
           href={href}
           target="_blank"
           rel="noreferrer"
           aria-label={label}
           className={`${wrap} rounded-full flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-0.5 ${base}`}
+          {...(animated
+            ? {
+                initial: { opacity: 0, y: 12, scale: 0.8 },
+                whileInView: { opacity: 1, y: 0, scale: 1 },
+                viewport: { once: true, margin: "-40px" },
+                transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" },
+              }
+            : {})}
         >
           <Icon width={icon} height={icon} />
-        </a>
+        </Tag>
       ))}
     </div>
   );
