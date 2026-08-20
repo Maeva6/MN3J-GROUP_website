@@ -2,8 +2,8 @@ import villaImg from "../assets/images/projet-villa-les-palmiers.jpg";
 import residenceImg from "../assets/images/projet-residence-bel-horizon.jpg";
 import centreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import bahiaImg from "../assets/images/projet-villa-bahia.jpg";
-import ecoleNatationImg from "../assets/images/sub-formation-initiation.jpg";
-import recyclageMnsImg from "../assets/images/sub-formation-recyclage.jpg";
+import ecoleNatationImg from "../assets/images/projet-ecole-natation-bonapriso.jpg";
+import recyclageMnsImg from "../assets/images/projet-recyclage-mns-akwa.jpg";
 
 // Photos "avant" par pôle (chantier / pièce avant intervention MN3J-GROUP),
 // utilisées avec la photo "après" existante de chaque chantier (`image`) dans
