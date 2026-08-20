@@ -139,7 +139,7 @@ export const fr = {
     intro: "Piscines haut de gamme, décoration, BTP et formation : découvrez nos projets, du lancement à la livraison.",
     all: "Tous",
     noResults: "Aucun chantier ne correspond à ces filtres.",
-    coreSectionTitle: "Nos chantiers MN3J-GROUP",
+    coreSectionTitle: "Nos chantiers",
     formationGroupLabel: "Formations · ASCII",
   },
 
@@ -568,6 +568,16 @@ export const fr = {
         description:
           "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
         duration: "3 mois",
+      },
+      "ecole-natation-bonapriso": {
+        description:
+          "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCII.",
+        duration: "3 mois",
+      },
+      "recyclage-mns-akwa": {
+        description:
+          "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCII.",
+        duration: "2 mois",
       },
     },
     // ⚠️ Témoignages de démonstration — à remplacer par de vrais retours clients avant mise en ligne.

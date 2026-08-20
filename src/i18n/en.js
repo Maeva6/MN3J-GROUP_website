@@ -569,6 +569,16 @@ export const en = {
           "Full landscaping and interior decoration of a contemporary villa, currently in the design phase.",
         duration: "3 months",
       },
+      "ecole-natation-bonapriso": {
+        description:
+          "Learn-to-swim and initiation programme for primary school pupils, run by ASCII.",
+        duration: "3 months",
+      },
+      "recyclage-mns-akwa": {
+        description:
+          "Refresher and upskilling session for in-post lifeguards, run by ASCII.",
+        duration: "2 months",
+      },
     },
     // ⚠️ Sample testimonials — replace with real client feedback before launch.
     testimonials: {

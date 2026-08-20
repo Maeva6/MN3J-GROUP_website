@@ -2,6 +2,25 @@ import villaImg from "../assets/images/projet-villa-les-palmiers.jpg";
 import residenceImg from "../assets/images/projet-residence-bel-horizon.jpg";
 import centreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import bahiaImg from "../assets/images/projet-villa-bahia.jpg";
+import ecoleNatationImg from "../assets/images/sub-formation-initiation.jpg";
+import recyclageMnsImg from "../assets/images/sub-formation-recyclage.jpg";
+
+// Photos "avant" par pôle (chantier / pièce avant intervention MN3J-GROUP),
+// utilisées avec la photo "après" existante de chaque chantier (`image`) dans
+// le slider avant/après de la fiche chantier. Photos libres de droits
+// (licence Pexels, usage commercial libre) en attendant de vraies photos
+// "avant" prises sur nos chantiers. Formation réutilise la photo piscine :
+// un bassin de formation se construit comme un bassin classique.
+import avantPiscinesImg from "../assets/images/avant-piscines.jpg";
+import avantDecorationImg from "../assets/images/avant-decoration.jpg";
+import avantBtpImg from "../assets/images/avant-btp.jpg";
+
+export const beforeImages = {
+  piscines: avantPiscinesImg,
+  decoration: avantDecorationImg,
+  btp: avantBtpImg,
+  formation: avantPiscinesImg,
+};
 
 export const projects = [
   {
@@ -63,6 +82,37 @@ export const projects = [
     image: bahiaImg,
     description:
       "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
+  },
+  // Chantiers formation, pilotés par ASCII (voir services.js → formation.brand).
+  {
+    id: "ecole-natation-bonapriso",
+    name: "École de natation — Bonapriso",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Bonapriso, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "2024",
+    duration: "3 mois",
+    client: "École primaire — Bonapriso",
+    image: ecoleNatationImg,
+    description:
+      "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCII.",
+  },
+  {
+    id: "recyclage-mns-akwa",
+    name: "Recyclage MNS — Complexe Akwa",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Akwa, Douala",
+    status: "En cours",
+    progress: 70,
+    year: "2025",
+    duration: "2 mois",
+    client: "Complexe sportif — Akwa",
+    image: recyclageMnsImg,
+    description:
+      "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCII.",
   },
 ];
 

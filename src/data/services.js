@@ -32,6 +32,7 @@ import projetResidenceImg from "../assets/images/projet-residence-bel-horizon.jp
 import formationMnsImg from "../assets/images/sub-formation-mns.jpg";
 import formationFormateursImg from "../assets/images/sub-formation-formateurs.jpg";
 import formationInitiationImg from "../assets/images/sub-formation-initiation.jpg";
+import formationReeducationImg from "../assets/images/sub-formation-reeducation.jpg";
 import projetCentreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import formationRecyclageImg from "../assets/images/sub-formation-recyclage.jpg";
 
@@ -124,11 +125,7 @@ export const services = [
       // Idem "decoration" ci-dessus : photo libre de droits (licence Pexels)
       // en attendant une vraie photo de chantier ASCII.
       initiation: formationInitiationImg,
-      // "reeducation" reste volontairement sans photo : aucune image libre de
-      // droits trouvée ne représentait fidèlement de la rééducation aquatique
-      // (post-opératoire) sans risquer d'induire en erreur — le dégradé de
-      // marque + légende de PhotoFrame prend le relais en attendant une vraie
-      // photo de chantier ASCII.
+      reeducation: formationReeducationImg,
       perfectionnement: projetCentreImg,
       recyclage: formationRecyclageImg,
     },

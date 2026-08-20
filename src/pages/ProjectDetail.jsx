@@ -3,7 +3,7 @@ import { MapPin, Calendar, Clock, User } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import Seo from "../components/Seo";
-import { projects, statusStyles } from "../data/projects";
+import { projects, statusStyles, beforeImages } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export default function ProjectDetail() {
@@ -56,7 +56,7 @@ export default function ProjectDetail() {
                 {t("projectDetail.dragToCompare")}
               </span>
             </div>
-            <BeforeAfterSlider />
+            <BeforeAfterSlider beforeSrc={beforeImages[project.poleId]} afterSrc={project.image} />
           </div>
         </div>
 
