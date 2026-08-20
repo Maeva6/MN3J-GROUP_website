@@ -25,6 +25,7 @@ export default function Footer() {
             <li><Link to="/services" className="hover:text-white">{t("nav.services")}</Link></li>
             <li><Link to="/a-propos" className="hover:text-white">{t("nav.about")}</Link></li>
             <li><Link to="/contact" className="hover:text-white">{t("nav.contact")}</Link></li>
+            <li><Link to="/faq" className="hover:text-white">{t("nav.faq")}</Link></li>
           </ul>
         </div>
 

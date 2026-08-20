@@ -7,7 +7,6 @@ import StatsBar from "../components/StatsBar";
 import ProjectCard from "../components/ProjectCard";
 import SocialIcons from "../components/SocialIcons";
 import Testimonials from "../components/Testimonials";
-import Faq from "../components/Faq";
 import Seo from "../components/Seo";
 import { services } from "../data/services";
 import { projects } from "../data/projects";
@@ -183,8 +182,6 @@ export default function Home() {
       </section>
 
       <Testimonials />
-
-      <Faq />
 
       {/* CTA */}
       <div className="bg-green py-14">

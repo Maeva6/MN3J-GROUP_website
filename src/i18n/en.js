@@ -5,6 +5,7 @@ export const en = {
     services: "Services",
     about: "About",
     contact: "Contact",
+    faq: "FAQ",
     openMenu: "Open menu",
     servicesMenuTitle: "Our divisions",
     viewAllServices: "View all services →",
@@ -44,36 +45,37 @@ export const en = {
       title: "What our clients say",
       subtitle: "Feedback from across our four areas of expertise.",
     },
-    faq: {
-      eyebrow: "Frequently asked questions",
-      title: "Everything you need to know before you start",
-      items: [
-        {
-          question: "How soon will I hear back about my quote request?",
-          answer: "Our team gets back to you personally within 48h of receiving your request, with an initial estimate tailored to your project.",
-        },
-        {
-          question: "Which areas do you work in?",
-          answer: "We mainly work in and around Douala. Contact us to check whether your project's location is within reach.",
-        },
-        {
-          question: "Do you offer a guarantee on your work?",
-          answer: "Yes, every project is followed up and guaranteed, with the exact terms detailed in your quote.",
-        },
-        {
-          question: "Who runs the aquatic training programmes?",
-          answer: "The training division is run by ASCII, MN3J-GROUP's dedicated training brand, with certified trainers.",
-        },
-        {
-          question: "How does payment work for a project?",
-          answer: "A deposit is requested at the start, with the balance paid according to a schedule agreed together in the quote, based on progress.",
-        },
-        {
-          question: "Can I request a quote with no obligation?",
-          answer: "Yes, requesting a quote through our contact form is entirely free and comes with no obligation.",
-        },
-      ],
-    },
+  },
+
+  faqPage: {
+    eyebrow: "Frequently asked questions",
+    title: "Everything you need to know before you start",
+    items: [
+      {
+        question: "How soon will I hear back about my quote request?",
+        answer: "Our team gets back to you personally within 48h of receiving your request, with an initial estimate tailored to your project.",
+      },
+      {
+        question: "Which areas do you work in?",
+        answer: "We mainly work in and around Douala. Contact us to check whether your project's location is within reach.",
+      },
+      {
+        question: "Do you offer a guarantee on your work?",
+        answer: "Yes, every project is followed up and guaranteed, with the exact terms detailed in your quote.",
+      },
+      {
+        question: "Who runs the aquatic training programmes?",
+        answer: "The training division is run by ASCII, MN3J-GROUP's dedicated training brand, with certified trainers.",
+      },
+      {
+        question: "How does payment work for a project?",
+        answer: "A deposit is requested at the start, with the balance paid according to a schedule agreed together in the quote, based on progress.",
+      },
+      {
+        question: "Can I request a quote with no obligation?",
+        answer: "Yes, requesting a quote through our contact form is entirely free and comes with no obligation.",
+      },
+    ],
   },
 
   services: {
@@ -300,6 +302,10 @@ export const en = {
     legal: {
       title: "Legal notice & privacy policy — MN3J-GROUP",
       description: "MN3J-GROUP's legal notice and privacy policy: data collected, purpose and your rights.",
+    },
+    faq: {
+      title: "Frequently asked questions — MN3J-GROUP",
+      description: "Response times, service areas, guarantees, payment: answers to the most common questions about MN3J-GROUP.",
     },
     thankYou: {
       title: "Thank you for your request — MN3J-GROUP",

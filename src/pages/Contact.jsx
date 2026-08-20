@@ -11,9 +11,37 @@ export default function Contact() {
   const projectTypes = t("contact.projectTypes");
   const budgetOptions = t("contact.budgetOptions");
 
+  // Pas de back-end branché pour l'instant (voir server/README.md) : la
+  // demande est envoyée directement par le visiteur via WhatsApp et son
+  // client email, plutôt que perdue silencieusement.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO : brancher sur l'API back-end (envoi e-mail + enregistrement en base).
+    const data = new FormData(e.currentTarget);
+    const fullName = data.get("fullName");
+    const phone = data.get("phone");
+    const email = data.get("email");
+    const projectType = data.get("projectType");
+    const budget = data.get("budget");
+    const message = data.get("message");
+
+    const summary = [
+      "Nouvelle demande de devis — MN3J-GROUP",
+      "",
+      `Nom : ${fullName}`,
+      `Téléphone : ${phone}`,
+      `Email : ${email}`,
+      `Type de projet : ${projectType}`,
+      `Budget estimé : ${budget}`,
+      `Message : ${message}`,
+    ].join("\n");
+
+    window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(summary)}`, "_blank", "noopener,noreferrer");
+    window.open(
+      `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Nouvelle demande de devis — ${fullName}`)}&body=${encodeURIComponent(summary)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
     navigate("/merci");
   };
 
@@ -86,19 +114,19 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
             <div>
               <label className="text-xs font-semibold text-muted">{t("contact.fields.fullName")}</label>
-              <input required type="text" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
+              <input name="fullName" required type="text" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
             </div>
             <div>
               <label className="text-xs font-semibold text-muted">{t("contact.fields.phone")}</label>
-              <input required type="tel" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
+              <input name="phone" required type="tel" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
             </div>
             <div className="md:col-span-2">
               <label className="text-xs font-semibold text-muted">{t("contact.fields.email")}</label>
-              <input required type="email" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
+              <input name="email" required type="email" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
             </div>
             <div>
               <label className="text-xs font-semibold text-muted">{t("contact.fields.projectType")}</label>
-              <select required className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm bg-white">
+              <select name="projectType" required className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm bg-white">
                 <option value="">{t("contact.fields.selectPlaceholder")}</option>
                 {projectTypes.map((tOpt) => <option key={tOpt}>{tOpt}</option>)}
               </select>
@@ -106,13 +134,13 @@ export default function Contact() {
             <div>
               <label className="text-xs font-semibold text-muted">{t("contact.fields.budget")}</label>
               {/* ⚠️ À AJUSTER : tranches de budget et devise (FCFA) à confirmer selon votre marché réel. */}
-              <select className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm bg-white">
+              <select name="budget" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm bg-white">
                 {budgetOptions.map((b) => <option key={b}>{b}</option>)}
               </select>
             </div>
             <div className="md:col-span-2">
               <label className="text-xs font-semibold text-muted">{t("contact.fields.message")}</label>
-              <textarea rows={5} className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
+              <textarea name="message" rows={5} className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />
             </div>
             <div className="md:col-span-2">
               <button type="submit" className="btn-primary">{t("contact.fields.send")}</button>

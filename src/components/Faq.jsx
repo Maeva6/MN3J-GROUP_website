@@ -4,14 +4,14 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Faq() {
   const { t } = useLanguage();
-  const items = t("home.faq.items");
+  const items = t("faqPage.items");
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section className="section container-page py-24">
       <div className="max-w-xl mx-auto text-center mb-14">
-        <span className="eyebrow">{t("home.faq.eyebrow")}</span>
-        <h2 className="text-3xl text-navy mt-3">{t("home.faq.title")}</h2>
+        <span className="eyebrow">{t("faqPage.eyebrow")}</span>
+        <h2 className="text-3xl text-navy mt-3">{t("faqPage.title")}</h2>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-3">

@@ -12,6 +12,9 @@ export const siteConfig = {
   },
   phone: "+237 6 73 77 24 76",
   email: "mn3jgroup@gmail.com",
+  // Numéro WhatsApp au format attendu par wa.me : indicatif pays + numéro,
+  // sans "+", espaces ni tirets. Utilisé par le formulaire de contact.
+  whatsapp: "237692616200",
   hours: [
     { day: "Lundi – Vendredi", time: "8h00 – 18h00" },
     { day: "Samedi", time: "9h00 – 14h00" },

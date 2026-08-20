@@ -5,6 +5,7 @@ export const fr = {
     services: "Services",
     about: "À propos",
     contact: "Contact",
+    faq: "FAQ",
     openMenu: "Ouvrir le menu",
     servicesMenuTitle: "Nos rubriques",
     viewAllServices: "Voir tous nos services →",
@@ -44,36 +45,37 @@ export const fr = {
       title: "Ce que nos clients en disent",
       subtitle: "Des retours d'expérience sur nos quatre pôles d'activité.",
     },
-    faq: {
-      eyebrow: "Questions fréquentes",
-      title: "Tout ce qu'il faut savoir avant de démarrer",
-      items: [
-        {
-          question: "Sous combien de temps recevrai-je une réponse à ma demande de devis ?",
-          answer: "Notre équipe vous recontacte personnellement sous 48h après réception de votre demande, avec une première estimation adaptée à votre projet.",
-        },
-        {
-          question: "Dans quelles zones intervenez-vous ?",
-          answer: "Nous intervenons principalement à Douala et dans les environs. Contactez-nous pour vérifier la faisabilité de votre projet selon votre localisation.",
-        },
-        {
-          question: "Proposez-vous une garantie sur vos réalisations ?",
-          answer: "Oui, chaque chantier fait l'objet d'un suivi et d'une garantie sur les travaux réalisés, dont les modalités précises sont détaillées dans votre devis.",
-        },
-        {
-          question: "Qui assure les formations aquatiques ?",
-          answer: "Le pôle formation est piloté par ASCII, la marque formation dédiée du groupe MN3J-GROUP, avec des formateurs certifiés.",
-        },
-        {
-          question: "Comment se déroule le paiement d'un chantier ?",
-          answer: "Un acompte est demandé au démarrage, puis le solde est réglé selon un échéancier défini ensemble dans le devis, en fonction de l'avancement des travaux.",
-        },
-        {
-          question: "Puis-je demander un devis sans engagement ?",
-          answer: "Oui, la demande de devis via notre formulaire de contact est entièrement gratuite et sans engagement de votre part.",
-        },
-      ],
-    },
+  },
+
+  faqPage: {
+    eyebrow: "Questions fréquentes",
+    title: "Tout ce qu'il faut savoir avant de démarrer",
+    items: [
+      {
+        question: "Sous combien de temps recevrai-je une réponse à ma demande de devis ?",
+        answer: "Notre équipe vous recontacte personnellement sous 48h après réception de votre demande, avec une première estimation adaptée à votre projet.",
+      },
+      {
+        question: "Dans quelles zones intervenez-vous ?",
+        answer: "Nous intervenons principalement à Douala et dans les environs. Contactez-nous pour vérifier la faisabilité de votre projet selon votre localisation.",
+      },
+      {
+        question: "Proposez-vous une garantie sur vos réalisations ?",
+        answer: "Oui, chaque chantier fait l'objet d'un suivi et d'une garantie sur les travaux réalisés, dont les modalités précises sont détaillées dans votre devis.",
+      },
+      {
+        question: "Qui assure les formations aquatiques ?",
+        answer: "Le pôle formation est piloté par ASCII, la marque formation dédiée du groupe MN3J-GROUP, avec des formateurs certifiés.",
+      },
+      {
+        question: "Comment se déroule le paiement d'un chantier ?",
+        answer: "Un acompte est demandé au démarrage, puis le solde est réglé selon un échéancier défini ensemble dans le devis, en fonction de l'avancement des travaux.",
+      },
+      {
+        question: "Puis-je demander un devis sans engagement ?",
+        answer: "Oui, la demande de devis via notre formulaire de contact est entièrement gratuite et sans engagement de votre part.",
+      },
+    ],
   },
 
   services: {
@@ -300,6 +302,10 @@ export const fr = {
     legal: {
       title: "Mentions légales & politique de confidentialité — MN3J-GROUP",
       description: "Mentions légales et politique de confidentialité du site MN3J-GROUP : données collectées, finalité et vos droits.",
+    },
+    faq: {
+      title: "Questions fréquentes — MN3J-GROUP",
+      description: "Délais de réponse, zones d'intervention, garanties, paiement : les réponses aux questions les plus fréquentes sur MN3J-GROUP.",
     },
     thankYou: {
       title: "Merci pour votre demande — MN3J-GROUP",

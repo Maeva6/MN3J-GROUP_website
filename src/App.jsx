@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ThankYou from "./pages/ThankYou";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import FaqPage from "./pages/FaqPage";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import RequireAdminAuth from "./pages/admin/RequireAdminAuth";
@@ -41,9 +42,7 @@ function ScrollToTop() {
 
 function SiteLayout({ children }) {
   return (
-    // pb mobile : laisse la place à la barre CTA fixée en bas (StickyMobileCta)
-    // pour qu'elle ne recouvre jamais le bas du Footer.
-    <div className="min-h-screen flex flex-col pb-[72px] md:pb-0">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -67,6 +66,7 @@ export default function App() {
         <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
         <Route path="/merci" element={<SiteLayout><ThankYou /></SiteLayout>} />
         <Route path="/politique-de-confidentialite" element={<SiteLayout><PrivacyPolicy /></SiteLayout>} />
+        <Route path="/faq" element={<SiteLayout><FaqPage /></SiteLayout>} />
         {/* Back-office : accès protégé par mot de passe local, voir src/utils/adminAuth.js */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<RequireAdminAuth />}>

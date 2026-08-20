@@ -160,10 +160,6 @@ export default function Navbar() {
               EN
             </button>
           </div>
-
-          <Link to="/contact" className="btn-primary shrink-0 !px-5 !py-2.5">
-            {t("common.requestQuote")}
-          </Link>
         </div>
 
         <button
