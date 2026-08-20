@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import Seo from "../components/Seo";
+import NotFound from "./NotFound";
 import { services } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -13,14 +14,7 @@ export default function SubServiceDetail() {
   const sub = subItems.find((i) => i.id === subId);
 
   if (!pole || !sub) {
-    return (
-      <div className="container-page py-24 text-center">
-        <p className="text-muted">{t("projectDetail.notFound")}</p>
-        <Link to="/services" className="text-blue font-semibold text-sm">
-          {t("nav.home")}
-        </Link>
-      </div>
-    );
+    return <NotFound />;
   }
 
   const poleTitle = t(`data.services.${pole.id}.title`);

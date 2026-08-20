@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
 import Seo from "../components/Seo";
+import NotFound from "./NotFound";
 import { services, maintenanceService } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -10,14 +11,7 @@ export default function PoleDetail() {
   const pole = services.find((s) => s.id === poleId) || (poleId === maintenanceService.id ? maintenanceService : null);
 
   if (!pole) {
-    return (
-      <div className="container-page py-24 text-center">
-        <p className="text-muted">{t("projectDetail.notFound")}</p>
-        <Link to="/" className="text-blue font-semibold text-sm">
-          {t("nav.home")}
-        </Link>
-      </div>
-    );
+    return <NotFound />;
   }
 
   const isMaintenance = pole.id === maintenanceService.id;

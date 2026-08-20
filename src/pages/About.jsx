@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
 import Seo from "../components/Seo";
 import { ShieldCheck, HeartHandshake, Sparkle, Users } from "lucide-react";
@@ -49,6 +50,9 @@ export default function About() {
           </h2>
           {/* ⚠️ À COMPLÉTER : précisez la biographie et les qualifications exactes du gérant et des responsables. */}
           <p className="text-muted text-sm leading-relaxed mt-4">{t("about.editoText")}</p>
+          <Link to="/services" className="text-blue text-sm font-semibold mt-4 inline-block">
+            {t("about.discoverServices")}
+          </Link>
         </div>
         <PhotoFrame tone="green" src={aboutEditoImg} alt={t("about.editoImageLabel")} label={t("about.editoImageLabel")} className="h-72 rounded-lg" />
       </section>
@@ -110,6 +114,23 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <div className="bg-green py-14">
+        <div className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-[#12310F] text-2xl font-display font-bold">{t("common.ctaTitle")}</h3>
+            <p className="text-[#20431A] text-sm mt-1">{t("common.ctaText")}</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/chantiers" className="text-[#12310F] font-semibold text-sm hover:underline">
+              {t("home.viewAllProjects")}
+            </Link>
+            <Link to="/contact" className="btn-dark">
+              {t("common.requestQuote")}
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

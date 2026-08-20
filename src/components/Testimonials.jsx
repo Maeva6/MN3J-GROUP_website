@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Star, Quote } from "lucide-react";
 import { testimonials } from "../data/testimonials";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -46,9 +47,12 @@ export default function Testimonials() {
                 <p className="text-navy text-sm font-semibold">{name}</p>
                 <p className="text-muted text-xs">{role}</p>
               </div>
-              <span className="ml-auto text-[10px] uppercase tracking-wider text-blue font-semibold self-start mt-1">
+              <Link
+                to={`/services/${poleId}`}
+                className="ml-auto text-[10px] uppercase tracking-wider text-blue font-semibold self-start mt-1 hover:underline"
+              >
                 {t(`data.services.${poleId}.tagline`)}
-              </span>
+              </Link>
             </div>
           </div>
         ))}

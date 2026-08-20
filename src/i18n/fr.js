@@ -19,6 +19,7 @@ export const fr = {
     before: "Avant",
     after: "Après",
     progress: "Avancement",
+    call: "Appeler",
   },
 
   home: {
@@ -42,6 +43,36 @@ export const fr = {
       eyebrow: "Ils nous font confiance",
       title: "Ce que nos clients en disent",
       subtitle: "Des retours d'expérience sur nos quatre pôles d'activité.",
+    },
+    faq: {
+      eyebrow: "Questions fréquentes",
+      title: "Tout ce qu'il faut savoir avant de démarrer",
+      items: [
+        {
+          question: "Sous combien de temps recevrai-je une réponse à ma demande de devis ?",
+          answer: "Notre équipe vous recontacte personnellement sous 48h après réception de votre demande, avec une première estimation adaptée à votre projet.",
+        },
+        {
+          question: "Dans quelles zones intervenez-vous ?",
+          answer: "Nous intervenons principalement à Douala et dans les environs. Contactez-nous pour vérifier la faisabilité de votre projet selon votre localisation.",
+        },
+        {
+          question: "Proposez-vous une garantie sur vos réalisations ?",
+          answer: "Oui, chaque chantier fait l'objet d'un suivi et d'une garantie sur les travaux réalisés, dont les modalités précises sont détaillées dans votre devis.",
+        },
+        {
+          question: "Qui assure les formations aquatiques ?",
+          answer: "Le pôle formation est piloté par ASCII, la marque formation dédiée du groupe MN3J-GROUP, avec des formateurs certifiés.",
+        },
+        {
+          question: "Comment se déroule le paiement d'un chantier ?",
+          answer: "Un acompte est demandé au démarrage, puis le solde est réglé selon un échéancier défini ensemble dans le devis, en fonction de l'avancement des travaux.",
+        },
+        {
+          question: "Puis-je demander un devis sans engagement ?",
+          answer: "Oui, la demande de devis via notre formulaire de contact est entièrement gratuite et sans engagement de votre part.",
+        },
+      ],
     },
   },
 
@@ -70,6 +101,7 @@ export const fr = {
     editoText:
       "MN3J-GROUP est porté par une direction expérimentée et une équipe pluridisciplinaire — techniciens, décorateurs et formateurs qualifiés — réunis autour d'une même vision : offrir à chaque client un interlocuteur unique, un savoir-faire vérifié et une exigence de finition qui ne transige jamais, du premier plan à la dernière retouche.",
     editoImageLabel: "Notre équipe sur le terrain",
+    discoverServices: "Découvrir nos services →",
     valuesEyebrow: "Nos valeurs",
     valuesTitle: "Ce qui nous guide au quotidien",
     values: {
@@ -107,7 +139,6 @@ export const fr = {
     mapLabel: "Carte de localisation",
     formTitle: "Demande de devis",
     formSubtitle: "Réponse personnalisée sous 48h.",
-    successMessage: "Merci ! Votre demande a bien été envoyée, notre équipe vous recontacte sous 48h.",
     fields: {
       fullName: "Nom complet",
       phone: "Téléphone",
@@ -172,6 +203,70 @@ export const fr = {
     backProjects: "Voir nos chantiers",
   },
 
+  // ⚠️ Contenu de base — à faire relire par un professionnel du droit avant mise en ligne définitive.
+  legalPage: {
+    eyebrow: "Informations légales",
+    title: "Mentions légales & politique de confidentialité",
+    mentions: {
+      title: "Mentions légales",
+      sections: [
+        {
+          title: "Éditeur du site",
+          text: "MN3J-GROUP Sarl, PK8, Douala-Ndokoti, Cameroun · Tél. +237 6 73 77 24 76 · mn3jgroup@gmail.com.",
+        },
+        {
+          title: "Directeur de la publication",
+          text: "La direction de MN3J-GROUP Sarl.",
+        },
+        {
+          title: "Hébergement",
+          text: "Ce site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis (vercel.com).",
+        },
+      ],
+    },
+    privacy: {
+      title: "Politique de confidentialité",
+      intro:
+        "MN3J-GROUP accorde une attention particulière à la protection de vos données personnelles. Cette page explique quelles données nous collectons et pourquoi.",
+      sections: [
+        {
+          title: "Données collectées",
+          text: "Lorsque vous utilisez notre formulaire de contact, nous collectons votre nom, votre téléphone, votre email, le type de projet, le budget estimé et votre message.",
+        },
+        {
+          title: "Finalité",
+          text: "Ces informations servent uniquement à traiter votre demande de devis et à vous recontacter, avec un engagement de réponse personnalisée sous 48h.",
+        },
+        {
+          title: "Destinataires",
+          text: "Vos données sont à usage strictement interne à MN3J-GROUP. Elles ne sont ni revendues, ni partagées avec des tiers à des fins commerciales.",
+        },
+        {
+          title: "Durée de conservation",
+          text: "Vos données sont conservées le temps nécessaire au traitement de votre demande et à la relation commerciale qui peut en découler.",
+        },
+        {
+          title: "Cookies et mesure d'audience",
+          text: "Ce site peut utiliser Google Analytics pour mesurer la fréquentation de manière statistique et anonymisée. Aucune donnée personnelle n'est revendue à des tiers.",
+        },
+        {
+          title: "Vos droits",
+          text: "Conformément à la réglementation applicable, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles.",
+        },
+      ],
+    },
+    contactPrefix: "Pour exercer ces droits, contactez-nous à",
+    contactLink: "ou via notre formulaire de contact.",
+  },
+
+  thankYou: {
+    eyebrow: "Demande envoyée",
+    title: "Merci pour votre demande !",
+    text: "Votre demande de devis a bien été reçue. Notre équipe l'étudie et vous recontacte personnellement sous 48h.",
+    backHome: "Retour à l'accueil",
+    viewProjects: "Découvrir nos chantiers",
+  },
+
   seo: {
     home: {
       title: "MN3J-GROUP — Piscines haut de gamme, décoration, BTP & formation aquatique",
@@ -201,6 +296,14 @@ export const fr = {
     notFound: {
       title: "Page introuvable — MN3J-GROUP",
       description: "La page demandée n'existe pas ou plus. Retrouvez l'accueil et nos services MN3J-GROUP.",
+    },
+    legal: {
+      title: "Mentions légales & politique de confidentialité — MN3J-GROUP",
+      description: "Mentions légales et politique de confidentialité du site MN3J-GROUP : données collectées, finalité et vos droits.",
+    },
+    thankYou: {
+      title: "Merci pour votre demande — MN3J-GROUP",
+      description: "Votre demande de devis a bien été envoyée à MN3J-GROUP. Notre équipe vous recontacte sous 48h.",
     },
   },
 

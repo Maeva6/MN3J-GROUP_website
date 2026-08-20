@@ -19,6 +19,7 @@ export const en = {
     before: "Before",
     after: "After",
     progress: "Progress",
+    call: "Call",
   },
 
   home: {
@@ -42,6 +43,36 @@ export const en = {
       eyebrow: "Trusted by our clients",
       title: "What our clients say",
       subtitle: "Feedback from across our four areas of expertise.",
+    },
+    faq: {
+      eyebrow: "Frequently asked questions",
+      title: "Everything you need to know before you start",
+      items: [
+        {
+          question: "How soon will I hear back about my quote request?",
+          answer: "Our team gets back to you personally within 48h of receiving your request, with an initial estimate tailored to your project.",
+        },
+        {
+          question: "Which areas do you work in?",
+          answer: "We mainly work in and around Douala. Contact us to check whether your project's location is within reach.",
+        },
+        {
+          question: "Do you offer a guarantee on your work?",
+          answer: "Yes, every project is followed up and guaranteed, with the exact terms detailed in your quote.",
+        },
+        {
+          question: "Who runs the aquatic training programmes?",
+          answer: "The training division is run by ASCII, MN3J-GROUP's dedicated training brand, with certified trainers.",
+        },
+        {
+          question: "How does payment work for a project?",
+          answer: "A deposit is requested at the start, with the balance paid according to a schedule agreed together in the quote, based on progress.",
+        },
+        {
+          question: "Can I request a quote with no obligation?",
+          answer: "Yes, requesting a quote through our contact form is entirely free and comes with no obligation.",
+        },
+      ],
     },
   },
 
@@ -70,6 +101,7 @@ export const en = {
     editoText:
       "MN3J-GROUP is led by an experienced management team and a multidisciplinary staff — qualified technicians, decorators and trainers — united around one vision: giving every client a single point of contact, proven expertise and a standard of finishing that never compromises, from the first blueprint to the final touch.",
     editoImageLabel: "Our team on site",
+    discoverServices: "Discover our services →",
     valuesEyebrow: "Our values",
     valuesTitle: "What guides us every day",
     values: {
@@ -107,7 +139,6 @@ export const en = {
     mapLabel: "Location map",
     formTitle: "Quote request",
     formSubtitle: "Personalised reply within 48h.",
-    successMessage: "Thank you! Your request has been sent, our team will get back to you within 48h.",
     fields: {
       fullName: "Full name",
       phone: "Phone",
@@ -172,6 +203,70 @@ export const en = {
     backProjects: "View our projects",
   },
 
+  // ⚠️ Base content — have a legal professional review before final launch.
+  legalPage: {
+    eyebrow: "Legal information",
+    title: "Legal notice & privacy policy",
+    mentions: {
+      title: "Legal notice",
+      sections: [
+        {
+          title: "Site publisher",
+          text: "MN3J-GROUP Sarl, PK8, Douala-Ndokoti, Cameroon · Tel. +237 6 73 77 24 76 · mn3jgroup@gmail.com.",
+        },
+        {
+          title: "Publication director",
+          text: "The management of MN3J-GROUP Sarl.",
+        },
+        {
+          title: "Hosting",
+          text: "This site is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA (vercel.com).",
+        },
+      ],
+    },
+    privacy: {
+      title: "Privacy policy",
+      intro:
+        "MN3J-GROUP takes the protection of your personal data seriously. This page explains what data we collect and why.",
+      sections: [
+        {
+          title: "Data collected",
+          text: "When you use our contact form, we collect your name, phone number, email, project type, estimated budget and message.",
+        },
+        {
+          title: "Purpose",
+          text: "This information is used solely to process your quote request and get back to you, with a commitment to a personalised reply within 48h.",
+        },
+        {
+          title: "Recipients",
+          text: "Your data is for MN3J-GROUP's internal use only. It is never sold or shared with third parties for commercial purposes.",
+        },
+        {
+          title: "Retention period",
+          text: "Your data is kept for as long as needed to process your request and any resulting business relationship.",
+        },
+        {
+          title: "Cookies and audience measurement",
+          text: "This site may use Google Analytics to measure traffic on an anonymised, statistical basis. No personal data is sold to third parties.",
+        },
+        {
+          title: "Your rights",
+          text: "In accordance with applicable regulations, you have the right to access, rectify and delete your personal data.",
+        },
+      ],
+    },
+    contactPrefix: "To exercise these rights, contact us at",
+    contactLink: "or via our contact form.",
+  },
+
+  thankYou: {
+    eyebrow: "Request sent",
+    title: "Thank you for your request!",
+    text: "Your quote request has been received. Our team is reviewing it and will get back to you personally within 48h.",
+    backHome: "Back to home",
+    viewProjects: "Discover our projects",
+  },
+
   seo: {
     home: {
       title: "MN3J-GROUP — High-end pools, decoration, construction & aquatic training",
@@ -201,6 +296,14 @@ export const en = {
     notFound: {
       title: "Page not found — MN3J-GROUP",
       description: "The requested page no longer exists. Find your way back to the MN3J-GROUP homepage and services.",
+    },
+    legal: {
+      title: "Legal notice & privacy policy — MN3J-GROUP",
+      description: "MN3J-GROUP's legal notice and privacy policy: data collected, purpose and your rights.",
+    },
+    thankYou: {
+      title: "Thank you for your request — MN3J-GROUP",
+      description: "Your quote request has been sent to MN3J-GROUP. Our team will get back to you within 48h.",
     },
   },
 

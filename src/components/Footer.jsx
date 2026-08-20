@@ -40,7 +40,9 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-page py-5 text-xs text-[#8FA0BC] flex flex-col md:flex-row justify-between gap-2">
           <span>© {new Date().getFullYear()} MN3J-GROUP Sarl. {t("footer.rights")}</span>
-          <span>{t("footer.legal")}</span>
+          <Link to="/politique-de-confidentialite" className="hover:text-white">
+            {t("footer.legal")}
+          </Link>
         </div>
       </div>
     </footer>
