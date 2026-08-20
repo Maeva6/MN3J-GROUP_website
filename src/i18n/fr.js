@@ -186,6 +186,13 @@ export const fr = {
     deliveredIn: "Livré / prévu en {year}",
     durationLabel: "Durée",
     similarProject: "Un projet similaire ? Demandez un devis",
+    formationHighlightsTitle: "Points clés de la formation",
+    formationHighlights: [
+      "Encadrement par des formateurs certifiés ASCII.",
+      "Pédagogie adaptée au niveau et au profil de chaque participant.",
+      "Attestation ou certification délivrée en fin de parcours.",
+      "Suivi et accompagnement après la formation.",
+    ],
   },
 
   footer: {

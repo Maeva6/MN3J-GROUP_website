@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { MapPin, Calendar, Clock, User } from "lucide-react";
+import { MapPin, Calendar, Clock, User, Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import Seo from "../components/Seo";
@@ -49,15 +49,39 @@ export default function ProjectDetail() {
             <p className="text-muted text-sm leading-relaxed">{t(`data.projects.${project.id}.description`)}</p>
           </div>
 
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-navy font-display font-semibold text-xl">{t("projectDetail.transformationTitle")}</h2>
-              <span className="text-xs text-muted flex items-center gap-1">
-                {t("projectDetail.dragToCompare")}
-              </span>
+          {project.poleId === "formation" ? (
+            // Un chantier ASCII est une formation, pas une transformation physique
+            // d'un lieu : l'avant/après (pensé pour piscines/BTP/décoration) n'a
+            // pas de sens ici. Remplacé par les points clés du programme.
+            // Le slider avant/après reste disponible ci-dessous (branche piscines/
+            // BTP/décoration) si un usage pertinent apparaît un jour pour la
+            // formation (ex. niveau avant/après stage).
+            <div>
+              <h2 className="text-navy font-display font-semibold text-xl mb-4">
+                {t("projectDetail.formationHighlightsTitle")}
+              </h2>
+              <ul className="space-y-3">
+                {t("projectDetail.formationHighlights").map((h) => (
+                  <li key={h} className="flex items-start gap-2 text-sm text-ink">
+                    <span className="w-5 h-5 rounded-full bg-green/15 text-green-dark flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={12} />
+                    </span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <BeforeAfterSlider beforeSrc={beforeImages[project.poleId]} afterSrc={project.image} />
-          </div>
+          ) : (
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-navy font-display font-semibold text-xl">{t("projectDetail.transformationTitle")}</h2>
+                <span className="text-xs text-muted flex items-center gap-1">
+                  {t("projectDetail.dragToCompare")}
+                </span>
+              </div>
+              <BeforeAfterSlider beforeSrc={beforeImages[project.poleId]} afterSrc={project.image} />
+            </div>
+          )}
         </div>
 
         <aside className="space-y-4">

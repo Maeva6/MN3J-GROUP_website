@@ -186,6 +186,13 @@ export const en = {
     deliveredIn: "Delivered / planned in {year}",
     durationLabel: "Duration",
     similarProject: "A similar project? Request a quote",
+    formationHighlightsTitle: "Programme highlights",
+    formationHighlights: [
+      "Delivered by certified ASCII trainers.",
+      "Teaching adapted to each participant's level and profile.",
+      "Certificate or attestation awarded at the end of the programme.",
+      "Follow-up support after the training.",
+    ],
   },
 
   footer: {

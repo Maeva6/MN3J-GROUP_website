@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../assets/images/logo.jpeg";
@@ -70,6 +70,25 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mobilePoleOpen, setMobilePoleOpen] = useState(null);
   const { lang, setLang, t } = useLanguage();
+  const panelRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  // Ferme le menu mobile au clic n'importe où en dehors du panneau ou du
+  // bouton hamburger — y compris la zone vide de la barre d'en-tête, que le
+  // fond assombri (plus bas) ne recouvre pas puisqu'il démarre sous celle-ci.
+  useEffect(() => {
+    if (!open) return;
+    const handleClickOutside = (e) => {
+      if (panelRef.current?.contains(e.target) || toggleRef.current?.contains(e.target)) return;
+      setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
@@ -163,6 +182,7 @@ export default function Navbar() {
         </div>
 
         <button
+          ref={toggleRef}
           className="xl:hidden text-navy"
           onClick={() => setOpen((v) => !v)}
           aria-label={t("nav.openMenu")}
@@ -173,13 +193,13 @@ export default function Navbar() {
 
       {open && (
         <>
-          {/* Fond cliquable : ferme le menu au clic n'importe où en dehors du panneau */}
+          {/* Fond assombri, purement visuel : la fermeture au clic extérieur est
+              gérée par l'écouteur document ci-dessus (couvre aussi la barre d'en-tête). */}
           <div
             className="xl:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-black/20"
-            onClick={() => setOpen(false)}
             aria-hidden="true"
           />
-          <div className="xl:hidden fixed inset-x-0 top-20 z-50 bg-white border-t border-black/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div ref={panelRef} className="xl:hidden fixed inset-x-0 top-20 z-50 bg-white border-t border-black/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
           <nav className="container-nav py-4 flex flex-col gap-4 text-sm font-medium">
             <NavLink to="/" onClick={() => setOpen(false)} className="text-ink">
               {t("nav.home")}
