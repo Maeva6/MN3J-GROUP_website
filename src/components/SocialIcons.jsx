@@ -52,13 +52,13 @@ export default function SocialIcons({ variant = "dark", size = "md", animated = 
 
   const sizes = {
     md: { wrap: "w-11 h-11", icon: 20 },
-    lg: { wrap: "w-14 h-14", icon: 24 },
+    lg: { wrap: "w-12 h-12 md:w-14 md:h-14", icon: 22 },
   };
   const { wrap, icon } = sizes[size] ?? sizes.md;
   const Tag = animated ? motion.a : "a";
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
       {links.map(({ href, label, Icon }, i) => (
         <Tag
           key={label}

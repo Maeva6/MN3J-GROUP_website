@@ -8,8 +8,8 @@ import { useLanguage } from "../i18n/LanguageContext";
 // gardent la prise de contact accessible pendant le défilement. Flottants
 // (pas une barre pleine largeur) : ils se posent par-dessus le contenu sans
 // réserver d'espace, donc sans créer de bande vide sous le Footer.
-// - Bouton "devis" : partout, sauf sur les pages qui ont déjà leur propre
-//   demande de devis (contact, merci) ou qui n'en ont pas besoin (admin).
+// - Bouton "devis" : sur toutes les pages, sauf la page contact elle-même
+//   (qui a déjà son propre formulaire de demande de devis).
 // - Bouton "appel" : uniquement sur la page d'accueil, pour ne pas surcharger
 //   les autres pages d'un deuxième bouton flottant.
 export default function StickyMobileCta() {
@@ -17,7 +17,7 @@ export default function StickyMobileCta() {
   const { pathname } = useLocation();
 
   const isHome = pathname === "/";
-  const showQuoteButton = !["/contact", "/merci"].includes(pathname) && !pathname.startsWith("/admin");
+  const showQuoteButton = pathname !== "/contact";
 
   if (!isHome && !showQuoteButton) return null;
 
