@@ -97,7 +97,7 @@ export const fr = {
     eyebrowCompany: "Notre entreprise",
     title: "À propos de MN3J-GROUP",
     subtitle: "Une équipe passionnée, une exigence constante.",
-    editoEyebrow: "Édito",
+    // editoEyebrow: "Édito",
     editoAccent: "Our Vision",
     editoTitle: "Notre vision, votre confiance",
     editoText:
