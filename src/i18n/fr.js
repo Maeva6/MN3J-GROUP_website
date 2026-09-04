@@ -101,7 +101,7 @@ export const fr = {
     editoAccent: "Our Vision",
     editoTitle: "Notre vision, votre confiance",
     editoText:
-      "MN3J-GROUP est porté par une direction expérimentée et une équipe pluridisciplinaire — techniciens, décorateurs et formateurs qualifiés — réunis autour d'une même vision : offrir à chaque client un interlocuteur unique, un savoir-faire vérifié et une exigence de finition qui ne transige jamais, du premier plan à la dernière retouche.",
+      "MN3J-GROUP est porté par une direction expérimentée et une équipe pluridisciplinaire de techniciens, décorateurs et formateurs qualifiés réunis autour d'une même vision : offrir à chaque client un interlocuteur unique, un savoir-faire vérifié et une exigence de finition qui ne transige jamais, du premier plan à la dernière retouche.",
     editoImageLabel: "Notre équipe sur le terrain",
     discoverServices: "Découvrir nos services →",
     valuesEyebrow: "Nos valeurs",
