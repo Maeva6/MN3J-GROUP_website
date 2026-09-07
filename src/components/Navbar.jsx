@@ -17,7 +17,7 @@ function PoleDropdown({ pole, t }) {
           }`
         }
       >
-        {t(`data.services.${pole.id}.title`)}
+        {t(`data.services.${pole.id}.tagline`)}
         {pole.brand && (
           <span className="text-[9px] uppercase tracking-wider font-bold text-green-dark bg-green/15 rounded-full px-1.5 py-0.5">
             {pole.brand}
