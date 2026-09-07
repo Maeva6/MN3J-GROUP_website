@@ -7,16 +7,26 @@ import formationImg from "../assets/images/formation-natation.jpg";
 import entretienImg from "../assets/images/entretien-eau.jpg";
 // ⚠️ Pas encore de photo de chantier MN3J-GROUP pour ce pôle (nouveau) :
 // photos libres de droits (Wikimedia Commons, licences autorisant l'usage
-// commercial) en attendant de vraies photos de chantier.
-// - ingenierie-hero.jpg : "A seaside construction site in Busan" — CC0,
-//   pas d'attribution requise.
-// - sub-ingenierie-renovation.jpg : "A modern building under construction"
-//   — CC BY-SA 4.0, attribution requise en cas de republication de la photo.
-// - sub-ingenierie-automatisation.jpg : "Ecobee4.jpg" — CC BY 4.0,
-//   attribution requise en cas de republication de la photo.
+// commercial) en attendant de vraies photos de chantier. Attribution requise
+// en cas de republication de ces photos ailleurs (licences CC BY / CC BY-SA) :
+// - ingenierie-hero.jpg : "A seaside construction site in Busan" — CC0.
+// - sub-ingenierie-renovation.jpg : "A modern building under construction" — CC BY-SA 4.0.
+// - sub-ingenierie-automatisation.jpg : "Ecobee4.jpg" — CC BY 4.0.
+// - sub-ingenierie-renovation-energetique.jpg : "Thermal insulation retrofit
+//   works on a department store building" — CC BY 3.0.
+// - sub-ingenierie-maintenance.jpg : "Braves workers restoring the Olympic
+//   Stadium Tower in Montreal" — CC BY 3.0.
+// - sub-ingenierie-domotique.jpg : "SmartHome in Paderborn" (Zukunftsenergientour)
+//   — CC BY 2.0.
+// - sub-ingenierie-climatisation.jpg : "Office building air conditioning
+//   rooftop system in Tokyo city" — CC BY 3.0.
 import ingenierieImg from "../assets/images/ingenierie-hero.jpg";
 import ingenierieRenovationImg from "../assets/images/sub-ingenierie-renovation.jpg";
 import ingenierieAutomatisationImg from "../assets/images/sub-ingenierie-automatisation.jpg";
+import ingenierieRenovationEnergetiqueImg from "../assets/images/sub-ingenierie-renovation-energetique.jpg";
+import ingenierieMaintenanceImg from "../assets/images/sub-ingenierie-maintenance.jpg";
+import ingenierieDomotiqueImg from "../assets/images/sub-ingenierie-domotique.jpg";
+import ingenierieClimatisationImg from "../assets/images/sub-ingenierie-climatisation.jpg";
 
 import piscinesModernesImg from "../assets/images/sub-piscines-modernes.jpg";
 import piscinesClassiquesImg from "../assets/images/sub-piscines-classiques.jpg";
@@ -135,6 +145,10 @@ export const services = [
     subImages: {
       renovation: ingenierieRenovationImg,
       automatisation: ingenierieAutomatisationImg,
+      "renovation-energetique": ingenierieRenovationEnergetiqueImg,
+      maintenance: ingenierieMaintenanceImg,
+      domotique: ingenierieDomotiqueImg,
+      climatisation: ingenierieClimatisationImg,
     },
   },
   {

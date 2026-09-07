@@ -585,7 +585,7 @@ export const en = {
         title: "Engineering & Automation",
         tagline: "Engineering",
         accent: "Engineering",
-        navBlurb: "Renovating infrastructure and automating your equipment.",
+        navBlurb: "Renovation, energy efficiency, home automation, HVAC and technical maintenance.",
         description:
           "We give your infrastructure a second life and automate your equipment for effortless, absolute comfort.",
         slogan: "Smart engineering at the service of your buildings.",
@@ -608,6 +608,46 @@ export const en = {
               "Smart systems, remotely controlled and tailored to your needs.",
               "Everyday comfort and energy efficiency.",
               "Seamless integration into renovated or new infrastructure.",
+            ],
+          },
+          {
+            id: "renovation-energetique",
+            title: "Energy-efficient renovation",
+            description: "Improving your buildings' energy performance: insulation, equipment and more efficient systems.",
+            advantages: [
+              "Lasting reduction in your building's energy consumption.",
+              "Insulation solutions adapted to your climate and how you use your space.",
+              "An investment that pays off over the long term.",
+            ],
+          },
+          {
+            id: "maintenance",
+            title: "Preventive maintenance & technical diagnostics",
+            description: "Regular monitoring and technical diagnostics to anticipate failures and extend your equipment's lifespan.",
+            advantages: [
+              "Preventive action to avoid costly breakdowns.",
+              "Regular diagnostics of your technical installations.",
+              "Extends the lifespan of your equipment.",
+            ],
+          },
+          {
+            id: "domotique",
+            title: "Home automation & connected living",
+            description: "Centralised control of lighting, security and equipment for a connected, bespoke home.",
+            advantages: [
+              "Centralised control of your home, remotely or on site.",
+              "Scalable solutions tailored to your needs and budget.",
+              "Seamlessly integrated into your interior, with no visible wiring.",
+            ],
+          },
+          {
+            id: "climatisation",
+            title: "HVAC & ventilation engineering",
+            description: "Design and installation of air conditioning and ventilation systems tailored to your building.",
+            advantages: [
+              "Sizing adapted to the size and use of your premises.",
+              "Energy-efficient systems that are easy to maintain.",
+              "Careful installation, integrated into the building's architecture.",
             ],
           },
         ],

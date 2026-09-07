@@ -585,7 +585,7 @@ export const fr = {
         title: "Ingénierie & Automatisation",
         tagline: "Ingénierie",
         accent: "Engineering",
-        navBlurb: "Rénovation d'infrastructures et automatisation de vos équipements.",
+        navBlurb: "Rénovation, efficacité énergétique, domotique, climatisation et maintenance technique.",
         description:
           "Nous donnons une seconde vie à vos infrastructures et automatisons vos équipements pour un confort absolu et sans effort.",
         slogan: "L'ingénierie intelligente au service de vos ouvrages.",
@@ -608,6 +608,46 @@ export const fr = {
               "Systèmes intelligents pilotés à distance, pensés pour votre usage.",
               "Confort et efficacité énergétique au quotidien.",
               "Intégration soignée aux infrastructures rénovées ou neuves.",
+            ],
+          },
+          {
+            id: "renovation-energetique",
+            title: "Rénovation énergétique",
+            description: "Amélioration de la performance énergétique de vos bâtiments : isolation, équipements et systèmes plus économes.",
+            advantages: [
+              "Réduction durable des consommations énergétiques de votre bâtiment.",
+              "Solutions d'isolation adaptées au climat et à l'usage de vos locaux.",
+              "Un investissement valorisé sur le long terme.",
+            ],
+          },
+          {
+            id: "maintenance",
+            title: "Maintenance préventive & diagnostic technique",
+            description: "Suivi régulier et diagnostics techniques pour anticiper les pannes et prolonger la durée de vie de vos équipements.",
+            advantages: [
+              "Interventions préventives pour éviter les pannes coûteuses.",
+              "Diagnostics réguliers de vos installations techniques.",
+              "Prolonge la durée de vie de vos équipements.",
+            ],
+          },
+          {
+            id: "domotique",
+            title: "Domotique & maison connectée",
+            description: "Pilotage centralisé de l'éclairage, de la sécurité et des équipements pour un habitat connecté et sur-mesure.",
+            advantages: [
+              "Contrôle centralisé de votre habitat, à distance ou sur place.",
+              "Solutions évolutives selon vos besoins et votre budget.",
+              "Intégration soignée à votre intérieur, sans fils apparents.",
+            ],
+          },
+          {
+            id: "climatisation",
+            title: "Génie climatique & ventilation",
+            description: "Conception et installation de systèmes de climatisation et de ventilation adaptés à votre bâtiment.",
+            advantages: [
+              "Dimensionnement adapté à la surface et à l'usage de vos locaux.",
+              "Systèmes économes en énergie et faciles à entretenir.",
+              "Installation soignée, intégrée à l'architecture du bâtiment.",
             ],
           },
         ],
