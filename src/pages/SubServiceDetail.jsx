@@ -40,6 +40,9 @@ export default function SubServiceDetail() {
             <span>{sub.title}</span>
           </div>
           <h1 className="text-white text-3xl md:text-4xl font-bold">{sub.title}</h1>
+          {sub.slogan && (
+            <p className="text-[#A9E072] italic text-sm mt-2 max-w-lg">"{sub.slogan}"</p>
+          )}
         </div>
       </PhotoFrame>
 

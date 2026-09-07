@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
 import Seo from "../components/Seo";
-import { ShieldCheck, HeartHandshake, Sparkle, Users } from "lucide-react";
+import { ShieldCheck, HeartHandshake, Sparkle, Users, BadgeCheck } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import aboutHeroImg from "../assets/images/about-hero-equipe.jpg";
 import aboutEditoImg from "../assets/images/about-edito-equipe.jpg";
@@ -11,6 +11,7 @@ const values = [
   { icon: HeartHandshake, key: "integrity" },
   { icon: ShieldCheck, key: "security" },
   { icon: Users, key: "proximity" },
+  { icon: BadgeCheck, key: "guarantee" },
 ];
 
 // ⚠️ À COMPLÉTER : remplacez par les vrais membres de l'équipe MN3J-GROUP.
@@ -65,7 +66,7 @@ export default function About() {
               {t("about.valuesTitle")}
             </h2>
           </div>
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {values.map(({ icon: Icon, key }) => (
               <div key={key} className="bg-white border border-black/5 rounded-md p-6">
                 <div className="w-11 h-11 rounded-lg bg-navy flex items-center justify-center mb-4">

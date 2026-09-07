@@ -25,15 +25,15 @@ export const en = {
 
   home: {
     heroLabel: "Mirror infinity pool at sunset",
-    heroEyebrow: "Pools · Decoration · Construction · Training",
-    heroAccent: "Premium Aquatic & Building Group",
+    heroEyebrow: "Pools · Decoration · Construction · Engineering · Training",
+    heroAccent: "MN3J-GROUP: Builder of exceptional spaces and aquatic complexes.",
     heroTitleLine1: "Building excellence,",
     heroTitleLine2: "cultivating trust",
     heroText:
       "MN3J-GROUP brings together a multidisciplinary team of qualified technicians, decorators and trainers around one standard: designing your high-end pools, your developments and your exceptional sites with proven expertise, from the first blueprint to the final finish.",
     anchorServicesLabel: "Our expertise",
     polesEyebrow: "Our areas of expertise",
-    polesTitle: "Four areas of expertise, one standard",
+    polesTitle: "Five areas of expertise, one standard",
     polesText: "From training to the final finish, every division is run with the same premium rigour.",
     realisationsEyebrow: "Our work",
     realisationsTitle: "Our latest projects",
@@ -43,7 +43,7 @@ export const en = {
     testimonials: {
       eyebrow: "Trusted by our clients",
       title: "What our clients say",
-      subtitle: "Feedback from across our four areas of expertise.",
+      subtitle: "Feedback from across our five areas of expertise.",
     },
   },
 
@@ -83,7 +83,7 @@ export const en = {
     eyebrow: "Our trades",
     title: "Our services",
     intro:
-      "Four trades, one signature of excellence: high-end pools, decoration, construction and training.",
+      "Five trades, one signature of excellence: high-end pools, decoration, construction, engineering and training.",
     subTypesTitle: "Our variations",
     discoverCta: "Discover →",
     advantagesTitle: "Why choose this",
@@ -109,8 +109,9 @@ export const en = {
     values: {
       excellence: { title: "Excellence", text: "Every detail matters, from the first blueprint to the final finish." },
       integrity: { title: "Integrity", text: "Clear commitments, honoured, and transparent dialogue with our clients." },
-      security: { title: "Safety", text: "Strict compliance with standards, in training as on site." },
+      security: { title: "Safety", text: "Rigour, safety and durability in every last detail." },
       proximity: { title: "Closeness", text: "A single point of contact who knows your project inside out." },
+      guarantee: { title: "Guarantee", text: "Your investment is protected by solid guarantees and flawless quality control at every stage." },
     },
     teamEyebrow: "Our team",
     teamTitle: "The people behind every project",
@@ -196,8 +197,7 @@ export const en = {
   },
 
   footer: {
-    tagline:
-      "High-end pools, decoration, construction and aquatic training — one partner, one constant standard.",
+    tagline: "MN3J-GROUP: Engineering excellence, a passion for custom-made.",
     navigationTitle: "Navigation",
     followTitle: "Follow our projects",
     rights: "All rights reserved.",
@@ -283,9 +283,9 @@ export const en = {
         "MN3J-GROUP designs your high-end pools, developments and exceptional sites in Douala: decoration, construction and aquatic training with proven expertise.",
     },
     services: {
-      title: "Our services — Pools, decoration, construction & training | MN3J-GROUP",
+      title: "Our services — Pools, decoration, construction, engineering & training | MN3J-GROUP",
       description:
-        "Discover MN3J-GROUP's four areas of expertise: high-end pools, decoration, construction and aquatic training, each with dedicated variations.",
+        "Discover MN3J-GROUP's five areas of expertise: high-end pools, decoration, construction, engineering and aquatic training, each with dedicated variations.",
     },
     projects: {
       title: "Our projects — MN3J-GROUP portfolio",
@@ -353,7 +353,8 @@ export const en = {
         accent: "Premium Pools",
         navBlurb: "Modern, classic, infinity, mirror infinity, VIP and bio.",
         description:
-          "Design and construction of high-end pools — modern, classic, infinity, mirror infinity, bespoke VIP or bio — conceived as true architectural pieces.",
+          "From design to construction, we turn water and concrete into true architectural works of art.",
+        slogan: "The art of water, the excellence of building.",
         subItems: [
           {
             id: "modernes",
@@ -423,7 +424,8 @@ export const en = {
         accent: "Design",
         navBlurb: "Landscaping, bespoke interior and exterior decoration.",
         description:
-          "We enhance your living spaces, indoors and outdoors, with constant attention to detail.",
+          "From landscape to terrace, we shape aesthetic and functional environments that reflect who you are.",
+        slogan: "The perfect harmony between nature and architecture.",
         subItems: [
           {
             id: "paysager",
@@ -533,7 +535,8 @@ export const en = {
         accent: "Build",
         navBlurb: "Buildings, institutional structures and sports complexes, from shell to finish.",
         description:
-          "From structural work to high-end finishing, we deliver solid, meticulously crafted buildings, institutional structures and sports complexes.",
+          "Every structure is designed and executed to the most rigorous engineering standards.",
+        slogan: "Building the future on solid foundations.",
         subItems: [
           {
             id: "batiments",
@@ -558,7 +561,8 @@ export const en = {
           {
             id: "complexes-sportifs",
             title: "Sports complexes",
-            description: "Sports facilities combining our pool and construction expertise.",
+            description: "Modern sports and aquatic facilities, built for training, competition and safety.",
+            slogan: "Expertise in large-scale aquatic infrastructure.",
             advantages: [
               "Facilities designed around the sport and expected usage.",
               "Combines our pool, construction and aquatic safety expertise.",
@@ -573,6 +577,37 @@ export const en = {
               "A single point of contact from groundwork to the final finish.",
               "Rigorous oversight adapted to each site's complexity.",
               "Materials selected for local conditions.",
+            ],
+          },
+        ],
+      },
+      ingenierie: {
+        title: "Engineering & Automation",
+        tagline: "Engineering",
+        accent: "Engineering",
+        navBlurb: "Renovating infrastructure and automating your equipment.",
+        description:
+          "We give your infrastructure a second life and automate your equipment for effortless, absolute comfort.",
+        slogan: "Smart engineering at the service of your buildings.",
+        subItems: [
+          {
+            id: "renovation",
+            title: "Building & infrastructure renovation",
+            description: "Rehabilitation and modernisation of existing structures, giving them a second life.",
+            advantages: [
+              "A full assessment of the existing structure before any work begins.",
+              "Technical solutions adapted to your building's condition and use.",
+              "Enhances your assets without starting from scratch.",
+            ],
+          },
+          {
+            id: "automatisation",
+            title: "Automation & smart systems",
+            description: "Connected, automated equipment for optimal, effortless everyday comfort.",
+            advantages: [
+              "Smart systems, remotely controlled and tailored to your needs.",
+              "Everyday comfort and energy efficiency.",
+              "Seamless integration into renovated or new infrastructure.",
             ],
           },
         ],

@@ -84,7 +84,7 @@ export default function Home() {
           <p className="text-muted mt-3 text-sm leading-relaxed">{t("home.polesText")}</p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(({ id, icon: Icon, featuredSub, subImages, brand }, i) => {
             const featured = t(`data.services.${id}.subItems`).find((s) => s.id === featuredSub);
             return (

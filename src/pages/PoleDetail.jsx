@@ -50,7 +50,12 @@ export default function PoleDetail() {
                 </span>
               )}
             </div>
-            <p className="text-white/80 mt-2 max-w-lg text-sm">
+            {pole.hasSlogan && (
+              <p className="text-[#A9E072] font-display italic text-base mt-2 max-w-lg">
+                "{t(`data.services.${pole.id}.slogan`)}"
+              </p>
+            )}
+            <p className="text-white/80 mt-1 max-w-lg text-sm">
               {t(`data.services.${pole.id}.description`)}
             </p>
           </div>

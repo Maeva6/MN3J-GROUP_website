@@ -25,15 +25,15 @@ export const fr = {
 
   home: {
     heroLabel: "Piscine haut de gamme à débordement miroir au coucher du soleil",
-    heroEyebrow: "Piscines · Décoration · BTP · Formation",
-    heroAccent: "Premium Aquatic & Building Group",
+    heroEyebrow: "Piscines · Décoration · BTP · Ingénierie · Formation",
+    heroAccent: "MN3J-GROUP : Bâtisseur d'espaces d'exception et de complexes aquatiques.",
     heroTitleLine1: "Bâtir l'excellence,",
     heroTitleLine2: "cultiver la confiance",
     heroText:
       "MN3J-GROUP réunit une équipe pluridisciplinaire de techniciens, décorateurs et formateurs qualifiés autour d'une même exigence : concevoir vos piscines haut de gamme, vos aménagements et vos chantiers d'exception avec un savoir-faire vérifié, du premier plan à la dernière finition.",
     anchorServicesLabel: "Nos expertises",
     polesEyebrow: "Nos pôles d'activité",
-    polesTitle: "Quatre expertises, une seule exigence",
+    polesTitle: "Cinq expertises, une seule exigence",
     polesText: "De la formation à la finition, chaque pôle est piloté avec la même rigueur premium.",
     realisationsEyebrow: "Réalisations",
     realisationsTitle: "Nos derniers chantiers",
@@ -43,7 +43,7 @@ export const fr = {
     testimonials: {
       eyebrow: "Ils nous font confiance",
       title: "Ce que nos clients en disent",
-      subtitle: "Des retours d'expérience sur nos quatre pôles d'activité.",
+      subtitle: "Des retours d'expérience sur nos cinq pôles d'activité.",
     },
   },
 
@@ -83,7 +83,7 @@ export const fr = {
     eyebrow: "Nos métiers",
     title: "Nos services",
     intro:
-      "Quatre métiers, une seule signature d'excellence : piscines haut de gamme, décoration, BTP et formation.",
+      "Cinq métiers, une seule signature d'excellence : piscines haut de gamme, décoration, BTP, ingénierie et formation.",
     subTypesTitle: "Nos déclinaisons",
     discoverCta: "Découvrir →",
     advantagesTitle: "Pourquoi ce choix",
@@ -109,8 +109,9 @@ export const fr = {
     values: {
       excellence: { title: "Excellence", text: "Chaque détail compte, du premier plan à la dernière finition." },
       integrity: { title: "Intégrité", text: "Des engagements clairs, tenus, et un dialogue transparent avec nos clients." },
-      security: { title: "Sécurité", text: "Un respect strict des normes, en formation comme sur chantier." },
+      security: { title: "Sécurité", text: "Exigence, sécurité et pérennité dans chaque détail." },
       proximity: { title: "Proximité", text: "Un interlocuteur unique qui connaît votre projet de bout en bout." },
+      guarantee: { title: "Garantie", text: "Votre investissement est protégé par des garanties solides et un contrôle qualité irréprochable à chaque étape." },
     },
     teamEyebrow: "Notre équipe",
     teamTitle: "Les personnes derrière chaque chantier",
@@ -196,8 +197,7 @@ export const fr = {
   },
 
   footer: {
-    tagline:
-      "Piscines haut de gamme, décoration, BTP et formation aquatique — un seul partenaire, une exigence constante.",
+    tagline: "MN3J-GROUP : L'excellence de l'ingénierie, la passion du sur-mesure.",
     navigationTitle: "Navigation",
     followTitle: "Suivez nos chantiers",
     rights: "Tous droits réservés.",
@@ -283,9 +283,9 @@ export const fr = {
         "MN3J-GROUP conçoit vos piscines haut de gamme, vos aménagements et vos chantiers d'exception à Douala : décoration, BTP et formation aquatique avec un savoir-faire vérifié.",
     },
     services: {
-      title: "Nos services — Piscines, décoration, BTP & formation | MN3J-GROUP",
+      title: "Nos services — Piscines, décoration, BTP, ingénierie & formation | MN3J-GROUP",
       description:
-        "Découvrez les quatre pôles d'expertise de MN3J-GROUP : piscines haut de gamme, décoration, BTP et formation aquatique, chacun avec ses déclinaisons dédiées.",
+        "Découvrez les cinq pôles d'expertise de MN3J-GROUP : piscines haut de gamme, décoration, BTP, ingénierie et formation aquatique, chacun avec ses déclinaisons dédiées.",
     },
     projects: {
       title: "Nos chantiers — Réalisations MN3J-GROUP",
@@ -353,7 +353,8 @@ export const fr = {
         accent: "Premium Pools",
         navBlurb: "Modernes, classiques, à débordement, à débordement miroir, VIP et bio.",
         description:
-          "Conception et réalisation de piscines haut de gamme — modernes, classiques, à débordement, à débordement miroir, VIP sur-mesure ou bio — pensées comme de véritables pièces architecturales.",
+          "De la conception à la réalisation, nous transformons l'eau et le béton en véritables œuvres d'art architecturale.",
+        slogan: "L'art de l'eau, l'excellence du bâtiment.",
         subItems: [
           {
             id: "modernes",
@@ -423,7 +424,8 @@ export const fr = {
         accent: "Design",
         navBlurb: "Aménagement paysager, décoration intérieure et extérieure sur-mesure.",
         description:
-          "Nous sublimons vos espaces de vie, à l'intérieur comme à l'extérieur, avec une attention constante au détail.",
+          "Du paysage à la terrasse, nous façonnons des environnements esthétiques et fonctionnels qui vous ressemblent.",
+        slogan: "L'harmonie parfaite entre nature et architecture.",
         subItems: [
           {
             id: "paysager",
@@ -533,7 +535,8 @@ export const fr = {
         accent: "Build",
         navBlurb: "Bâtiments, édifices et complexes sportifs, du gros œuvre aux finitions.",
         description:
-          "De la construction gros œuvre aux finitions haut de gamme, nous livrons des bâtiments, édifices et complexes sportifs solides et soignés.",
+          "Chaque structure est pensée et exécutée selon les normes d'ingénierie les plus rigoureuses.",
+        slogan: "Bâtir l'avenir sur des fondations solides.",
         subItems: [
           {
             id: "batiments",
@@ -558,7 +561,8 @@ export const fr = {
           {
             id: "complexes-sportifs",
             title: "Complexes sportifs",
-            description: "Infrastructures sportives intégrant nos expertises piscine et BTP.",
+            description: "Des équipements sportifs et aquatiques modernes, conçus pour l'entraînement, la compétition et la sécurité.",
+            slogan: "L'expertise des grandes infrastructures aquatiques.",
             advantages: [
               "Infrastructures pensées selon la discipline et la fréquentation attendue.",
               "Intègre nos expertises piscine, BTP et sécurité aquatique.",
@@ -573,6 +577,37 @@ export const fr = {
               "Un seul interlocuteur du terrassement à la dernière finition.",
               "Suivi rigoureux adapté à la complexité de chaque chantier.",
               "Matériaux sélectionnés selon les conditions locales.",
+            ],
+          },
+        ],
+      },
+      ingenierie: {
+        title: "Ingénierie & Automatisation",
+        tagline: "Ingénierie",
+        accent: "Engineering",
+        navBlurb: "Rénovation d'infrastructures et automatisation de vos équipements.",
+        description:
+          "Nous donnons une seconde vie à vos infrastructures et automatisons vos équipements pour un confort absolu et sans effort.",
+        slogan: "L'ingénierie intelligente au service de vos ouvrages.",
+        subItems: [
+          {
+            id: "renovation",
+            title: "Rénovation de bâtiments & infrastructures",
+            description: "Réhabilitation et modernisation d'ouvrages existants, pour leur donner une seconde vie.",
+            advantages: [
+              "Diagnostic complet de l'existant avant toute intervention.",
+              "Solutions techniques adaptées à l'état et à l'usage de votre bâtiment.",
+              "Valorise votre patrimoine sans repartir de zéro.",
+            ],
+          },
+          {
+            id: "automatisation",
+            title: "Automatisation & systèmes intelligents",
+            description: "Équipements connectés et automatisés pour un confort optimal, sans effort au quotidien.",
+            advantages: [
+              "Systèmes intelligents pilotés à distance, pensés pour votre usage.",
+              "Confort et efficacité énergétique au quotidien.",
+              "Intégration soignée aux infrastructures rénovées ou neuves.",
             ],
           },
         ],

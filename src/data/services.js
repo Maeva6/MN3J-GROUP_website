@@ -1,10 +1,15 @@
-import { Waves, Sparkles, HardHat, GraduationCap, Droplets } from "lucide-react";
+import { Waves, Sparkles, HardHat, GraduationCap, Droplets, Cog } from "lucide-react";
 
 import piscinesImg from "../assets/images/piscine-debordement.jpg";
 import decorationImg from "../assets/images/decoration-terrasse.jpg";
 import btpImg from "../assets/images/btp-chantier.jpg";
 import formationImg from "../assets/images/formation-natation.jpg";
 import entretienImg from "../assets/images/entretien-eau.jpg";
+// ⚠️ Pas encore de photo dédiée pour ce pôle (nouveau) : images réutilisées
+// temporairement en attendant de vraies photos de chantier MN3J-GROUP.
+import ingenierieImg from "../assets/images/entretien-eau.jpg";
+import ingenierieRenovationImg from "../assets/images/btp-chantier.jpg";
+import ingenierieAutomatisationImg from "../assets/images/sub-decoration-electricite.jpg";
 
 import piscinesModernesImg from "../assets/images/sub-piscines-modernes.jpg";
 import piscinesClassiquesImg from "../assets/images/sub-piscines-classiques.jpg";
@@ -36,7 +41,7 @@ import formationReeducationImg from "../assets/images/sub-formation-reeducation.
 import projetCentreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import formationRecyclageImg from "../assets/images/sub-formation-recyclage.jpg";
 
-// Ordre volontaire : Piscines · Décoration · BTP · Formation
+// Ordre volontaire : Piscines · Décoration · BTP · Ingénierie · Formation
 // (reflète l'ordre affiché dans le hero, la navigation et la page d'accueil)
 // Les textes (title, description, subItems...) vivent dans src/i18n/{fr,en}.js ;
 // ce fichier ne porte que la structure (id, icône, images).
@@ -46,6 +51,7 @@ export const services = [
     number: "01",
     icon: Waves,
     image: piscinesImg,
+    hasSlogan: true,
     // Sous-type mis en avant sur la page d'accueil
     featuredSub: "debordement-miroir",
     subImages: {
@@ -62,6 +68,7 @@ export const services = [
     number: "02",
     icon: Sparkles,
     image: decorationImg,
+    hasSlogan: true,
     featuredSub: "exterieure",
     subImages: {
       paysager: decorationPaysagerImg,
@@ -102,6 +109,7 @@ export const services = [
     number: "03",
     icon: HardHat,
     image: btpImg,
+    hasSlogan: true,
     featuredSub: "batiments",
     subImages: {
       batiments: btpBatimentsImg,
@@ -111,8 +119,20 @@ export const services = [
     },
   },
   {
-    id: "formation",
+    id: "ingenierie",
     number: "04",
+    icon: Cog,
+    image: ingenierieImg,
+    hasSlogan: true,
+    featuredSub: "renovation",
+    subImages: {
+      renovation: ingenierieRenovationImg,
+      automatisation: ingenierieAutomatisationImg,
+    },
+  },
+  {
+    id: "formation",
+    number: "05",
     icon: GraduationCap,
     image: formationImg,
     // Pôle piloté par ASCII, la marque formation du groupe MN3J-GROUP :
@@ -133,7 +153,7 @@ export const services = [
 ];
 
 // Rubrique complémentaire (entretien) : reliée depuis le pôle Piscines,
-// hors de la grille "Quatre expertises" de la page d'accueil.
+// hors de la grille "Cinq expertises" de la page d'accueil.
 export const maintenanceService = {
   id: "entretien",
   icon: Droplets,
