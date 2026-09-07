@@ -42,7 +42,6 @@ export default function About() {
 
       <section className="container-page py-16 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <span className="eyebrow">{t("about.editoEyebrow")}</span>
           <span className="block text-[10px] uppercase tracking-[0.2em] text-muted mt-1">
             {t("about.editoAccent")}
           </span>
