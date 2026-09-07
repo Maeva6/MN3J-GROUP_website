@@ -5,11 +5,18 @@ import decorationImg from "../assets/images/decoration-terrasse.jpg";
 import btpImg from "../assets/images/btp-chantier.jpg";
 import formationImg from "../assets/images/formation-natation.jpg";
 import entretienImg from "../assets/images/entretien-eau.jpg";
-// ⚠️ Pas encore de photo dédiée pour ce pôle (nouveau) : images réutilisées
-// temporairement en attendant de vraies photos de chantier MN3J-GROUP.
-import ingenierieImg from "../assets/images/entretien-eau.jpg";
-import ingenierieRenovationImg from "../assets/images/btp-chantier.jpg";
-import ingenierieAutomatisationImg from "../assets/images/sub-decoration-electricite.jpg";
+// ⚠️ Pas encore de photo de chantier MN3J-GROUP pour ce pôle (nouveau) :
+// photos libres de droits (Wikimedia Commons, licences autorisant l'usage
+// commercial) en attendant de vraies photos de chantier.
+// - ingenierie-hero.jpg : "A seaside construction site in Busan" — CC0,
+//   pas d'attribution requise.
+// - sub-ingenierie-renovation.jpg : "A modern building under construction"
+//   — CC BY-SA 4.0, attribution requise en cas de republication de la photo.
+// - sub-ingenierie-automatisation.jpg : "Ecobee4.jpg" — CC BY 4.0,
+//   attribution requise en cas de republication de la photo.
+import ingenierieImg from "../assets/images/ingenierie-hero.jpg";
+import ingenierieRenovationImg from "../assets/images/sub-ingenierie-renovation.jpg";
+import ingenierieAutomatisationImg from "../assets/images/sub-ingenierie-automatisation.jpg";
 
 import piscinesModernesImg from "../assets/images/sub-piscines-modernes.jpg";
 import piscinesClassiquesImg from "../assets/images/sub-piscines-classiques.jpg";
