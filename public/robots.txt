@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /admin
 Disallow: /merci
 Allow: /
+
+Sitemap: https://mn-3-j-group-website.vercel.app/sitemap.xml

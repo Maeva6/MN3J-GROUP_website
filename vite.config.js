@@ -19,4 +19,9 @@ export default defineConfig({
       webp: { quality: 70 },
     }),
   ],
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.js",
+    globals: true,
+  },
 })
