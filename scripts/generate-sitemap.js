@@ -15,8 +15,10 @@ import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-// ⚠️ À corriger si le domaine de production change (voir aussi index.html
-// pour og:image/twitter:image, qui doivent rester des URLs absolues).
+// ⚠️ TODO domaine définitif : domaine Vercel provisoire, en attendant le nom
+// de domaine dédié. Une fois branché, remplacez-le ici — et dans les deux
+// autres endroits où il est en dur : index.html (og:url, og:image,
+// twitter:image) et public/robots.txt (ligne Sitemap:).
 const SITE_URL = "https://mn-3-j-group-website.vercel.app";
 
 async function loadSiteData() {

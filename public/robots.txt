@@ -3,4 +3,7 @@ Disallow: /admin
 Disallow: /merci
 Allow: /
 
+# ⚠️ TODO domaine définitif : à remplacer par le nom de domaine dédié une
+# fois branché (voir aussi index.html et scripts/generate-sitemap.js, qui
+# ont le même domaine provisoire en dur).
 Sitemap: https://mn-3-j-group-website.vercel.app/sitemap.xml
