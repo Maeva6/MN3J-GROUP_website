@@ -1,9 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ArrowRight, HardHat, Clock, FileText, Users } from "lucide-react";
 import { projects, statusStyles } from "../../data/projects";
 import { quotes, quoteStatuses, quoteStatusStyles } from "../../data/adminData";
 import { clients } from "../../data/adminData";
 import Avatar from "../../components/admin/Avatar";
+
+// Anime le chiffre de 0 jusqu'à sa valeur finale au montage (indépendant de
+// framer-motion : un nombre affiché comme texte, pas une transform/opacity,
+// s'anime plus simplement avec un requestAnimationFrame direct).
+function CountUp({ value, duration = 700 }) {
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    let frame;
+    let start;
+    const step = (timestamp) => {
+      if (start === undefined) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(eased * value));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [value, duration]);
+
+  return display;
+}
 
 // Couleurs pleines pour les barres du mini-graphique (les couleurs de
 // quoteStatusStyles sont des teintes pastel pensées pour des badges texte,
@@ -98,32 +123,38 @@ export default function AdminDashboard() {
   return (
     <>
       <div className="grid md:grid-cols-4 gap-5">
-        {kpis.map((k) => (
-          <div
+        {kpis.map((k, i) => (
+          <motion.div
             key={k.label}
-            className={`rounded-lg p-6 ${
-              k.highlight ? "bg-navy text-white" : "bg-white border border-black/5"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08, duration: 0.4, ease: "easeOut" }}
+            whileHover={{ y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+            className={`group rounded-lg p-6 cursor-default transition-shadow duration-300 ${
+              k.highlight
+                ? "bg-navy text-white hover:shadow-card"
+                : "bg-white border border-black/5 hover:shadow-card hover:border-navy/10"
             }`}
           >
             <div
-              className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 ${
+              className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${
                 k.highlight ? "bg-white/15" : "bg-navy/5"
               }`}
             >
               <k.icon size={16} className={k.highlight ? "text-white" : "text-navy"} />
             </div>
             <div className={`text-2xl font-display font-bold ${k.highlight ? "text-white" : "text-navy"}`}>
-              {k.value}
+              <CountUp value={k.value} />
             </div>
             <div className={`text-xs mt-1 ${k.highlight ? "text-white/70" : "text-muted"}`}>{k.label}</div>
             <div
-              className={`text-[11px] font-semibold mt-2 inline-block px-2 py-0.5 rounded-full ${
-                k.highlight ? "bg-white/15 text-white" : "bg-green/15 text-green-dark"
+              className={`text-[11px] font-semibold mt-2 inline-block px-2 py-0.5 rounded-full transition-colors duration-300 ${
+                k.highlight ? "bg-white/15 text-white" : "bg-green/15 text-green-dark group-hover:bg-green/25"
               }`}
             >
               {k.sub}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
