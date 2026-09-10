@@ -101,7 +101,7 @@ export const en = {
     editoAccent: "Our Vision",
     editoTitle: "Technical Rigour, Dedicated to Your Aquatic Projects",
     editoText:
-      "Building a pool or an aquatic complex is never improvised. Whether it's installing a mirror pool on the 4th floor of a building or rehabilitating an institutional facility, water is an unforgiving element — it leaves no room for error in waterproofing or hydraulic sizing. At MN3J-GROUP, we combine structural engineering rigour, precise hydraulic calculations and a complete mastery of the aquatic environment. Our commitment: turning your technical constraints into durable, beautiful and 100% safe results.",
+      "Building a pool or an aquatic complex is never improvised. Whether it's installing a mirror pool on the 4th floor of a building or rehabilitating an institutional facility, water is an unforgiving element that leaves no room for error in waterproofing or hydraulic sizing. At MN3J-GROUP, we combine structural engineering rigour, precise hydraulic calculations and a complete mastery of the aquatic environment. Our commitment: turning your technical constraints into durable, beautiful and 100% safe results.",
     editoImageLabel: "Our team on site",
     discoverServices: "Discover our services →",
     valuesEyebrow: "Our values",
@@ -129,7 +129,7 @@ export const en = {
     certificationsTitle: "Recognised accreditations",
     certificationsList: [
       "State MNS Certification",
-      "ISO 9001 — Quality",
+      "ISO 9001: Quality",
       "Construction Quality Label",
       "Aquatic Safety Accreditation",
     ],
@@ -281,44 +281,44 @@ export const en = {
 
   seo: {
     home: {
-      title: "MN3J-GROUP — High-end pools, decoration, construction & aquatic training",
+      title: "MN3J-GROUP, High-end pools, decoration, construction & aquatic training",
       description:
         "MN3J-GROUP designs your high-end pools, developments and exceptional sites in Douala: decoration, construction and aquatic training with proven expertise.",
     },
     services: {
-      title: "Our services — Pools, decoration, construction, engineering & training | MN3J-GROUP",
+      title: "Our services: Pools, decoration, construction, engineering & training | MN3J-GROUP",
       description:
         "Discover MN3J-GROUP's five areas of expertise: high-end pools, decoration, construction, engineering and aquatic training, each with dedicated variations.",
     },
     projects: {
-      title: "Our projects — MN3J-GROUP portfolio",
+      title: "Our projects: MN3J-GROUP portfolio",
       description:
         "High-end pools, decoration, construction and aquatic training: discover MN3J-GROUP's completed, ongoing and planned projects.",
     },
     about: {
-      title: "About — MN3J-GROUP",
+      title: "About MN3J-GROUP",
       description:
         "Discover the team, values and certifications of MN3J-GROUP, dedicated to your pool, decoration, construction and aquatic training projects.",
     },
     contact: {
-      title: "Contact — Request a quote | MN3J-GROUP",
+      title: "Contact: Request a quote | MN3J-GROUP",
       description:
         "Contact MN3J-GROUP for a personalised quote within 48h: high-end pools, decoration, construction and aquatic training.",
     },
     notFound: {
-      title: "Page not found — MN3J-GROUP",
+      title: "Page not found | MN3J-GROUP",
       description: "The requested page no longer exists. Find your way back to the MN3J-GROUP homepage and services.",
     },
     legal: {
-      title: "Legal notice & privacy policy — MN3J-GROUP",
+      title: "Legal notice & privacy policy | MN3J-GROUP",
       description: "MN3J-GROUP's legal notice and privacy policy: data collected, purpose and your rights.",
     },
     faq: {
-      title: "Frequently asked questions — MN3J-GROUP",
+      title: "Frequently asked questions | MN3J-GROUP",
       description: "Response times, service areas, guarantees, payment: answers to the most common questions about MN3J-GROUP.",
     },
     thankYou: {
-      title: "Thank you for your request — MN3J-GROUP",
+      title: "Thank you for your request | MN3J-GROUP",
       description: "Your quote request has been sent to MN3J-GROUP. Our team will get back to you within 48h.",
     },
   },

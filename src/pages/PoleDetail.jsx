@@ -21,7 +21,7 @@ export default function PoleDetail() {
   return (
     <div>
       <Seo
-        title={`${t(`data.services.${pole.id}.title`)} — MN3J-GROUP`}
+        title={`${t(`data.services.${pole.id}.title`)} | MN3J-GROUP`}
         description={t(`data.services.${pole.id}.description`)}
       />
 

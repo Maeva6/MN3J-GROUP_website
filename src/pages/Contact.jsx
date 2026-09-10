@@ -25,7 +25,7 @@ export default function Contact() {
     const message = data.get("message");
 
     const summary = [
-      "Nouvelle demande de devis — MN3J-GROUP",
+      "Nouvelle demande de devis : MN3J-GROUP",
       "",
       `Nom : ${fullName}`,
       `Téléphone : ${phone}`,
@@ -37,7 +37,7 @@ export default function Contact() {
 
     window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(summary)}`, "_blank", "noopener,noreferrer");
     window.open(
-      `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Nouvelle demande de devis — ${fullName}`)}&body=${encodeURIComponent(summary)}`,
+      `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Nouvelle demande de devis : ${fullName}`)}&body=${encodeURIComponent(summary)}`,
       "_blank",
       "noopener,noreferrer"
     );

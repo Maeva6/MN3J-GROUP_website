@@ -25,7 +25,7 @@ export default function ProjectDetail() {
   return (
     <div>
       <Seo
-        title={`${project.name} — MN3J-GROUP`}
+        title={`${project.name} | MN3J-GROUP`}
         description={t(`data.projects.${project.id}.description`)}
       />
 

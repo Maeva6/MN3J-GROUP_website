@@ -22,7 +22,7 @@ export default function SubServiceDetail() {
 
   return (
     <div>
-      <Seo title={`${sub.title} — ${poleTitle} | MN3J-GROUP`} description={sub.description} />
+      <Seo title={`${sub.title} : ${poleTitle} | MN3J-GROUP`} description={sub.description} />
 
       <PhotoFrame
         src={pole.subImages[sub.id]}

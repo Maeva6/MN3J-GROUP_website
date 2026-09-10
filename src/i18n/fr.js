@@ -301,24 +301,24 @@ export const fr = {
         "Découvrez l'équipe, les valeurs et les certifications de MN3J-GROUP, au service de vos projets de piscines, décoration, BTP et formation aquatique.",
     },
     contact: {
-      title: "Contact — Demander un devis | MN3J-GROUP",
+      title: "Contact : Demander un devis | MN3J-GROUP",
       description:
         "Contactez MN3J-GROUP pour un devis personnalisé sous 48h : piscines haut de gamme, décoration, BTP et formation aquatique.",
     },
     notFound: {
-      title: "Page introuvable — MN3J-GROUP",
+      title: "Page introuvable | MN3J-GROUP",
       description: "La page demandée n'existe pas ou plus. Retrouvez l'accueil et nos services MN3J-GROUP.",
     },
     legal: {
-      title: "Mentions légales & politique de confidentialité — MN3J-GROUP",
+      title: "Mentions légales & politique de confidentialité | MN3J-GROUP",
       description: "Mentions légales et politique de confidentialité du site MN3J-GROUP : données collectées, finalité et vos droits.",
     },
     faq: {
-      title: "Questions fréquentes — MN3J-GROUP",
+      title: "Questions fréquentes | MN3J-GROUP",
       description: "Délais de réponse, zones d'intervention, garanties, paiement : les réponses aux questions les plus fréquentes sur MN3J-GROUP.",
     },
     thankYou: {
-      title: "Merci pour votre demande — MN3J-GROUP",
+      title: "Merci pour votre demande | MN3J-GROUP",
       description: "Votre demande de devis a bien été envoyée à MN3J-GROUP. Notre équipe vous recontacte sous 48h.",
     },
   },
