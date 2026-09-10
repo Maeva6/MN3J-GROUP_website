@@ -129,7 +129,7 @@ export const fr = {
     certificationsTitle: "Des agréments reconnus",
     certificationsList: [
       "Certification MNS d'État",
-      "ISO 9001 — Qualité",
+      "ISO 9001 : Qualité",
       "Label Qualité BTP",
       "Agrément sécurité aquatique",
     ],
@@ -281,22 +281,22 @@ export const fr = {
 
   seo: {
     home: {
-      title: "MN3J-GROUP — Piscines haut de gamme, décoration, BTP & formation aquatique",
+      title: "MN3J-GROUP, Piscines haut de gamme, décoration, BTP & formation aquatique",
       description:
         "MN3J-GROUP conçoit vos piscines haut de gamme, vos aménagements et vos chantiers d'exception à Douala : décoration, BTP et formation aquatique avec un savoir-faire vérifié.",
     },
     services: {
-      title: "Nos services — Piscines, décoration, BTP, ingénierie & formation | MN3J-GROUP",
+      title: "Nos services : Piscines, décoration, BTP, ingénierie & formation | MN3J-GROUP",
       description:
         "Découvrez les cinq pôles d'expertise de MN3J-GROUP : piscines haut de gamme, décoration, BTP, ingénierie et formation aquatique, chacun avec ses déclinaisons dédiées.",
     },
     projects: {
-      title: "Nos chantiers — Réalisations MN3J-GROUP",
+      title: "Nos chantiers : Réalisations MN3J-GROUP",
       description:
         "Piscines haut de gamme, décoration, BTP et formation aquatique : découvrez les chantiers réalisés, en cours et planifiés par MN3J-GROUP.",
     },
     about: {
-      title: "À propos — MN3J-GROUP",
+      title: "À propos de MN3J-GROUP",
       description:
         "Découvrez l'équipe, les valeurs et les certifications de MN3J-GROUP, au service de vos projets de piscines, décoration, BTP et formation aquatique.",
     },
