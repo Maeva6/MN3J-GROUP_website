@@ -43,13 +43,13 @@ export default function PrivacyPolicy() {
           ))}
         </div>
         <p className="text-muted text-sm leading-relaxed mt-6">
-          {t("legalPage.privacy.contactPrefix")}{" "}
+          {t("legalPage.contactPrefix")}{" "}
           <a href={`mailto:${siteConfig.email}`} className="text-blue font-semibold hover:underline">
             {siteConfig.email}
           </a>
           {" · "}
           <Link to="/contact" className="text-blue font-semibold hover:underline">
-            {t("legalPage.privacy.contactLink")}
+            {t("legalPage.contactLink")}
           </Link>
         </p>
       </section>

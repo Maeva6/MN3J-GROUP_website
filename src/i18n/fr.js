@@ -99,9 +99,9 @@ export const fr = {
     subtitle: "Une équipe passionnée, une exigence constante.",
     // editoEyebrow: "Édito",
     editoAccent: "Our Vision",
-    editoTitle: "Notre vision, votre confiance",
+    editoTitle: "L'Exigence Technique au Service de Vos Projets Aquatiques",
     editoText:
-      "MN3J-GROUP est porté par une direction expérimentée et une équipe pluridisciplinaire de techniciens, décorateurs et formateurs qualifiés réunis autour d'une même vision : offrir à chaque client un interlocuteur unique, un savoir-faire vérifié et une exigence de finition qui ne transige jamais, du premier plan à la dernière retouche.",
+      "Construire une piscine ou un complexe aquatique ne s'improvise pas. Qu'il s'agisse d'implanter un bassin miroir au 4ᵉ étage d'un immeuble ou de réhabiliter une infrastructure institutionnelle, l'eau est un élément exigeant qui ne pardonne aucune erreur d'étanchéité ou de dimensionnement hydraulique. Chez MN3J-GROUP, nous combinons la rigueur de l'ingénierie de structure, la précision des calculs hydrauliques et une parfaite maîtrise du milieu aquatique. Notre engagement : transformer vos contraintes techniques en réalisations durables, esthétiques et 100 % sécurisées.",
     editoImageLabel: "Notre équipe sur le terrain",
     discoverServices: "Découvrir nos services →",
     valuesEyebrow: "Nos valeurs",
@@ -117,10 +117,13 @@ export const fr = {
     teamTitle: "Les personnes derrière chaque chantier",
     teamPlaceholderName: "À compléter",
     roles: {
-      ceo: "Directeur général & fondateur",
+      ceo: "Gérant et Directeur Technique",
       training: "Responsable formation aquatique",
       btp: "Chef de chantier BTP",
       decoration: "Responsable décoration",
+    },
+    bios: {
+      ceo: "Fort d'une expertise reconnue dans la gestion de projets complexes, la construction d'ouvrages aquatiques et la sécurité des installations, MOTCHOA Séraphin dirige MN3J-GROUP avec une exigence axée sur la conformité technique et la précision d'exécution. Il assure le suivi stratégique et le contrôle qualité de chaque chantier.",
     },
     certificationsEyebrow: "Certifications",
     certificationsTitle: "Des agréments reconnus",

@@ -11,6 +11,11 @@ export const siteConfig = {
     country: "Cameroun",
   },
   phone: "+237 6 73 77 24 76",
+  // Second numéro (issu du document "proposition EDITO MN3J GROUP 2026") —
+  // affiché à côté du premier sur la page Contact. Le bouton flottant
+  // "appeler" (StickyMobileCta) compose uniquement `phone`, le numéro
+  // principal historique.
+  phone2: "+237 6 95 23 80 62",
   email: "mn3jgroup@gmail.com",
   // Numéro WhatsApp au format attendu par wa.me : indicatif pays + numéro,
   // sans "+", espaces ni tirets. Utilisé par le formulaire de contact.

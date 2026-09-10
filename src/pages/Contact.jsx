@@ -68,7 +68,10 @@ export default function Contact() {
             <h3 className="text-navy font-semibold text-sm flex items-center gap-2 mb-1">
               <Phone size={15} /> {t("contact.phoneLabel")}
             </h3>
-            <p className="text-muted text-sm">{siteConfig.phone}</p>
+            <p className="text-muted text-sm">
+              {siteConfig.phone}
+              {siteConfig.phone2 && ` / ${siteConfig.phone2}`}
+            </p>
           </div>
           <div>
             <h3 className="text-navy font-semibold text-sm flex items-center gap-2 mb-1">

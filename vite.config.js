@@ -23,5 +23,10 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./src/test/setup.js",
     globals: true,
+    // Sans ce filtre, Vitest ramasse aussi server/tests/ (le back-end de
+    // l'exercice DevOps, avec son propre outillage/sa propre base de
+    // données) et bloque tout le run en attendant des workers qui ne
+    // démarrent jamais. On ne teste ici que le front-end React.
+    include: ["src/**/*.test.{js,jsx}"],
   },
 })

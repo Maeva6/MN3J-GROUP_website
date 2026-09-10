@@ -15,8 +15,11 @@ const values = [
 ];
 
 // ⚠️ À COMPLÉTER : remplacez par les vrais membres de l'équipe MN3J-GROUP.
+// Seul le gérant est renseigné pour l'instant (nom + bio) ; name et hasBio
+// sont volontairement en dur (pas de traduction) car un nom propre ne change
+// pas selon la langue — les autres champs restent traduits via about.roles/bios.
 const team = [
-  { roleKey: "ceo" },
+  { roleKey: "ceo", name: "MOTCHOA Séraphin", hasBio: true },
   { roleKey: "training" },
   { roleKey: "btp" },
   { roleKey: "decoration" },
@@ -90,8 +93,13 @@ export default function About() {
           {team.map((m) => (
             <div key={m.roleKey} className="text-center">
               <PhotoFrame tone="navy" className="h-40 w-40 rounded-full mx-auto mb-4" />
-              <h4 className="text-navy font-semibold text-sm">{t("about.teamPlaceholderName")}</h4>
+              <h4 className="text-navy font-semibold text-sm">{m.name ?? t("about.teamPlaceholderName")}</h4>
               <p className="text-muted text-xs mt-1">{t(`about.roles.${m.roleKey}`)}</p>
+              {m.hasBio && (
+                <p className="text-muted text-xs mt-2 leading-relaxed max-w-xs mx-auto">
+                  {t(`about.bios.${m.roleKey}`)}
+                </p>
+              )}
             </div>
           ))}
         </div>
