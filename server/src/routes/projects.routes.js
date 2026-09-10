@@ -7,7 +7,7 @@ import { uploadImage } from "../middleware/upload.js";
 
 export const projectsRouter = Router();
 
-const POLE_IDS = ["piscines", "decoration", "btp", "formation"];
+const POLE_IDS = ["piscines", "decoration", "btp", "ingenierie", "formation"];
 const STATUSES = ["Réalisé", "En cours", "Planifié"];
 
 const projectSchema = z.object({

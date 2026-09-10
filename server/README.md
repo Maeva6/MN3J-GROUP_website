@@ -8,7 +8,7 @@ fois le frontend validé auprès du client.
 ## Stack
 
 - Node.js + Express
-- Prisma ORM + SQLite (fichier `prisma/dev.db` en local)
+- Prisma ORM + PostgreSQL (voir `docker-compose.yml` à la racine pour le lancer en local)
 - JWT (jsonwebtoken) + bcrypt pour l'authentification admin
 - multer pour l'upload de photos de chantiers
 - nodemailer (optionnel) pour notifier par e-mail une nouvelle demande de devis
@@ -21,7 +21,8 @@ fois le frontend validé auprès du client.
 cd server
 npm install
 cp .env.example .env       # puis ajustez les valeurs (voir ci-dessous)
-npm run prisma:migrate     # crée prisma/dev.db et applique le schéma
+docker compose up db -d    # démarre Postgres (voir docker-compose.yml à la racine)
+npm run prisma:migrate     # applique le schéma
 npm run prisma:seed        # remplit la base avec les données de démo du frontend
 npm run dev                # démarre l'API sur http://localhost:4000
 ```
@@ -38,11 +39,11 @@ Voir `.env.example` pour le détail de chaque variable. À noter :
 - `SMTP_*` : si laissés vides, l'API fonctionne normalement mais aucun
   e-mail n'est envoyé à la création d'une demande de devis (juste
   enregistrée en base — voir `src/lib/mailer.js`).
-- `DATABASE_URL` : SQLite en local. ⚠️ Pour un déploiement sur Vercel (ou
-  toute plateforme serverless), il faudra pointer vers une base hébergée
-  (Postgres via Neon/Supabase/Vercel Postgres…) — le système de fichiers
-  des fonctions serverless n'est pas persistant, un fichier SQLite n'y
-  survit pas entre deux requêtes.
+- `DATABASE_URL` : Postgres. En local, pointe vers le conteneur Docker
+  `db` (port hôte 5433, voir le commentaire dans `.env.example`). ⚠️ Pour un
+  déploiement sur Vercel (ou toute plateforme serverless), il faudra pointer
+  vers une base hébergée (Neon/Supabase/Vercel Postgres…) plutôt que le
+  conteneur local.
 
 ## Modèle de données (`prisma/schema.prisma`)
 
@@ -55,7 +56,7 @@ données plutôt qu'un redesign :
 | `AdminUser` | Authentification `/admin` (remplace le mot de passe unique client-side de `src/utils/adminAuth.js`) |
 | `Project` | `src/data/projects.js` |
 | `Quote` | Le formulaire de contact (`src/pages/Contact.jsx`) + `src/data/adminData.js` |
-| `Client` | `src/data/adminData.js` |
+| `Client` | `src/data/adminData.js` (+ `totalValueXaf`, un champ numérique dérivé côté API pour les agrégations — pas de source côté frontend) |
 | `Testimonial` | `src/data/testimonials.js` + `data.testimonials` dans `src/i18n/{fr,en}.js` |
 | `SiteSetting` | `src/data/siteConfig.js` (ligne unique, id fixe) |
 
@@ -85,11 +86,15 @@ nécessitent un header `Authorization: Bearer <token>` (obtenu via
 - `POST /quotes` — **public**, c'est l'endpoint que le formulaire de
   contact appellera une fois branché. Limité à 10 requêtes / 15 min par IP.
 - `GET /quotes` 🔒 — filtre optionnel `?status=`
+- `GET /quotes/stats` 🔒 — `{ byStatus, total, conversionRate }`, pour les
+  cartes KPI / le graphique / la jauge du dashboard admin.
 - `PATCH /quotes/:id` 🔒 — `{ status }`
 - `DELETE /quotes/:id` 🔒
 
 ### Clients (`/clients`) — tout 🔒
 - `GET /clients`, `POST /clients`, `PUT /clients/:id`, `DELETE /clients/:id`
+- `GET /clients/stats` — `{ totalClients, totalValueXaf }` (somme agrégée,
+  pour le KPI "valeur cumulée" du dashboard admin)
 
 ### Témoignages (`/testimonials`)
 - `GET /testimonials` — public

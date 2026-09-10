@@ -45,8 +45,8 @@ export default function AdminLayout() {
               to={to}
               end={end}
               className={({ isActive }) =>
-                `w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-sm transition-colors ${
-                  isActive ? "bg-white/10 text-white font-semibold" : "text-white/70 hover:bg-white/5"
+                `w-full flex items-center gap-3 px-4 py-2.5 rounded-full text-sm transition-colors ${
+                  isActive ? "bg-green text-[#12310F] font-semibold" : "text-white/70 hover:bg-white/5"
                 }`
               }
             >
@@ -74,11 +74,14 @@ export default function AdminLayout() {
       <div className="flex-1 min-w-0">
         <header className="h-20 bg-white border-b border-black/5 flex items-center justify-between px-8">
           <h1 className="text-navy font-display font-semibold text-lg">{title}</h1>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="w-8 h-8 rounded-full bg-green text-[#12310F] font-semibold flex items-center justify-center text-xs">
+          <div className="flex items-center gap-3 text-sm">
+            <span className="w-9 h-9 rounded-full bg-green text-[#12310F] font-semibold flex items-center justify-center text-xs shrink-0">
               MN
             </span>
-            <span className="text-muted">Admin MN3J</span>
+            <div className="leading-tight">
+              <div className="text-navy font-semibold text-sm">Admin MN3J</div>
+              <div className="text-muted text-xs">Administrateur</div>
+            </div>
           </div>
         </header>
 

@@ -24,7 +24,7 @@ model Project {
   // Identifiant lisible utilisé dans les URLs publiques (ex: /chantiers/villa-les-palmiers)
   slug        String   @unique
   name        String
-  // Pôle d'activité : "piscines" | "decoration" | "btp" | "formation"
+  // Pôle d'activité : "piscines" | "decoration" | "btp" | "ingenierie" | "formation"
   poleId      String
   // Libellé affiché (ex: "Piscine à débordement miroir")
   category    String
@@ -63,6 +63,11 @@ model Client {
   projectsCount Int      @default(0)
   // Conservé en texte formaté (ex: "45 000 000 FCFA") pour coller à l'affichage frontend.
   totalValue    String   @default("")
+  // Même montant, en nombre entier (FCFA), pour permettre des agrégations
+  // (somme, tri) côté API — ex. le KPI "valeur cumulée" du dashboard admin.
+  // `totalValue` reste la source d'affichage ; ce champ est dérivé/synchronisé
+  // avec elle lors des écritures (voir clients.routes.js).
+  totalValueXaf Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -71,7 +76,7 @@ model Testimonial {
   id        String   @id @default(cuid())
   name      String
   role      String
-  // Pôle d'activité concerné : "piscines" | "decoration" | "btp" | "formation"
+  // Pôle d'activité concerné : "piscines" | "decoration" | "btp" | "ingenierie" | "formation"
   poleId    String
   rating    Int      @default(5)
   quoteFr   String

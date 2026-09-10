@@ -35,7 +35,7 @@ async function main() {
       progress: 100,
       year: "2024",
       duration: "4 mois",
-      client: "Particulier — Cocody",
+      client: "Particulier, Cocody",
       description:
         "Conception et réalisation d'une piscine haut de gamme à débordement miroir avec plage en pierre naturelle et éclairage LED sur-mesure.",
     },
@@ -77,7 +77,7 @@ async function main() {
       progress: 10,
       year: "2025",
       duration: "3 mois",
-      client: "Particulier — Riviera",
+      client: "Particulier, Riviera",
       description:
         "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
     },
@@ -113,7 +113,7 @@ async function main() {
       phone: "+225 07 00 00 00 01",
       projectType: "BTP",
       budget: "Plus de 25 000 000 FCFA",
-      message: "Extension du chantier Résidence Bel Horizon — nouveau bloc de 6 logements.",
+      message: "Extension du chantier Résidence Bel Horizon, nouveau bloc de 6 logements.",
       status: "Accepté",
     },
     {
@@ -131,7 +131,7 @@ async function main() {
       phone: "+237 6 91 22 33 44",
       projectType: "Piscine haut de gamme",
       budget: "5 000 000 – 10 000 000 FCFA",
-      message: "Rénovation d'une piscine existante — étanchéité et nouveau revêtement.",
+      message: "Rénovation d'une piscine existante, étanchéité et nouveau revêtement.",
       status: "Refusé",
     },
   ];
@@ -142,10 +142,10 @@ async function main() {
   console.log(`✓ ${quotes.length} demandes de devis`);
 
   const clients = [
-    { name: "Sté Horizon SA", email: "contact@horizon.ci", phone: "+225 07 00 00 00 01", projectsCount: 1, totalValue: "45 000 000 FCFA" },
-    { name: "Particulier — Cocody", email: "villa.palmiers@example.com", phone: "+225 07 11 22 33", projectsCount: 1, totalValue: "18 500 000 FCFA" },
-    { name: "Ville de Grand-Bassam", email: "services.techniques@grand-bassam.ci", phone: "+225 21 30 10 10", projectsCount: 1, totalValue: "32 000 000 FCFA" },
-    { name: "Particulier — Riviera", email: "villa.bahia@example.com", phone: "+225 07 44 55 66", projectsCount: 1, totalValue: "9 800 000 FCFA" },
+    { name: "Sté Horizon SA", email: "contact@horizon.ci", phone: "+225 07 00 00 00 01", projectsCount: 1, totalValue: "45 000 000 FCFA", totalValueXaf: 45_000_000 },
+    { name: "Particulier, Cocody", email: "villa.palmiers@example.com", phone: "+225 07 11 22 33", projectsCount: 1, totalValue: "18 500 000 FCFA", totalValueXaf: 18_500_000 },
+    { name: "Ville de Grand-Bassam", email: "services.techniques@grand-bassam.ci", phone: "+225 21 30 10 10", projectsCount: 1, totalValue: "32 000 000 FCFA", totalValueXaf: 32_000_000 },
+    { name: "Particulier, Riviera", email: "villa.bahia@example.com", phone: "+225 07 44 55 66", projectsCount: 1, totalValue: "9 800 000 FCFA", totalValueXaf: 9_800_000 },
   ];
 
   if ((await prisma.client.count()) === 0) {
@@ -156,7 +156,7 @@ async function main() {
   const testimonials = [
     {
       name: "Jean-Marc A.",
-      role: "Propriétaire — Villa à Bonapriso",
+      role: "Propriétaire, Villa à Bonapriso",
       poleId: "piscines",
       rating: 5,
       quoteFr:
@@ -166,7 +166,7 @@ async function main() {
     },
     {
       name: "Sylvie K.",
-      role: "Directrice — Sté Horizon SA",
+      role: "Directrice, Sté Horizon SA",
       poleId: "btp",
       rating: 5,
       quoteFr:
@@ -176,7 +176,7 @@ async function main() {
     },
     {
       name: "Paul N.",
-      role: "Responsable technique — Complexe sportif",
+      role: "Responsable technique, Complexe sportif",
       poleId: "formation",
       rating: 5,
       quoteFr:
@@ -186,7 +186,7 @@ async function main() {
     },
     {
       name: "Amélie T.",
-      role: "Particulière — Riviera",
+      role: "Particulière, Riviera",
       poleId: "decoration",
       rating: 4,
       quoteFr:

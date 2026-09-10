@@ -1,7 +1,19 @@
 import { useState } from "react";
-import { Eye, Trash2 } from "lucide-react";
+import { Eye, Trash2, Download } from "lucide-react";
 import { quotes as initialQuotes, quoteStatuses, quoteStatusStyles } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
+import Avatar from "../../components/admin/Avatar";
+import { exportToCsv } from "../../utils/exportCsv";
+
+const csvColumns = [
+  { key: "name", label: "Nom" },
+  { key: "email", label: "E-mail" },
+  { key: "phone", label: "Téléphone" },
+  { key: "projectType", label: "Type de projet" },
+  { key: "budget", label: "Budget" },
+  { key: "date", label: "Date" },
+  { key: "status", label: "Statut" },
+];
 
 // Gestion locale (en mémoire) — à connecter au formulaire de contact réel et à
 // une API back-end pour la persistance (voir TODO dans src/pages/Contact.jsx).
@@ -29,19 +41,27 @@ export default function AdminDevis() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-2">
-        {tabs.map((tName) => (
-          <button
-            key={tName}
-            onClick={() => setTab(tName)}
-            className={`text-xs font-semibold px-4 py-2 rounded-full border transition-colors ${
-              tab === tName ? "bg-navy text-white border-navy" : "text-muted border-black/10 hover:border-navy/40"
-            }`}
-          >
-            {tName}
-            {tName !== "Tous" && ` (${quotes.filter((q) => q.status === tName).length})`}
-          </button>
-        ))}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap gap-2">
+          {tabs.map((tName) => (
+            <button
+              key={tName}
+              onClick={() => setTab(tName)}
+              className={`text-xs font-semibold px-4 py-2 rounded-full border transition-colors ${
+                tab === tName ? "bg-navy text-white border-navy" : "text-muted border-black/10 hover:border-navy/40"
+              }`}
+            >
+              {tName}
+              {tName !== "Tous" && ` (${quotes.filter((q) => q.status === tName).length})`}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => exportToCsv("devis-mn3j-group.csv", filtered, csvColumns)}
+          className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2 rounded-full hover:border-navy/40 transition-colors shrink-0"
+        >
+          <Download size={14} /> Exporter
+        </button>
       </div>
 
       <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
@@ -62,7 +82,12 @@ export default function AdminDevis() {
           <tbody>
             {filtered.map((q) => (
               <tr key={q.id} className="border-t border-black/5">
-                <td className="px-6 py-3 font-medium text-navy">{q.name}</td>
+                <td className="px-6 py-3 font-medium text-navy">
+                  <div className="flex items-center gap-3">
+                    <Avatar name={q.name} />
+                    {q.name}
+                  </div>
+                </td>
                 <td className="px-6 py-3 text-muted">{q.projectType}</td>
                 <td className="px-6 py-3 text-muted">{q.budget}</td>
                 <td className="px-6 py-3 text-muted">{q.date}</td>

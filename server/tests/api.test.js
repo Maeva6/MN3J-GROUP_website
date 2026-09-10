@@ -46,6 +46,16 @@ test("GET /api/quotes sans token répond 401", async () => {
   assert.equal(res.status, 401);
 });
 
+test("GET /api/quotes/stats sans token répond 401", async () => {
+  const res = await request(app).get("/api/quotes/stats");
+  assert.equal(res.status, 401);
+});
+
+test("GET /api/clients/stats sans token répond 401", async () => {
+  const res = await request(app).get("/api/clients/stats");
+  assert.equal(res.status, 401);
+});
+
 test("GET /api/projects/:id sans token répond 401 pour la modification", async () => {
   const res = await request(app).delete("/api/projects/some-id");
   assert.equal(res.status, 401);

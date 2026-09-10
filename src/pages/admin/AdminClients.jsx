@@ -1,7 +1,17 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Download } from "lucide-react";
 import { clients as initialClients } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
+import Avatar from "../../components/admin/Avatar";
+import { exportToCsv } from "../../utils/exportCsv";
+
+const csvColumns = [
+  { key: "name", label: "Client" },
+  { key: "email", label: "E-mail" },
+  { key: "phone", label: "Téléphone" },
+  { key: "projectsCount", label: "Chantiers" },
+  { key: "totalValue", label: "Valeur totale" },
+];
 
 // Gestion locale (en mémoire) — à connecter à une API back-end pour la persistance réelle.
 
@@ -58,12 +68,20 @@ export default function AdminClients() {
             className="pl-9 pr-4 py-2 text-sm border border-black/10 rounded-md w-56"
           />
         </div>
-        <button
-          onClick={openAdd}
-          className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
-        >
-          <Plus size={14} /> Ajouter un client
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => exportToCsv("clients-mn3j-group.csv", filtered, csvColumns)}
+            className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2.5 rounded-md hover:border-navy/40 transition-colors"
+          >
+            <Download size={14} /> Exporter
+          </button>
+          <button
+            onClick={openAdd}
+            className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
+          >
+            <Plus size={14} /> Ajouter un client
+          </button>
+        </div>
       </div>
 
       <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
@@ -84,7 +102,12 @@ export default function AdminClients() {
           <tbody>
             {filtered.map((c) => (
               <tr key={c.id} className="border-t border-black/5">
-                <td className="px-6 py-3 font-medium text-navy">{c.name}</td>
+                <td className="px-6 py-3 font-medium text-navy">
+                  <div className="flex items-center gap-3">
+                    <Avatar name={c.name} />
+                    {c.name}
+                  </div>
+                </td>
                 <td className="px-6 py-3 text-muted">{c.email}</td>
                 <td className="px-6 py-3 text-muted">{c.phone}</td>
                 <td className="px-6 py-3 text-muted">{c.projectsCount}</td>

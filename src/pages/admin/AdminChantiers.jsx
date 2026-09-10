@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Download } from "lucide-react";
 import { projects as initialProjects, statusStyles } from "../../data/projects";
 import Modal from "../../components/admin/Modal";
+import { exportToCsv } from "../../utils/exportCsv";
+
+const csvColumns = [
+  { key: "name", label: "Chantier" },
+  { key: "category", label: "Catégorie" },
+  { key: "status", label: "Statut" },
+  { key: "progress", label: "Progression (%)" },
+  { key: "client", label: "Client" },
+  { key: "location", label: "Localisation" },
+  { key: "year", label: "Année" },
+];
 
 // Gestion locale (en mémoire) — les chantiers ajoutés/modifiés ici ne sont pas
 // persistés côté serveur. À connecter à une vraie API back-end pour que ces
@@ -97,12 +108,20 @@ export default function AdminChantiers() {
             ))}
           </select>
         </div>
-        <button
-          onClick={openAdd}
-          className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
-        >
-          <Plus size={14} /> Ajouter un chantier
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => exportToCsv("chantiers-mn3j-group.csv", filtered, csvColumns)}
+            className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2.5 rounded-md hover:border-navy/40 transition-colors"
+          >
+            <Download size={14} /> Exporter
+          </button>
+          <button
+            onClick={openAdd}
+            className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
+          >
+            <Plus size={14} /> Ajouter un chantier
+          </button>
+        </div>
       </div>
 
       <div className="bg-white border border-black/5 rounded-lg overflow-hidden">

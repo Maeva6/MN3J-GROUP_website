@@ -49,6 +49,23 @@ quotesRouter.get(
   })
 );
 
+// GET /api/quotes/stats — comptage par statut + taux de conversion, pour les
+// cartes KPI / le mini-graphique / la jauge du dashboard admin (évite de
+// rapatrier tous les devis côté client juste pour les compter).
+quotesRouter.get(
+  "/stats",
+  asyncHandler(async (req, res) => {
+    const grouped = await prisma.quote.groupBy({ by: ["status"], _count: { status: true } });
+    const byStatus = Object.fromEntries(QUOTE_STATUSES.map((s) => [s, 0]));
+    for (const g of grouped) byStatus[g.status] = g._count.status;
+
+    const total = Object.values(byStatus).reduce((sum, n) => sum + n, 0);
+    const conversionRate = total ? Math.round((byStatus["Accepté"] / total) * 100) : 0;
+
+    res.json({ byStatus, total, conversionRate });
+  })
+);
+
 quotesRouter.patch(
   "/:id",
   asyncHandler(async (req, res) => {
