@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../assets/images/logo.jpeg";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -70,23 +71,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mobilePoleOpen, setMobilePoleOpen] = useState(null);
   const { lang, setLang, t } = useLanguage();
-  const panelRef = useRef(null);
-  const toggleRef = useRef(null);
 
-  // Ferme le menu mobile au clic n'importe où en dehors du panneau ou du
-  // bouton hamburger — y compris la zone vide de la barre d'en-tête, que le
-  // fond assombri (plus bas) ne recouvre pas puisqu'il démarre sous celle-ci.
+  // Bloque le défilement de la page pendant que le tiroir mobile est ouvert
+  // (sinon le contenu derrière continue de scroller sous le fond assombri).
   useEffect(() => {
-    if (!open) return;
-    const handleClickOutside = (e) => {
-      if (panelRef.current?.contains(e.target) || toggleRef.current?.contains(e.target)) return;
-      setOpen(false);
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
+      document.body.style.overflow = "";
     };
   }, [open]);
 
@@ -182,7 +173,6 @@ export default function Navbar() {
         </div>
 
         <button
-          ref={toggleRef}
           className="xl:hidden text-navy"
           onClick={() => setOpen((v) => !v)}
           aria-label={t("nav.openMenu")}
@@ -191,15 +181,28 @@ export default function Navbar() {
         </button>
       </div>
 
-      {open && (
-        <>
-          {/* Fond assombri, purement visuel : la fermeture au clic extérieur est
-              gérée par l'écouteur document ci-dessus (couvre aussi la barre d'en-tête). */}
-          <div
-            className="xl:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-black/20"
-            aria-hidden="true"
-          />
-          <div ref={panelRef} className="xl:hidden fixed inset-x-0 top-20 z-50 bg-white border-t border-black/5 max-h-[calc(100vh-5rem)] overflow-y-auto">
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Fond assombri : cliquer dessus ferme le tiroir. */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+              className="xl:hidden fixed inset-x-0 top-20 h-[calc(100vh-5rem)] z-40 bg-navy-dark/40"
+              aria-hidden="true"
+            />
+            {/* Tiroir latéral : glisse depuis la droite, plutôt qu'un panneau
+                pleine largeur qui tombe sous le header. */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+              className="xl:hidden fixed right-0 top-20 h-[calc(100vh-5rem)] z-50 w-[85%] max-w-sm bg-white shadow-card overflow-y-auto"
+            >
           <nav className="container-nav py-4 flex flex-col gap-4 text-sm font-medium">
             <NavLink to="/" onClick={() => setOpen(false)} className="text-ink">
               {t("nav.home")}
@@ -290,9 +293,10 @@ export default function Navbar() {
               </button>
             </div>
           </nav>
-          </div>
-        </>
-      )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
