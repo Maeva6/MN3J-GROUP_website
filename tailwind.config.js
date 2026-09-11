@@ -7,7 +7,7 @@ export default {
         navy: {
           DEFAULT: "#1B3A63",
           dark: "#12233D",
-          light: "#2B5AA0",
+          light: "#3F6690",
         },
         blue: {
           DEFAULT: "#2B5AA0",
@@ -16,6 +16,11 @@ export default {
           DEFAULT: "#7DBF3F",
           light: "#A9D46E",
           dark: "#4C8420",
+        },
+        teal: {
+          DEFAULT: "#1C8C82",
+          light: "#4FB3A9",
+          dark: "#136359",
         },
         surface: "#F4F6F8",
         ink: "#1B2530",

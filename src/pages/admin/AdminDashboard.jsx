@@ -50,13 +50,13 @@ function ConversionGauge({ percent }) {
   const offset = circumference * (1 - percent / 100);
   return (
     <svg viewBox="0 0 100 100" className="w-28 h-28 -rotate-90">
-      <circle cx="50" cy="50" r={radius} fill="none" stroke="#EEF1F4" strokeWidth="10" />
+      <circle cx="50" cy="50" r={radius} fill="none" className="stroke-surface" strokeWidth="10" />
       <circle
         cx="50"
         cy="50"
         r={radius}
         fill="none"
-        stroke="#7DBF3F"
+        className="stroke-teal"
         strokeWidth="10"
         strokeLinecap="round"
         strokeDasharray={circumference}
