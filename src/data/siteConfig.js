@@ -32,7 +32,7 @@ export const siteConfig = {
   social: {
     youtube: "https://youtube.com",
     linkedin: "https://linkedin.com",
-    tiktok: "https://tiktok.com",
+    tiktok: "https://www.tiktok.com/@mn3j.group.sarl",
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",
   },
