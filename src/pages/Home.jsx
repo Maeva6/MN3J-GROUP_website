@@ -13,6 +13,12 @@ import { projects } from "../data/projects";
 import { siteConfig } from "../data/siteConfig";
 import { useLanguage } from "../i18n/LanguageContext";
 
+// Carte de pôle entièrement cliquable (motion + Link) : auparavant seul le
+// petit lien "En savoir plus" en bas de carte menait au pôle, alors que
+// toute la carte réagissait déjà au survol (ombre, translation) — un survol
+// qui promettait une action sans texte associé qui réagisse pareillement.
+const MotionLink = motion(Link);
+
 export default function Home() {
   const { t } = useLanguage();
   const weekdayHours = siteConfig.hours[0];
@@ -88,12 +94,13 @@ export default function Home() {
           {services.map(({ id, icon: Icon, featuredSub, subImages, brand }, i) => {
             const featured = t(`data.services.${id}.subItems`).find((s) => s.id === featuredSub);
             return (
-              <motion.div
+              <MotionLink
                 key={id}
+                to={`/services/${id}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
-                className="rounded-md overflow-hidden border border-black/5 hover:shadow-card hover:-translate-y-1 transition-all bg-white flex flex-col"
+                className="group rounded-md overflow-hidden border border-black/5 hover:shadow-card hover:-translate-y-1 transition-all bg-white flex flex-col"
               >
                 <div className="p-7 pb-5">
                   <div
@@ -113,7 +120,7 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-navy font-display font-semibold text-[17px] mt-1">
+                  <h3 className="text-navy font-display font-semibold text-[17px] mt-1 group-hover:text-blue transition-colors">
                     {t(`data.services.${id}.title`)}
                   </h3>
                 </div>
@@ -122,17 +129,17 @@ export default function Home() {
                   src={subImages[featuredSub]}
                   alt={featured.title}
                   tone="navy"
-                  className="h-36"
+                  className="h-36 group-hover:scale-[1.02] transition-transform duration-500"
                 />
 
                 <div className="p-5 flex flex-col flex-1">
                   <span className="text-[13.5px] text-ink font-medium">{featured.title}</span>
                   <p className="text-muted text-xs leading-relaxed mt-1 flex-1">{featured.description}</p>
-                  <Link to={`/services/${id}`} className="text-blue text-sm font-semibold mt-3 inline-block">
+                  <span className="text-blue text-sm font-semibold mt-3 inline-block group-hover:underline">
                     {t("common.learnMore")}
-                  </Link>
+                  </span>
                 </div>
-              </motion.div>
+              </MotionLink>
             );
           })}
         </div>
@@ -151,7 +158,7 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/chantiers" className="text-blue font-semibold text-sm inline-flex items-center gap-1">
+            <Link to="/chantiers" className="text-blue font-semibold text-sm inline-flex items-center gap-1 hover:underline">
               {t("home.viewAllProjects")} <ArrowRight size={15} />
             </Link>
           </div>

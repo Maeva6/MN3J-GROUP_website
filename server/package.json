@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "API back-end pour le site MN3J-GROUP (non branchée au frontend pour le moment).",
+  "description": "API back-end pour le site MN3J-GROUP (authentification /admin branchée au frontend ; reste des données encore statique côté frontend).",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",

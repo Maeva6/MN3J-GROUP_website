@@ -112,9 +112,9 @@ export default function PoleDetail() {
                   className="h-44 group-hover:scale-[1.02] transition-transform duration-500"
                 />
                 <div className="p-5">
-                  <h3 className="font-display font-semibold text-navy text-base">{item.title}</h3>
+                  <h3 className="font-display font-semibold text-navy text-base group-hover:text-blue transition-colors">{item.title}</h3>
                   <p className="text-muted text-xs leading-relaxed mt-2">{item.description}</p>
-                  <span className="text-blue text-sm font-semibold mt-3 inline-block">
+                  <span className="text-blue text-sm font-semibold mt-3 inline-block group-hover:underline">
                     {t("services.discoverCta")}
                   </span>
                 </div>

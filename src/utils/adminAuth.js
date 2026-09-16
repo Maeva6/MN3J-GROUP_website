@@ -1,37 +1,33 @@
-// Verrou d'accès simple pour /admin.
-// ⚠️ Le site n'a pas de serveur : ce mot de passe est comparé côté navigateur
-// et reste techniquement visible dans le bundle JS. Il bloque les visiteurs
-// non autorisés mais ne remplace pas une vraie authentification back-end
-// (à mettre en place avant un usage sensible en production).
+// Session admin : stocke le token JWT obtenu auprès de l'API (voir
+// src/lib/adminApi.js). L'authentification elle-même est vérifiée côté
+// serveur (mot de passe hashé, JWT signé) — ce module ne fait plus que lire/
+// écrire la session en local, il ne décide jamais seul qu'un token est valide.
 
 const STORAGE_KEY = "mn3j_admin_session";
-const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // 8 heures
-// Pas de valeur par défaut en dur : un mot de passe codé ici finirait de
-// toute façon dans le bundle JS envoyé au navigateur (voir avertissement
-// ci-dessus), donc autant ne pas en publier un devinable. Sans
-// VITE_ADMIN_PASSWORD défini, la connexion est refusée pour tout le monde.
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
-export function isAdminAuthenticated() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return false;
+export function getAdminSession() {
   try {
-    const { expiresAt } = JSON.parse(raw);
-    if (!expiresAt || Date.now() > expiresAt) {
-      localStorage.removeItem(STORAGE_KEY);
-      return false;
-    }
-    return true;
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
   } catch {
-    localStorage.removeItem(STORAGE_KEY);
-    return false;
+    return null;
   }
 }
 
-export function loginAdmin(password) {
-  if (password !== ADMIN_PASSWORD) return false;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ expiresAt: Date.now() + SESSION_DURATION_MS }));
-  return true;
+export function getAdminToken() {
+  return getAdminSession()?.token ?? null;
+}
+
+// Vérification optimiste et synchrone (pas d'appel réseau), utilisée pour un
+// premier rendu instantané. RequireAdminAuth revérifie ensuite le token
+// auprès du serveur (GET /api/auth/me) : un token présent mais expiré ou
+// révoqué est détecté à ce moment-là, pas ici.
+export function isAdminAuthenticated() {
+  return !!getAdminToken();
+}
+
+export function saveAdminSession({ token, admin }) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ token, admin }));
 }
 
 export function logoutAdmin() {

@@ -23,9 +23,9 @@ export default function Faq() {
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
                 aria-expanded={isOpen}
-                className="w-full flex items-center justify-between gap-4 text-left px-6 py-4"
+                className="group w-full flex items-center justify-between gap-4 text-left px-6 py-4 hover:bg-surface transition-colors"
               >
-                <span className="text-navy font-semibold text-sm">{item.question}</span>
+                <span className="text-navy font-semibold text-sm group-hover:text-blue transition-colors">{item.question}</span>
                 <ChevronDown
                   size={18}
                   className={`shrink-0 text-muted transition-transform ${isOpen ? "rotate-180" : ""}`}

@@ -53,7 +53,7 @@ export default function About() {
           </h2>
           {/* ⚠️ À COMPLÉTER : précisez la biographie et les qualifications exactes du gérant et des responsables. */}
           <p className="text-muted text-sm leading-relaxed mt-4">{t("about.editoText")}</p>
-          <Link to="/services" className="text-blue text-sm font-semibold mt-4 inline-block">
+          <Link to="/services" className="text-blue text-sm font-semibold mt-4 inline-block hover:underline">
             {t("about.discoverServices")}
           </Link>
         </div>

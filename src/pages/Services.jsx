@@ -47,13 +47,13 @@ export default function Services() {
                       {t(`data.services.${pole.id}.accent`)}
                     </span>
                   </div>
-                  <h3 className="text-navy font-display font-semibold text-base mt-2">
+                  <h3 className="text-navy font-display font-semibold text-base mt-2 group-hover:text-blue transition-colors">
                     {t(`data.services.${pole.id}.title`)}
                   </h3>
                   <p className="text-muted text-xs leading-relaxed mt-1">
                     {t(`data.services.${pole.id}.navBlurb`)}
                   </p>
-                  <span className="text-blue text-sm font-semibold mt-2 inline-block">
+                  <span className="text-blue text-sm font-semibold mt-2 inline-block group-hover:underline">
                     {t("services.discoverCta")}
                   </span>
                 </div>

@@ -15,7 +15,7 @@ export default function ProjectDetail() {
     return (
       <div className="container-page py-24 text-center">
         <p className="text-muted">{t("projectDetail.notFound")}</p>
-        <Link to="/chantiers" className="text-blue font-semibold text-sm">
+        <Link to="/chantiers" className="text-blue font-semibold text-sm hover:underline">
           {t("projectDetail.backToProjects")}
         </Link>
       </div>

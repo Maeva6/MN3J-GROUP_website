@@ -1,9 +1,10 @@
 # MN3J-GROUP — API back-end
 
-API REST pour le site MN3J-GROUP. **Pas encore branchée au frontend** (`src/`
-continue de lire ses données statiques dans `src/data/*.js`) — ce dossier
-sert à valider la logique côté serveur avant de connecter les deux, une
-fois le frontend validé auprès du client.
+API REST pour le site MN3J-GROUP. **Seule l'authentification `/admin` est
+branchée au frontend** (`src/lib/adminApi.js`, `src/utils/adminAuth.js`) :
+le reste (`src/` continue de lire ses données statiques dans
+`src/data/*.js`) sert encore à valider la logique côté serveur avant de
+connecter le reste, une fois le frontend validé auprès du client.
 
 ## Stack
 
@@ -121,22 +122,30 @@ curl -X POST http://localhost:4000/api/quotes \
   -d '{"name":"Jean Dupont","email":"jean@example.com","phone":"+237600000000","projectType":"BTP","budget":"5M FCFA","message":"Bonjour, ..."}'
 ```
 
-## Pour brancher le frontend plus tard
+## Brancher le reste du frontend plus tard
 
-Non fait volontairement (validation du frontend en cours auprès du
+L'authentification `/admin` est branchée (voir ci-dessous) ; le reste est
+volontairement laissé de côté (validation du frontend en cours auprès du
 client). Quand ce sera décidé, les changements côté `src/` seront
 localisés :
 
 1. Remplacer les imports directs de `src/data/{projects,testimonials,siteConfig}.js`
    et `src/data/adminData.js` par des appels `fetch` vers cette API
    (probablement via un petit hook `useFetch`/`useSWR` par ressource).
-2. `src/utils/adminAuth.js` : remplacer la comparaison de mot de passe
-   local par un appel à `POST /api/auth/login`, et stocker le JWT reçu à
-   la place du flag `sessionStorage` actuel.
-3. Les pages `src/pages/admin/Admin*.jsx` : remplacer les `useState`
+2. Les pages `src/pages/admin/Admin*.jsx` : remplacer les `useState`
    locaux (données en mémoire, perdues au rechargement) par des appels
-   API réels vers `/projects`, `/quotes`, `/clients`, `/settings`.
-4. `src/pages/Contact.jsx` : le `handleSubmit` actuel (`setSent(true)`
-   sans rien envoyer) appellera `POST /api/quotes`.
-5. Définir `VITE_API_URL` côté frontend et `CORS_ORIGIN` côté API pour
-   qu'ils s'autorisent mutuellement une fois déployés.
+   API réels vers `/projects`, `/quotes`, `/clients`, `/settings`, avec le
+   token de `getAdminToken()` (`src/utils/adminAuth.js`) en
+   `Authorization: Bearer`.
+3. `src/pages/Contact.jsx` : le `handleSubmit` actuel (ouverture de
+   WhatsApp/email, rien d'envoyé au serveur) appellera `POST /api/quotes`.
+
+### Authentification `/admin` (déjà branchée)
+
+`src/lib/adminApi.js` appelle `POST /api/auth/login` (reçoit un JWT) et
+`GET /api/auth/me` (revérifie la session à chaque entrée dans `/admin`,
+voir `src/pages/admin/RequireAdminAuth.jsx`). Le token est stocké dans
+`localStorage` par `src/utils/adminAuth.js`, plus aucun mot de passe n'est
+comparé côté frontend. `VITE_API_URL` (frontend) et `CORS_ORIGIN` (API)
+doivent pointer l'un vers l'autre — déjà le cas en local
+(`localhost:4000` / `localhost:5173`), à ajuster au déploiement.

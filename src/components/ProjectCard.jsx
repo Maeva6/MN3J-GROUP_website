@@ -40,7 +40,7 @@ export default function ProjectCard({ project }) {
               </span>
             )}
           </div>
-          <h4 className="font-display font-semibold text-navy text-base">{project.name}</h4>
+          <h4 className="font-display font-semibold text-navy text-base group-hover:text-blue transition-colors">{project.name}</h4>
           <p className="text-xs text-muted mt-1 flex items-center gap-1">
             <MapPin size={12} /> {t(`data.category.${project.category}`)} · {project.location}
           </p>
