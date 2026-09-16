@@ -17,6 +17,13 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
+
+    // Anti-spam : champ honeypot invisible pour un visiteur humain (masqué en
+    // CSS, jamais au clavier grâce à tabIndex=-1) mais que les bots
+    // remplissent aveuglément. Rempli => on abandonne silencieusement, sans
+    // signaler au bot que sa soumission a été détectée.
+    if (data.get("website")) return;
+
     const fullName = data.get("fullName");
     const phone = data.get("phone");
     const email = data.get("email");
@@ -115,6 +122,14 @@ export default function Contact() {
           <p className="text-muted text-sm mb-6">{t("contact.formSubtitle")}</p>
 
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
+            <input
+              type="text"
+              name="website"
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="absolute -left-[9999px] w-px h-px opacity-0"
+            />
             <div>
               <label className="text-xs font-semibold text-muted">{t("contact.fields.fullName")}</label>
               <input name="fullName" required type="text" className="w-full mt-1 border border-black/10 rounded-md px-4 py-2.5 text-sm" />

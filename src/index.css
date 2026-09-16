@@ -26,8 +26,12 @@ h1, h2, h3, h4 {
   @apply max-w-[1440px] mx-auto px-6 md:px-10;
 }
 
+/* text-green-dark plutôt que text-green : le vert de marque (#7DBF3F) ne
+   passe pas le contraste AA (2.2:1) sur fond blanc, contrairement au vert
+   foncé (#4C8420, 4.5:1). Les usages sur fond sombre (héros) surchargent
+   déjà cette couleur au cas par cas. */
 .eyebrow {
-  @apply text-green font-bold text-xs tracking-[0.16em] uppercase;
+  @apply text-green-dark font-bold text-xs tracking-[0.16em] uppercase;
 }
 
 .btn-primary {

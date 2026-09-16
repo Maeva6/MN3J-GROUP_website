@@ -194,7 +194,7 @@ export default function AdminDashboard() {
           </div>
           <ul className="divide-y divide-black/5">
             {recentQuotes.map((q) => (
-              <li key={q.id} className="px-6 py-3 flex items-center gap-3">
+              <li key={q.id} className="px-6 py-3 flex items-center gap-3 hover:bg-surface transition-colors">
                 <Avatar name={q.name} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
           </thead>
           <tbody>
             {recentProjects.map((p) => (
-              <tr key={p.id} className="border-t border-black/5">
+              <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors">
                 <td className="px-6 py-3 font-medium text-navy">{p.name}</td>
                 <td className="px-6 py-3">
                   <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${statusStyles[p.status]}`}>

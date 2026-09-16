@@ -1,0 +1,28 @@
+# MN3J-GROUP
+
+> MN3J-GROUP Sarl est une entreprise camerounaise basée à Douala (PK8, Ndokoti), spécialisée dans les piscines haut de gamme, la décoration, le BTP, l'ingénierie & automatisation, et la formation aquatique (marque ASCII). Site vitrine bilingue (français / anglais) présentant les pôles d'activité, les chantiers réalisés et un formulaire de demande de devis.
+
+## Pôles d'activité
+
+- Piscines haut de gamme : conception, construction, entretien
+- Décoration : aménagement intérieur, extérieur, paysager, vitrerie
+- BTP : bâtiments, édifices, complexes sportifs
+- Ingénierie & Automatisation : domotique, climatisation, rénovation énergétique, maintenance
+- Formation aquatique (ASCII) : initiation, formation de formateurs
+
+## Pages principales
+
+- [Accueil](https://mn-3-j-group-website.vercel.app/) : présentation générale et pôles d'expertise
+- [Nos chantiers](https://mn-3-j-group-website.vercel.app/chantiers) : réalisations en cours et terminées
+- [Nos services](https://mn-3-j-group-website.vercel.app/services) : détail des cinq pôles
+- [À propos](https://mn-3-j-group-website.vercel.app/a-propos) : équipe, valeurs, certifications
+- [Contact](https://mn-3-j-group-website.vercel.app/contact) : demande de devis, coordonnées
+- [FAQ](https://mn-3-j-group-website.vercel.app/faq) : questions fréquentes
+
+## Contact
+
+- Adresse : PK8, Douala-Ndokoti, Cameroun
+- Téléphone : +237 6 73 77 24 76 / +237 6 95 23 80 62
+- Email : mn3jgroup@gmail.com
+
+<!-- ⚠️ TODO domaine définitif : mêmes URLs provisoires (mn-3-j-group-website.vercel.app) que index.html, scripts/generate-sitemap.js et public/robots.txt — à mettre à jour ensemble. -->

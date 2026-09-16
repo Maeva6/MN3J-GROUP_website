@@ -205,6 +205,7 @@ export const en = {
     followTitle: "Follow our projects",
     rights: "All rights reserved.",
     legal: "Legal notice · Privacy policy",
+    terms: "Terms of Use",
   },
 
   notFound: {
@@ -259,7 +260,7 @@ export const en = {
         },
         {
           title: "Cookies and audience measurement",
-          text: "This site may use Google Analytics to measure traffic on an anonymised, statistical basis. No personal data is sold to third parties.",
+          text: "This site uses Google Analytics to measure traffic on an anonymised, statistical basis, only if you consent via the banner shown on your first visit. Until you accept, no audience-measurement cookie is set. You can change your mind at any time by clearing this site's data in your browser.",
         },
         {
           title: "Your rights",
@@ -269,6 +270,41 @@ export const en = {
     },
     contactPrefix: "To exercise these rights, contact us at",
     contactLink: "or via our contact form.",
+  },
+
+  termsPage: {
+    eyebrow: "Legal information",
+    title: "Terms of Use",
+    intro: "These Terms of Use govern access to and use of the mn3j-group.com website by any visitor.",
+    sections: [
+      {
+        title: "Site access",
+        text: "The site is freely accessible to any user with internet access. Costs related to that access (hardware, connection, etc.) remain the user's responsibility.",
+      },
+      {
+        title: "Intellectual property",
+        text: "All content on the site (text, photos, logos, layout) is the exclusive property of MN3J-GROUP Sarl, unless stated otherwise. Any reproduction without prior authorisation is prohibited.",
+      },
+      {
+        title: "Hyperlinks",
+        text: "The site may contain links to third-party sites (social media, partners). MN3J-GROUP is not responsible for their content.",
+      },
+      {
+        title: "Liability",
+        text: "MN3J-GROUP strives to ensure the accuracy of the information published on the site, without guaranteeing the absence of errors or omissions.",
+      },
+      {
+        title: "Applicable law",
+        text: "These Terms of Use are governed by Cameroonian law. Any dispute falls under the jurisdiction of the courts of Douala.",
+      },
+    ],
+  },
+
+  cookieBanner: {
+    message: "We use audience-measurement cookies (Google Analytics) only with your consent. No non-essential cookie is set without your agreement.",
+    accept: "Accept",
+    decline: "Decline",
+    learnMore: "Learn more",
   },
 
   thankYou: {
@@ -312,6 +348,10 @@ export const en = {
     legal: {
       title: "Legal notice & privacy policy | MN3J-GROUP",
       description: "MN3J-GROUP's legal notice and privacy policy: data collected, purpose and your rights.",
+    },
+    terms: {
+      title: "Terms of Use | MN3J-GROUP",
+      description: "MN3J-GROUP website Terms of Use: site access, intellectual property, liability and applicable law.",
     },
     faq: {
       title: "Frequently asked questions | MN3J-GROUP",

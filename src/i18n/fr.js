@@ -205,6 +205,7 @@ export const fr = {
     followTitle: "Suivez nos chantiers",
     rights: "Tous droits réservés.",
     legal: "Mentions légales · Politique de confidentialité",
+    terms: "Conditions Générales d'Utilisation",
   },
 
   notFound: {
@@ -259,7 +260,7 @@ export const fr = {
         },
         {
           title: "Cookies et mesure d'audience",
-          text: "Ce site peut utiliser Google Analytics pour mesurer la fréquentation de manière statistique et anonymisée. Aucune donnée personnelle n'est revendue à des tiers.",
+          text: "Ce site utilise Google Analytics pour mesurer la fréquentation de manière statistique et anonymisée, uniquement si vous y consentez via le bandeau affiché lors de votre première visite. Tant que vous n'avez pas accepté, aucun cookie de mesure d'audience n'est déposé. Vous pouvez à tout moment revenir sur votre choix en effaçant les données de ce site dans votre navigateur.",
         },
         {
           title: "Vos droits",
@@ -269,6 +270,41 @@ export const fr = {
     },
     contactPrefix: "Pour exercer ces droits, contactez-nous à",
     contactLink: "ou via notre formulaire de contact.",
+  },
+
+  termsPage: {
+    eyebrow: "Informations légales",
+    title: "Conditions Générales d'Utilisation",
+    intro: "Les présentes CGU régissent l'accès et l'utilisation du site mn3j-group.com par tout visiteur.",
+    sections: [
+      {
+        title: "Accès au site",
+        text: "Le site est accessible gratuitement à tout utilisateur disposant d'un accès à internet. Les frais liés à cet accès (matériel, connexion, etc.) restent à la charge de l'utilisateur.",
+      },
+      {
+        title: "Propriété intellectuelle",
+        text: "L'ensemble des contenus du site (textes, photos, logos, mise en page) est la propriété exclusive de MN3J-GROUP Sarl, sauf mention contraire. Toute reproduction sans autorisation préalable est interdite.",
+      },
+      {
+        title: "Liens hypertextes",
+        text: "Le site peut contenir des liens vers des sites tiers (réseaux sociaux, partenaires). MN3J-GROUP décline toute responsabilité quant à leur contenu.",
+      },
+      {
+        title: "Responsabilité",
+        text: "MN3J-GROUP s'efforce d'assurer l'exactitude des informations diffusées sur le site, sans garantir l'absence d'erreur ou d'omission.",
+      },
+      {
+        title: "Droit applicable",
+        text: "Les présentes CGU sont soumises au droit camerounais. Tout litige relève de la compétence des tribunaux de Douala.",
+      },
+    ],
+  },
+
+  cookieBanner: {
+    message: "Nous utilisons des cookies de mesure d'audience (Google Analytics) uniquement avec votre accord. Aucun cookie non essentiel n'est déposé sans votre consentement.",
+    accept: "Accepter",
+    decline: "Refuser",
+    learnMore: "En savoir plus",
   },
 
   thankYou: {
@@ -312,6 +348,10 @@ export const fr = {
     legal: {
       title: "Mentions légales & politique de confidentialité | MN3J-GROUP",
       description: "Mentions légales et politique de confidentialité du site MN3J-GROUP : données collectées, finalité et vos droits.",
+    },
+    terms: {
+      title: "Conditions Générales d'Utilisation | MN3J-GROUP",
+      description: "Conditions Générales d'Utilisation du site MN3J-GROUP : accès au site, propriété intellectuelle, responsabilité et droit applicable.",
     },
     faq: {
       title: "Questions fréquentes | MN3J-GROUP",

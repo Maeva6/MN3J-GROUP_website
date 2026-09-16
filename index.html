@@ -42,7 +42,15 @@
     <meta name="twitter:image" content="https://mn-3-j-group-website.vercel.app/og-image.jpg" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Affiché tant que le bundle React ne s'est pas monté (connexions
+           lentes). main.jsx retire ce nœud dès le premier rendu, puisque
+           React remplace le contenu de #root au montage. -->
+      <div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff">
+        <div style="width:36px;height:36px;border-radius:9999px;border:3px solid #E4EAF5;border-top-color:#1B3A63;animation:mn3j-spin .8s linear infinite"></div>
+      </div>
+      <style>@keyframes mn3j-spin{to{transform:rotate(360deg)}}</style>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

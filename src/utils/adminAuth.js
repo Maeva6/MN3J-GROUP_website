@@ -6,7 +6,11 @@
 
 const STORAGE_KEY = "mn3j_admin_session";
 const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // 8 heures
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "mn3j-admin-2026";
+// Pas de valeur par défaut en dur : un mot de passe codé ici finirait de
+// toute façon dans le bundle JS envoyé au navigateur (voir avertissement
+// ci-dessus), donc autant ne pas en publier un devinable. Sans
+// VITE_ADMIN_PASSWORD défini, la connexion est refusée pour tout le monde.
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 export function isAdminAuthenticated() {
   const raw = localStorage.getItem(STORAGE_KEY);

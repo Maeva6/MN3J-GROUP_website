@@ -141,7 +141,7 @@ export default function AdminChantiers() {
           </thead>
           <tbody>
             {filtered.map((p) => (
-              <tr key={p.id} className="border-t border-black/5">
+              <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors">
                 <td className="px-6 py-3 font-medium text-navy">
                   <div className="flex items-center gap-3">
                     {p.image && <img src={p.image} alt="" className="w-9 h-9 rounded object-cover shrink-0" />}
