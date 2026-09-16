@@ -4,9 +4,8 @@ Site vitrine + back-office pour MN3J-GROUP Sarl (piscines haut de gamme,
 décoration, BTP, formation aquatique).
 
 > Une API back-end complète existe dans [`server/`](server/README.md)
-> (Node/Express + Prisma). Seule l'**authentification** de `/admin` y est
-> branchée (voir ci-dessous) : le reste du back-office (chantiers, devis,
-> clients affichés) continue de lire ses données statiques dans
+> (Node/Express + Prisma), mais **n'est pas encore branchée** au frontend
+> ci-dessous — le frontend continue de lire ses données statiques dans
 > `src/data/*.js` en attendant la validation du site auprès du client.
 >
 > Toute la partie infrastructure (Docker, Traefik, CI/CD, Kubernetes,
@@ -42,13 +41,11 @@ cp .env.example .env
 
 | Variable | Rôle |
 | --- | --- |
-| `VITE_API_URL` | URL de l'API back-end (`server/`) qui gère l'authentification `/admin` (JWT signé, mot de passe hashé côté serveur — voir `server/README.md`). En local : `http://localhost:4000`. |
-| `VITE_GA_MEASUREMENT_ID` | Optionnel — Google Analytics 4. Laissez vide pour ne charger aucun script de suivi. |
+| `VITE_ADMIN_PASSWORD` | Mot de passe d'accès à `/admin`. ⚠️ Le site est 100% front-end (pas de serveur) : ce mot de passe reste techniquement visible dans le bundle JS. C'est un verrou contre les visiteurs non autorisés, pas une vraie sécurité applicative — voir `src/utils/adminAuth.js`. |
 
 `.env` est ignoré par Git (`.gitignore`). Sur Vercel, définissez
-`VITE_API_URL` dans **Project Settings → Environment Variables** avec
-l'URL publique de l'API déployée (sans quoi la connexion à `/admin` échoue :
-il n'y a plus de mot de passe de secours codé côté frontend).
+`VITE_ADMIN_PASSWORD` dans **Project Settings → Environment Variables**
+(sans quoi le mot de passe par défaut codé dans `adminAuth.js` s'applique).
 
 ## Déploiement (Vercel)
 
@@ -62,14 +59,12 @@ et laisse React Router prendre le relais :
 
 ```json
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "headers": [ /* HSTS, cache long sur /assets/, en-têtes de sécurité — voir vercel.json */ ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
-Pensez aussi à configurer `VITE_API_URL` dans les variables d'environnement
-du projet Vercel, avec l'URL publique de l'API déployée (voir section
-précédente).
+Pensez aussi à configurer `VITE_ADMIN_PASSWORD` dans les variables
+d'environnement du projet Vercel (voir section précédente).
 
 ## Structure
 

@@ -1,35 +1,26 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
-import { Lock, Mail } from "lucide-react";
+import { Lock } from "lucide-react";
 import logo from "../../assets/images/logo.jpeg";
-import { isAdminAuthenticated, saveAdminSession } from "../../utils/adminAuth";
-import { adminLogin } from "../../lib/adminApi";
+import { isAdminAuthenticated, loginAdmin } from "../../utils/adminAuth";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   if (isAdminAuthenticated()) {
     return <Navigate to="/admin" replace />;
   }
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-      const { token, admin } = await adminLogin(email, password);
-      saveAdminSession({ token, admin });
+    if (loginAdmin(password)) {
       const redirectTo = location.state?.from || "/admin";
       navigate(redirectTo, { replace: true });
-    } catch (err) {
-      setError(err.message || "Connexion impossible.");
-    } finally {
-      setLoading(false);
+    } else {
+      setError(true);
     }
   };
 
@@ -42,44 +33,28 @@ export default function AdminLogin() {
           <p className="text-muted text-xs mt-1">Accès réservé à l'équipe MN3J-GROUP</p>
         </div>
 
-        <label className="text-xs font-semibold text-muted">Email</label>
-        <div className="relative mt-1 mb-4">
-          <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-          <input
-            type="email"
-            autoFocus
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setError("");
-            }}
-            className={`w-full pl-9 pr-4 py-2.5 text-sm border rounded-md ${error ? "border-red-400" : "border-black/10"}`}
-          />
-        </div>
-
         <label className="text-xs font-semibold text-muted">Mot de passe</label>
         <div className="relative mt-1">
           <Lock size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
           <input
             type="password"
+            autoFocus
             required
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setError("");
+              setError(false);
             }}
             className={`w-full pl-9 pr-4 py-2.5 text-sm border rounded-md ${error ? "border-red-400" : "border-black/10"}`}
           />
         </div>
-        {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+        {error && <p className="text-red-500 text-xs mt-2">Mot de passe incorrect.</p>}
 
         <button
           type="submit"
-          disabled={loading}
-          className="w-full mt-5 bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full mt-5 bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
         >
-          {loading ? "Connexion…" : "Se connecter"}
+          Se connecter
         </button>
       </form>
     </div>
