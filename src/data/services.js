@@ -34,6 +34,15 @@ import piscinesDebordementImg from "../assets/images/sub-piscines-debordement.jp
 import piscinesDebordementMiroirImg from "../assets/images/sub-piscines-debordement-miroir.jpg";
 import piscinesVipImg from "../assets/images/sub-piscines-vip.jpg";
 import piscinesBioImg from "../assets/images/sub-piscines-bio.jpg";
+// ⚠️ Photos provisoires (copies de photos de piscines existantes) pour les 5
+// nouvelles déclinaisons : à remplacer par de vraies photos de réalisations MN3J-GROUP
+// en gardant exactement les mêmes noms de fichiers.
+import piscinesSpasImg from "../assets/images/sub-piscines-spas.jpg";
+import piscinesFontaineMarocaineImg from "../assets/images/sub-piscines-fontaine-marocaine.jpg";
+import piscinesCascadePipetteImg from "../assets/images/sub-piscines-cascade-pipette.jpg";
+import piscinesCascadeLameImg from "../assets/images/sub-piscines-cascade-lame.jpg";
+import piscinesSonaImg from "../assets/images/sub-piscines-sona.jpg";
+import piscinesHamamImg from "../assets/images/sub-piscines-hamam.jpg";
 
 import decorationPaysagerImg from "../assets/images/sub-decoration-paysager.jpg";
 import decorationInterieureImg from "../assets/images/sub-decoration-interieure.jpg";
@@ -78,6 +87,12 @@ export const services = [
       "debordement-miroir": piscinesDebordementMiroirImg,
       vip: piscinesVipImg,
       bio: piscinesBioImg,
+      spas: piscinesSpasImg,
+      "fontaine-marocaine": piscinesFontaineMarocaineImg,
+      "cascade-pipette": piscinesCascadePipetteImg,
+      "cascade-lame": piscinesCascadeLameImg,
+      sona: piscinesSonaImg,
+      hamam: piscinesHamamImg,
     },
   },
   {

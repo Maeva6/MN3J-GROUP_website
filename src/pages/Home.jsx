@@ -143,6 +143,35 @@ export default function Home() {
             );
           })}
         </div>
+
+        {/* Toutes les déclinaisons de piscines, pour que les nouvelles
+            (spas, fontaine, cascades, sona, hammam) soient visibles dès l'accueil */}
+        <div className="mt-20">
+          <div className="max-w-xl mx-auto text-center mb-10">
+            <span className="eyebrow">{t("home.poolTypesEyebrow")}</span>
+            <h3 className="text-2xl text-navy font-display font-semibold mt-2">{t("home.poolTypesTitle")}</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {t("data.services.piscines.subItems").map((item) => (
+              <Link
+                key={item.id}
+                to={`/services/piscines/${item.id}`}
+                className="group block rounded-md overflow-hidden border border-black/5 bg-white hover:shadow-card transition-shadow"
+              >
+                <PhotoFrame
+                  src={services[0].subImages[item.id]}
+                  alt={item.title}
+                  tone="navy"
+                  objectPosition={services[0].subImageFocus?.[item.id] ?? "center"}
+                  className="h-32 group-hover:scale-[1.02] transition-transform duration-500"
+                />
+                <div className="p-4">
+                  <span className="text-[13px] text-navy font-semibold group-hover:text-blue transition-colors">{item.title}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* DERNIERS CHANTIERS */}
