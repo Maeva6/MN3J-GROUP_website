@@ -60,11 +60,6 @@ import btpBatimentsImg from "../assets/images/sub-btp-batiments.jpg";
 import btpEdificesImg from "../assets/images/sub-btp-edifices.jpg";
 import btpComplexesSportifsImg from "../assets/images/sub-btp-complexes-sportifs.jpg";
 import projetResidenceImg from "../assets/images/projet-residence-bel-horizon.jpg";
-// Photos Wikimedia Commons :
-// - sub-btp-second-oeuvre.jpg : "Interior drywall board is ready to finish" (Riverview Homes) — CC BY-SA 3.0 (attribution requise).
-// - sub-btp-finitions.jpg : "Using a trowel to lay floor tiles" (Francisco Gonzalez) — CC BY 2.0 (attribution requise).
-import btpSecondOeuvreImg from "../assets/images/sub-btp-second-oeuvre.jpg";
-import btpFinitionsImg from "../assets/images/sub-btp-finitions.jpg";
 
 import formationMnsImg from "../assets/images/sub-formation-mns.jpg";
 import formationFormateursImg from "../assets/images/sub-formation-formateurs.jpg";
@@ -155,8 +150,6 @@ export const services = [
       edifices: btpEdificesImg,
       "complexes-sportifs": btpComplexesSportifsImg,
       "gros-oeuvre": projetResidenceImg,
-      "second-oeuvre": btpSecondOeuvreImg,
-      finitions: btpFinitionsImg,
     },
   },
   {

@@ -655,32 +655,12 @@ export const fr = {
         subItems: [
           {
             id: "gros-oeuvre",
-            title: "Gros œuvre",
-            description: "Fondations, structures béton et maçonnerie, du terrassement au clos et couvert.",
+            title: "Gros œuvre, second œuvre & finitions",
+            description: "Un seul interlocuteur du terrassement à la dernière finition.",
             advantages: [
-              "Un seul interlocuteur du terrassement jusqu'au clos et couvert.",
-              "Suivi rigoureux de chaque étape structurelle du chantier.",
+              "Un seul interlocuteur du terrassement à la dernière finition.",
+              "Suivi rigoureux adapté à la complexité de chaque chantier.",
               "Matériaux sélectionnés selon les conditions locales.",
-            ],
-          },
-          {
-            id: "second-oeuvre",
-            title: "Second œuvre",
-            description: "Cloisons, plâtrerie, électricité, plomberie et menuiseries intérieures.",
-            advantages: [
-              "Coordination des corps de métier pour un chantier fluide.",
-              "Cloisons et plâtrerie posées dans les règles de l'art.",
-              "Réseaux électriques et plomberie installés selon les normes.",
-            ],
-          },
-          {
-            id: "finitions",
-            title: "Finitions",
-            description: "Carrelage, peinture et revêtements pour une livraison soignée.",
-            advantages: [
-              "Pose soignée des carrelages, sols et revêtements.",
-              "Peinture et finitions qui donnent le rendu final.",
-              "Une livraison prête à habiter, sans reprise.",
             ],
           },
           {
