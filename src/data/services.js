@@ -37,8 +37,9 @@ import piscinesBioImg from "../assets/images/sub-piscines-bio.jpg";
 // Photos des déclinaisons ajoutées (Wikimedia Commons) :
 // - sub-piscines-fontaine-marocaine.jpg : "Zellij of the Medina of Fez" par Ritahouari — CC BY-SA 4.0 (attribution requise).
 // - sub-piscines-hamam.jpg : peinture "The Hammam" d'Ernst Rudolf — domaine public (illustration, pas une photo de chantier).
+// - sub-piscines-cascade-lame.jpg : photo Pexels n° 3443493 (nappe d'eau sur un seuil de pierre) — licence Pexels, gratuite.
 // ⚠️ Photos PROVISOIRES (copies de piscines existantes, sans rapport avec le sujet) pour
-// spas, sona et cascades : à remplacer par de vraies photos de réalisations MN3J-GROUP
+// spas, sona et cascade en pipette : à remplacer par de vraies photos de réalisations MN3J-GROUP
 // en gardant exactement les mêmes noms de fichiers.
 import piscinesSpasImg from "../assets/images/sub-piscines-spas.jpg";
 import piscinesFontaineMarocaineImg from "../assets/images/sub-piscines-fontaine-marocaine.jpg";
