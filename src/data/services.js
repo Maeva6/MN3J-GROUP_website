@@ -34,8 +34,11 @@ import piscinesDebordementImg from "../assets/images/sub-piscines-debordement.jp
 import piscinesDebordementMiroirImg from "../assets/images/sub-piscines-debordement-miroir.jpg";
 import piscinesVipImg from "../assets/images/sub-piscines-vip.jpg";
 import piscinesBioImg from "../assets/images/sub-piscines-bio.jpg";
-// ⚠️ Photos provisoires (copies de photos de piscines existantes) pour les 5
-// nouvelles déclinaisons : à remplacer par de vraies photos de réalisations MN3J-GROUP
+// Photos des déclinaisons ajoutées (Wikimedia Commons) :
+// - sub-piscines-fontaine-marocaine.jpg : "Zellij of the Medina of Fez" par Ritahouari — CC BY-SA 4.0 (attribution requise).
+// - sub-piscines-hamam.jpg : peinture "The Hammam" d'Ernst Rudolf — domaine public (illustration, pas une photo de chantier).
+// ⚠️ Photos PROVISOIRES (copies de piscines existantes, sans rapport avec le sujet) pour
+// spas, sona et cascades : à remplacer par de vraies photos de réalisations MN3J-GROUP
 // en gardant exactement les mêmes noms de fichiers.
 import piscinesSpasImg from "../assets/images/sub-piscines-spas.jpg";
 import piscinesFontaineMarocaineImg from "../assets/images/sub-piscines-fontaine-marocaine.jpg";
