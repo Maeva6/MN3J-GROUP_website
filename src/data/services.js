@@ -44,7 +44,10 @@ import piscinesHamamImg from "../assets/images/sub-piscines-hamam.jpg";
 
 import decorationPaysagerImg from "../assets/images/sub-decoration-paysager.jpg";
 import decorationInterieureImg from "../assets/images/sub-decoration-interieure.jpg";
-import decorationExterieureImg from "../assets/images/sub-decoration-exterieure.jpg";
+import decorationPergolasImg from "../assets/images/sub-decoration-exterieure.jpg";
+// ⚠️ Photo PROVISOIRE (copie d'une autre déclinaison décoration) : à remplacer par
+// une vraie photo de passio MN3J-GROUP en gardant ce nom de fichier.
+import decorationPassioImg from "../assets/images/sub-decoration-passio.jpg";
 import decorationMobilierImg from "../assets/images/sub-decoration-mobilier.jpg";
 import decorationFauxPlafondImg from "../assets/images/sub-decoration-faux-plafond.jpg";
 import decorationVitrerieImg from "../assets/images/sub-decoration-vitrerie.jpg";
@@ -99,11 +102,12 @@ export const services = [
     icon: Sparkles,
     image: decorationImg,
     hasSlogan: true,
-    featuredSub: "exterieure",
+    featuredSub: "interieure",
     subImages: {
       paysager: decorationPaysagerImg,
       interieure: decorationInterieureImg,
-      exterieure: decorationExterieureImg,
+      pergolas: decorationPergolasImg,
+      passio: decorationPassioImg,
       mobilier: decorationMobilierImg,
       // ⚠️ Pas encore de photo de chantier MN3J-GROUP pour ces 6 déclinaisons :
       // photos libres de droits (licence Pexels, usage commercial libre, sans

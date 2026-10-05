@@ -544,22 +544,32 @@ export const fr = {
           },
           {
             id: "interieure",
-            title: "Décoration intérieure",
-            description: "Agencement, mobilier et finitions pour des intérieurs à la hauteur de vos exigences.",
+            title: "Décoration intérieure et extérieure",
+            description: "Agencement, mobilier et finitions pour des intérieurs et des extérieurs à la hauteur de vos exigences.",
             advantages: [
               "Agencement sur-mesure selon vos usages et la configuration de vos espaces.",
               "Matériaux et finitions choisis pour s'adapter à votre budget.",
-              "Une identité visuelle cohérente du salon aux moindres détails.",
+              "Une identité visuelle cohérente du salon aux espaces extérieurs.",
             ],
           },
           {
-            id: "exterieure",
-            title: "Décoration extérieure",
-            description: "Terrasses, pergolas et espaces de vie extérieurs raffinés.",
+            id: "pergolas",
+            title: "Pergolas",
+            description: "Pergolas sur-mesure pour ombrer et prolonger vos espaces de vie extérieurs.",
             advantages: [
-              "Des espaces de vie extérieurs pensés pour votre climat et votre exposition.",
-              "Terrasses et pergolas conçues selon la configuration de votre terrain.",
-              "Un prolongement naturel de votre intérieur vers l'extérieur.",
+              "Une structure pensée selon votre climat, votre exposition et vos usages.",
+              "Ombrage réglable et lignes épurées qui s'intègrent à votre jardin.",
+              "Bois ou aluminium selon le rendu et l'entretien souhaités.",
+            ],
+          },
+          {
+            id: "passio",
+            title: "Passio",
+            description: "Espaces couverts en prolongement de votre maison, pour vivre dehors à l'abri.",
+            advantages: [
+              "Un espace couvert qui prolonge votre maison vers l'extérieur.",
+              "Protégé de la pluie et du soleil selon la configuration de votre terrain.",
+              "Des finitions harmonisées avec votre architecture.",
             ],
           },
           {
@@ -594,8 +604,8 @@ export const fr = {
           },
           {
             id: "aluminium",
-            title: "Aluminium",
-            description: "Menuiseries aluminium sur-mesure : baies, portes et façades.",
+            title: "Aluminium et alucobon",
+            description: "Menuiseries aluminium et panneaux alucobon sur-mesure : baies, portes, façades et habillages.",
             advantages: [
               "Structures légères, résistantes et adaptées au climat local.",
               "Finitions modernes qui s'intègrent à toute architecture.",

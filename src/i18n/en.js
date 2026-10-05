@@ -544,22 +544,32 @@ export const en = {
           },
           {
             id: "interieure",
-            title: "Interior decoration",
-            description: "Layout, furniture and finishes for interiors that meet your standards.",
+            title: "Interior and exterior decoration",
+            description: "Layout, furniture and finishes for interiors and exteriors that meet your standards.",
             advantages: [
               "Bespoke layout based on how you use each space.",
               "Materials and finishes chosen to fit your budget.",
-              "A consistent visual identity down to the smallest detail.",
+              "A consistent visual identity from the living room to outdoor spaces.",
             ],
           },
           {
-            id: "exterieure",
-            title: "Exterior decoration",
-            description: "Refined terraces, pergolas and outdoor living spaces.",
+            id: "pergolas",
+            title: "Pergolas",
+            description: "Bespoke pergolas to shade and extend your outdoor living spaces.",
             advantages: [
-              "Outdoor living spaces designed for your climate and exposure.",
-              "Terraces and pergolas designed around your plot's layout.",
-              "A natural extension of your interior outward.",
+              "A structure designed around your climate, exposure and how you use the space.",
+              "Adjustable shade and clean lines that blend into your garden.",
+              "Wood or aluminium, depending on the look and upkeep you want.",
+            ],
+          },
+          {
+            id: "passio",
+            title: "Passio",
+            description: "Covered spaces extending your home, so you can enjoy the outdoors sheltered.",
+            advantages: [
+              "A covered space that extends your home outward.",
+              "Sheltered from rain and sun depending on your plot's layout.",
+              "Finishes matched to your architecture.",
             ],
           },
           {
@@ -594,8 +604,8 @@ export const en = {
           },
           {
             id: "aluminium",
-            title: "Aluminium joinery",
-            description: "Bespoke aluminium joinery: bay windows, doors and facades.",
+            title: "Aluminium and alucobon",
+            description: "Bespoke aluminium joinery and alucobon composite panels: bay windows, doors, facades and cladding.",
             advantages: [
               "Lightweight, resistant structures adapted to the local climate.",
               "Modern finishes that suit any architectural style.",
