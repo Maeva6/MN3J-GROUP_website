@@ -63,7 +63,7 @@ export default function PoleDetail() {
       </PhotoFrame>
 
       {/* Section à part entière pour les pôles portés par une marque dédiée
-          (ex. Formation → ASCII), pour ne jamais la confondre avec les autres
+          (ex. Formation → ASCY), pour ne jamais la confondre avec les autres
           pôles MN3J-GROUP — cohérent avec la page Chantiers. */}
       {pole.brand && (
         <div className="container-page pt-10">

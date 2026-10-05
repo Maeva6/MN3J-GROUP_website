@@ -810,7 +810,7 @@ export const fr = {
           },
           {
             id: "reeducation",
-            title: "Formation en rééducation aquatique",
+            title: "Rééducation aquatique",
             description: "Rééducation post-opératoire et accompagnement thérapeutique en milieu aquatique.",
             advantages: [
               "Programme adapté à chaque parcours de rééducation post-opératoire.",
@@ -830,7 +830,7 @@ export const fr = {
           },
           {
             id: "recyclage",
-            title: "Formation au recyclage et mise à niveau",
+            title: "Recyclage et mise à niveau",
             description: "Mise à jour réglementaire des qualifications existantes.",
             advantages: [
               "Met à jour vos qualifications selon la réglementation en vigueur.",
@@ -865,10 +865,15 @@ export const fr = {
           "Gros œuvre et finitions haut de gamme pour un ensemble résidentiel en bord de lagune, avec suivi hebdomadaire de l'avancement.",
         duration: "8 mois",
       },
-      "centre-nautique-azur": {
+      "centre-nautique-ucac-icam": {
         description:
-          "Mise en place d'un centre de formation de maîtres-nageurs-sauveteurs et de nageurs professionnels, bassin olympique inclus.",
-        duration: "6 mois",
+          "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+        duration: "À préciser",
+      },
+      "centre-nautique-soft-education": {
+        description:
+          "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
+        duration: "À préciser",
       },
       "villa-bahia": {
         description:

@@ -54,19 +54,34 @@ export const projects = [
       "Gros œuvre et finitions haut de gamme pour un ensemble résidentiel en bord de lagune, avec suivi hebdomadaire de l'avancement.",
   },
   {
-    id: "centre-nautique-azur",
-    name: "Centre nautique Azur",
+    id: "centre-nautique-ucac-icam",
+    name: "Centre nautique UCAC-ICAM",
     poleId: "formation",
     category: "Formation aquatique",
-    location: "Grand-Bassam",
+    location: "Yassa, Douala",
     status: "Réalisé",
     progress: 100,
-    year: "2023",
-    duration: "6 mois",
-    client: "Ville de Grand-Bassam",
+    year: "À préciser",
+    duration: "À préciser",
+    client: "UCAC-ICAM",
     image: centreImg,
     description:
-      "Mise en place d'un centre de formation de maîtres-nageurs-sauveteurs et de nageurs professionnels, bassin olympique inclus.",
+      "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+  },
+  {
+    id: "centre-nautique-soft-education",
+    name: "Centre nautique Soft Education",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Total Nkolbong, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "Soft Education",
+    image: centreImg,
+    description:
+      "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
   },
   {
     id: "villa-bahia",
@@ -83,7 +98,7 @@ export const projects = [
     description:
       "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
   },
-  // Chantiers formation, pilotés par ASCII (voir services.js → formation.brand).
+  // Chantiers formation, pilotés par ASCY (voir services.js → formation.brand).
   {
     id: "ecole-natation-bonapriso",
     name: "École de natation de Bonapriso",
@@ -97,7 +112,7 @@ export const projects = [
     client: "École primaire, Bonapriso",
     image: ecoleNatationImg,
     description:
-      "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCII.",
+      "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
   },
   {
     id: "recyclage-mns-akwa",
@@ -112,7 +127,7 @@ export const projects = [
     client: "Complexe sportif, Akwa",
     image: recyclageMnsImg,
     description:
-      "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCII.",
+      "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
   },
 ];
 

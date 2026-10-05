@@ -810,7 +810,7 @@ export const en = {
           },
           {
             id: "reeducation",
-            title: "Aquatic rehabilitation training",
+            title: "Aquatic rehabilitation",
             description: "Post-operative rehabilitation and therapeutic support in water.",
             advantages: [
               "Programme adapted to each post-operative rehabilitation journey.",
@@ -830,7 +830,7 @@ export const en = {
           },
           {
             id: "recyclage",
-            title: "Refresher & upskilling training",
+            title: "Refresher & upskilling",
             description: "Regulatory update of existing qualifications.",
             advantages: [
               "Updates your qualifications in line with current regulations.",
@@ -865,10 +865,15 @@ export const en = {
           "Structural work and high-end finishing for a residential complex by the lagoon, with weekly progress tracking.",
         duration: "8 months",
       },
-      "centre-nautique-azur": {
+      "centre-nautique-ucac-icam": {
         description:
-          "Set-up of a training centre for lifeguards and professional swimmers, including an olympic pool.",
-        duration: "6 months",
+          "UCAC-ICAM aquatic training centre, in Yassa, Douala.",
+        duration: "To be confirmed",
+      },
+      "centre-nautique-soft-education": {
+        description:
+          "Soft Education aquatic training centre, in Total Nkolbong, Douala.",
+        duration: "To be confirmed",
       },
       "villa-bahia": {
         description:

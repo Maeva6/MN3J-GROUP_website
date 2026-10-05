@@ -173,15 +173,15 @@ export const services = [
     number: "05",
     icon: GraduationCap,
     image: formationImg,
-    // Pôle piloté par ASCII, la marque formation du groupe MN3J-GROUP :
+    // Pôle piloté par ASCY, la marque formation du groupe MN3J-GROUP :
     // affiché en badge sur les pages qui listent ce pôle (nav, chantiers, fiche pôle).
-    brand: "ASCII",
+    brand: "ASCY",
     featuredSub: "mns",
     subImages: {
       mns: formationMnsImg,
       formateurs: formationFormateursImg,
       // Idem "decoration" ci-dessus : photo libre de droits (licence Pexels)
-      // en attendant une vraie photo de chantier ASCII.
+      // en attendant une vraie photo de chantier ASCY.
       initiation: formationInitiationImg,
       reeducation: formationReeducationImg,
       perfectionnement: projetCentreImg,

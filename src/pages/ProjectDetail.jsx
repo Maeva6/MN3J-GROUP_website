@@ -50,7 +50,7 @@ export default function ProjectDetail() {
           </div>
 
           {project.poleId === "formation" ? (
-            // Un chantier ASCII est une formation, pas une transformation physique
+            // Un chantier ASCY est une formation, pas une transformation physique
             // d'un lieu : l'avant/après (pensé pour piscines/BTP/décoration) n'a
             // pas de sens ici. Remplacé par les points clés du programme.
             // Le slider avant/après reste disponible ci-dessous (branche piscines/

@@ -9,7 +9,7 @@ import projectsHeroImg from "../assets/images/projects-hero-aerien.jpg";
 
 const statusFilters = ["Tous", "Réalisé", "En cours", "Planifié"];
 // Ordre volontaire : reflète l'ordre des pôles dans la navbar (Piscines · Décoration · BTP · Formation).
-// Les pôles portés par une marque dédiée (ex. Formation → ASCII) ne sont pas mélangés
+// Les pôles portés par une marque dédiée (ex. Formation → ASCY) ne sont pas mélangés
 // aux autres : ils ont leur propre section, plus bas sur la page.
 const corePoles = services.filter((s) => !s.brand);
 const brandedPoles = services.filter((s) => s.brand);
@@ -106,7 +106,7 @@ export default function Projects() {
           )}
         </section>
 
-        {/* SECTION 2 — Une section à part par marque dédiée (ex. Formation → ASCII),
+        {/* SECTION 2 — Une section à part par marque dédiée (ex. Formation → ASCY),
             pour ne jamais la mélanger visuellement aux chantiers MN3J-GROUP. */}
         {brands.map((brand) => {
           const brandPole = brandedPoles.find((s) => s.brand === brand);
