@@ -654,6 +654,36 @@ export const en = {
         slogan: "Building the future on solid foundations.",
         subItems: [
           {
+            id: "gros-oeuvre",
+            title: "Structural work",
+            description: "Foundations, concrete structures and masonry, from groundwork to watertight shell.",
+            advantages: [
+              "A single point of contact from groundwork to watertight shell.",
+              "Rigorous oversight of every structural stage of the build.",
+              "Materials selected for local conditions.",
+            ],
+          },
+          {
+            id: "second-oeuvre",
+            title: "Second fix",
+            description: "Partitions, plastering, electrics, plumbing and interior joinery.",
+            advantages: [
+              "Coordination of trades for a smooth build.",
+              "Partitions and plastering installed to the highest standard.",
+              "Electrical and plumbing networks installed to code.",
+            ],
+          },
+          {
+            id: "finitions",
+            title: "Finishing",
+            description: "Tiling, painting and wall coverings for a carefully finished handover.",
+            advantages: [
+              "Careful laying of tiles, floors and wall coverings.",
+              "Paint and finishes that deliver the final result.",
+              "A handover ready to live in, with no snagging.",
+            ],
+          },
+          {
             id: "batiments",
             title: "Residential & commercial buildings",
             description: "Construction of villas, apartment buildings and business premises.",
@@ -675,23 +705,13 @@ export const en = {
           },
           {
             id: "complexes-sportifs",
-            title: "Sports complexes",
+            title: "Sports and aquatic complexes",
             description: "Modern sports and aquatic facilities, built for training, competition and safety.",
             slogan: "Expertise in large-scale aquatic infrastructure.",
             advantages: [
               "Facilities designed around the sport and expected usage.",
               "Combines our pool, construction and aquatic safety expertise.",
               "Design adapted to climate and intended use.",
-            ],
-          },
-          {
-            id: "gros-oeuvre",
-            title: "Structural work, second fix & finishing",
-            description: "A single point of contact from groundwork to the final finish.",
-            advantages: [
-              "A single point of contact from groundwork to the final finish.",
-              "Rigorous oversight adapted to each site's complexity.",
-              "Materials selected for local conditions.",
             ],
           },
         ],
