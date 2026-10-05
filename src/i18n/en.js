@@ -65,7 +65,7 @@ export const en = {
       },
       {
         question: "Who runs the aquatic training programmes?",
-        answer: "The training division is run by ASCII, MN3J-GROUP's dedicated training brand, with certified trainers.",
+        answer: "The training division is run by ASCY, MN3J-GROUP's dedicated training brand, with certified trainers.",
       },
       {
         question: "How does payment work for a project?",
@@ -177,7 +177,7 @@ export const en = {
     all: "All",
     noResults: "No project matches these filters.",
     coreSectionTitle: "Our MN3J-GROUP projects",
-    formationGroupLabel: "ASCII training",
+    formationGroupLabel: "ASCY training",
   },
 
   projectDetail: {
@@ -192,7 +192,7 @@ export const en = {
     similarProject: "A similar project? Request a quote",
     formationHighlightsTitle: "Programme highlights",
     formationHighlights: [
-      "Delivered by certified ASCII trainers.",
+      "Delivered by certified ASCY trainers.",
       "Teaching adapted to each participant's level and profile.",
       "Certificate or attestation awarded at the end of the programme.",
       "Follow-up support after the training.",
@@ -699,9 +699,9 @@ export const en = {
         title: "Aquatic training",
         tagline: "Training",
         accent: "Training",
-        brand: "ASCII",
+        brand: "ASCY",
         brandNote:
-          "Aquatic training is run by ASCII, MN3J-GROUP's dedicated training division.",
+          "Aquatic training is run by ASCY, MN3J-GROUP's dedicated training division.",
         navBlurb: "Initiation, lifeguards, certified trainers, rehabilitation and ongoing skill development.",
         description:
           "We train safety and swimming professionals, from beginner initiation to ongoing skill development, as well as aquatic rehabilitation.",
@@ -805,12 +805,12 @@ export const en = {
       },
       "ecole-natation-bonapriso": {
         description:
-          "Learn-to-swim and initiation programme for primary school pupils, run by ASCII.",
+          "Learn-to-swim and initiation programme for primary school pupils, run by ASCY.",
         duration: "3 months",
       },
       "recyclage-mns-akwa": {
         description:
-          "Refresher and upskilling session for in-post lifeguards, run by ASCII.",
+          "Refresher and upskilling session for in-post lifeguards, run by ASCY.",
         duration: "2 months",
       },
     },

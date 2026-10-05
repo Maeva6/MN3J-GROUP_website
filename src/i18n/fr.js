@@ -65,7 +65,7 @@ export const fr = {
       },
       {
         question: "Qui assure les formations aquatiques ?",
-        answer: "Le pôle formation est piloté par ASCII, la marque formation dédiée du groupe MN3J-GROUP, avec des formateurs certifiés.",
+        answer: "Le pôle formation est piloté par ASCY, la marque formation dédiée du groupe MN3J-GROUP, avec des formateurs certifiés.",
       },
       {
         question: "Comment se déroule le paiement d'un chantier ?",
@@ -177,7 +177,7 @@ export const fr = {
     all: "Tous",
     noResults: "Aucun chantier ne correspond à ces filtres.",
     coreSectionTitle: "Nos chantiers",
-    formationGroupLabel: "Formations · ASCII",
+    formationGroupLabel: "Formations · ASCY",
   },
 
   projectDetail: {
@@ -192,7 +192,7 @@ export const fr = {
     similarProject: "Un projet similaire ? Demandez un devis",
     formationHighlightsTitle: "Points clés de la formation",
     formationHighlights: [
-      "Encadrement par des formateurs certifiés ASCII.",
+      "Encadrement par des formateurs certifiés ASCY.",
       "Pédagogie adaptée au niveau et au profil de chaque participant.",
       "Attestation ou certification délivrée en fin de parcours.",
       "Suivi et accompagnement après la formation.",
@@ -699,9 +699,9 @@ export const fr = {
         title: "Formation aquatique",
         tagline: "Formation",
         accent: "Training",
-        brand: "ASCII",
+        brand: "ASCY",
         brandNote:
-          "Formation aquatique pilotée par ASCII, notre pôle formation dédié au sein de MN3J-GROUP.",
+          "Formation aquatique pilotée par ASCY, notre pôle formation dédié au sein de MN3J-GROUP.",
         navBlurb: "Initiation, maîtres-nageurs-sauveteurs, formateurs certifiés, rééducation et perfectionnement continu.",
         description:
           "Nous formons les professionnels de la sécurité et de la natation, de l'initiation au perfectionnement continu, ainsi qu'à la rééducation aquatique.",
@@ -805,12 +805,12 @@ export const fr = {
       },
       "ecole-natation-bonapriso": {
         description:
-          "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCII.",
+          "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
         duration: "3 mois",
       },
       "recyclage-mns-akwa": {
         description:
-          "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCII.",
+          "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
         duration: "2 mois",
       },
     },
