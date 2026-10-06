@@ -855,40 +855,35 @@ export const en = {
       },
     },
     projects: {
-      "villa-les-palmiers": {
+      "piscine-moderne-total-nkolbong": {
         description:
-          "Design and construction of a high-end mirror infinity pool with natural stone deck and bespoke LED lighting.",
-        duration: "4 months",
-      },
-      "residence-bel-horizon": {
-        description:
-          "Structural work and high-end finishing for a residential complex by the lagoon, with weekly progress tracking.",
-        duration: "8 months",
-      },
-      "centre-nautique-ucac-icam": {
-        description:
-          "UCAC-ICAM aquatic training centre, in Yassa, Douala.",
+          "Modern pool built in Total Nkolbong (Cité Chirac), Douala.",
         duration: "To be confirmed",
       },
-      "centre-nautique-soft-education": {
+      "piscines-vip-spas-logbessou": {
         description:
-          "Soft Education aquatic training centre, in Total Nkolbong, Douala.",
+          "VIP pools with spas, built in Logbessou, Douala.",
         duration: "To be confirmed",
       },
-      "villa-bahia": {
+      "piscine-miroir-etoa-meti": {
         description:
-          "Full landscaping and interior decoration of a contemporary villa, currently in the design phase.",
-        duration: "3 months",
+          "Mirror infinity pool built in Etoa-Meti, Yaoundé.",
+        duration: "To be confirmed",
       },
-      "ecole-natation-bonapriso": {
+      "piscine-miroir-yassa-ari": {
         description:
-          "Learn-to-swim and initiation programme for primary school pupils, run by ASCY.",
-        duration: "3 months",
+          "Mirror infinity pool under construction in Yassa-Réserve-Market (Ari), Douala.",
+        duration: "To be confirmed",
       },
-      "recyclage-mns-akwa": {
+      "piscine-debordement-spas-limbe": {
         description:
-          "Refresher and upskilling session for in-post lifeguards, run by ASCY.",
-        duration: "2 months",
+          "Infinity pool with spas under construction in Nguemè, Limbé.",
+        duration: "To be confirmed",
+      },
+      "decoration-limbe": {
+        description:
+          "Interior and exterior decoration under way in Nguemè, Limbé.",
+        duration: "To be confirmed",
       },
     },
     // ⚠️ Sample testimonials — replace with real client feedback before launch.

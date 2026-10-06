@@ -1,9 +1,3 @@
-import villaImg from "../assets/images/projet-villa-les-palmiers.jpg";
-import residenceImg from "../assets/images/projet-residence-bel-horizon.jpg";
-import centreImg from "../assets/images/projet-centre-nautique-azur.jpg";
-import bahiaImg from "../assets/images/projet-villa-bahia.jpg";
-import ecoleNatationImg from "../assets/images/projet-ecole-natation-bonapriso.jpg";
-import recyclageMnsImg from "../assets/images/projet-recyclage-mns-akwa.jpg";
 
 // Photos "avant" par pôle (chantier / pièce avant intervention MN3J-GROUP),
 // utilisées avec la photo "après" existante de chaque chantier (`image`) dans
@@ -11,6 +5,11 @@ import recyclageMnsImg from "../assets/images/projet-recyclage-mns-akwa.jpg";
 // (licence Pexels, usage commercial libre) en attendant de vraies photos
 // "avant" prises sur nos chantiers. Formation réutilise la photo piscine :
 // un bassin de formation se construit comme un bassin classique.
+import piscinesModernesImg from "../assets/images/sub-piscines-modernes.jpg";
+import piscinesSpasImg from "../assets/images/sub-piscines-spas.jpg";
+import piscinesDebordementMiroirImg from "../assets/images/sub-piscines-debordement-miroir.jpg";
+import piscinesDebordementImg from "../assets/images/sub-piscines-debordement.jpg";
+import decorationInterieureImg from "../assets/images/sub-decoration-interieure.jpg";
 import avantPiscinesImg from "../assets/images/avant-piscines.jpg";
 import avantDecorationImg from "../assets/images/avant-decoration.jpg";
 import avantBtpImg from "../assets/images/avant-btp.jpg";
@@ -24,110 +23,94 @@ export const beforeImages = {
 
 export const projects = [
   {
-    id: "villa-les-palmiers",
-    name: "Villa Les Palmiers",
+    id: "piscine-moderne-total-nkolbong",
+    name: "Piscine moderne – Total Nkolbong, Douala",
+    poleId: "piscines",
+    category: "Piscine moderne",
+    location: "Total Nkolbong (Cité Chirac), Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "À préciser",
+    image: piscinesModernesImg,
+    description:
+      "Réalisation d'une piscine moderne à Total Nkolbong (Cité Chirac), Douala.",
+  },
+  {
+    id: "piscines-vip-spas-logbessou",
+    name: "Piscines VIP avec spas – Logbessou, Douala",
+    poleId: "piscines",
+    category: "Piscines VIP avec spas",
+    location: "Logbessou, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "À préciser",
+    image: piscinesSpasImg,
+    description:
+      "Piscines VIP avec spas, réalisées à Logbessou, Douala.",
+  },
+  {
+    id: "piscine-miroir-etoa-meti",
+    name: "Piscine à débordement miroir – Etoa-Meti, Yaoundé",
     poleId: "piscines",
     category: "Piscine à débordement miroir",
-    location: "Cocody",
+    location: "Etoa-Meti, Yaoundé",
     status: "Réalisé",
     progress: 100,
-    year: "2024",
-    duration: "4 mois",
-    client: "Particulier, Cocody",
-    image: villaImg,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "À préciser",
+    image: piscinesDebordementMiroirImg,
     description:
-      "Conception et réalisation d'une piscine à débordement miroir avec plage en pierre naturelle et éclairage LED sur-mesure.",
+      "Piscine à débordement miroir réalisée à Etoa-Meti, Yaoundé.",
   },
   {
-    id: "residence-bel-horizon",
-    name: "Résidence Bel Horizon",
-    poleId: "btp",
-    category: "BTP & finitions",
-    location: "Assinie",
+    id: "piscine-miroir-yassa-ari",
+    name: "Piscine à débordement miroir – Yassa-Réserve-Market, Douala",
+    poleId: "piscines",
+    category: "Piscine à débordement miroir",
+    location: "Yassa-Réserve-Market (Ari), Douala",
     status: "En cours",
-    progress: 65,
-    year: "2025",
-    duration: "8 mois",
-    client: "Sté Horizon SA",
-    image: residenceImg,
-    description:
-      "Gros œuvre et finitions haut de gamme pour un ensemble résidentiel en bord de lagune, avec suivi hebdomadaire de l'avancement.",
-  },
-  {
-    id: "centre-nautique-ucac-icam",
-    name: "Centre nautique UCAC-ICAM",
-    poleId: "formation",
-    category: "Formation aquatique",
-    location: "Yassa, Douala",
-    status: "Réalisé",
-    progress: 100,
+    progress: 80,
     year: "À préciser",
     duration: "À préciser",
-    client: "UCAC-ICAM",
-    image: centreImg,
+    client: "À préciser",
+    image: piscinesDebordementMiroirImg,
     description:
-      "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+      "Piscine à débordement miroir en cours de réalisation à Yassa-Réserve-Market (Ari), Douala.",
   },
   {
-    id: "centre-nautique-soft-education",
-    name: "Centre nautique Soft Education",
-    poleId: "formation",
-    category: "Formation aquatique",
-    location: "Total Nkolbong, Douala",
-    status: "Réalisé",
-    progress: 100,
+    id: "piscine-debordement-spas-limbe",
+    name: "Piscine à débordement avec spas – Nguemè, Limbé",
+    poleId: "piscines",
+    category: "Piscine à débordement avec spas",
+    location: "Nguemè, Limbé",
+    status: "En cours",
+    progress: 50,
     year: "À préciser",
     duration: "À préciser",
-    client: "Soft Education",
-    image: centreImg,
+    client: "À préciser",
+    image: piscinesDebordementImg,
     description:
-      "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
+      "Piscine à débordement avec spas en cours de réalisation à Nguemè, Limbé.",
   },
   {
-    id: "villa-bahia",
-    name: "Villa Bahia",
+    id: "decoration-limbe",
+    name: "Décoration intérieure et extérieure – Nguemè, Limbé",
     poleId: "decoration",
     category: "Décoration intérieure & extérieure",
-    location: "Riviera",
-    status: "Planifié",
-    progress: 10,
-    year: "2025",
-    duration: "3 mois",
-    client: "Particulier, Riviera",
-    image: bahiaImg,
-    description:
-      "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
-  },
-  // Chantiers formation, pilotés par ASCY (voir services.js → formation.brand).
-  {
-    id: "ecole-natation-bonapriso",
-    name: "École de natation de Bonapriso",
-    poleId: "formation",
-    category: "Formation aquatique",
-    location: "Bonapriso, Douala",
-    status: "Réalisé",
-    progress: 100,
-    year: "2024",
-    duration: "3 mois",
-    client: "École primaire, Bonapriso",
-    image: ecoleNatationImg,
-    description:
-      "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
-  },
-  {
-    id: "recyclage-mns-akwa",
-    name: "Recyclage MNS, Complexe Akwa",
-    poleId: "formation",
-    category: "Formation aquatique",
-    location: "Akwa, Douala",
+    location: "Nguemè, Limbé",
     status: "En cours",
-    progress: 70,
-    year: "2025",
-    duration: "2 mois",
-    client: "Complexe sportif, Akwa",
-    image: recyclageMnsImg,
+    progress: 5,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "À préciser",
+    image: decorationInterieureImg,
     description:
-      "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
+      "Décoration intérieure et extérieure en cours de réalisation à Nguemè, Limbé.",
   },
 ];
 

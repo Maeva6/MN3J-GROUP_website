@@ -855,40 +855,35 @@ export const fr = {
       },
     },
     projects: {
-      "villa-les-palmiers": {
+      "piscine-moderne-total-nkolbong": {
         description:
-          "Conception et réalisation d'une piscine haut de gamme à débordement miroir avec plage en pierre naturelle et éclairage LED sur-mesure.",
-        duration: "4 mois",
-      },
-      "residence-bel-horizon": {
-        description:
-          "Gros œuvre et finitions haut de gamme pour un ensemble résidentiel en bord de lagune, avec suivi hebdomadaire de l'avancement.",
-        duration: "8 mois",
-      },
-      "centre-nautique-ucac-icam": {
-        description:
-          "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+          "Réalisation d'une piscine moderne à Total Nkolbong (Cité Chirac), Douala.",
         duration: "À préciser",
       },
-      "centre-nautique-soft-education": {
+      "piscines-vip-spas-logbessou": {
         description:
-          "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
+          "Piscines VIP avec spas, réalisées à Logbessou, Douala.",
         duration: "À préciser",
       },
-      "villa-bahia": {
+      "piscine-miroir-etoa-meti": {
         description:
-          "Aménagement paysager complet et décoration intérieure d'une villa contemporaine, en phase de conception.",
-        duration: "3 mois",
+          "Piscine à débordement miroir réalisée à Etoa-Meti, Yaoundé.",
+        duration: "À préciser",
       },
-      "ecole-natation-bonapriso": {
+      "piscine-miroir-yassa-ari": {
         description:
-          "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
-        duration: "3 mois",
+          "Piscine à débordement miroir en cours de réalisation à Yassa-Réserve-Market (Ari), Douala.",
+        duration: "À préciser",
       },
-      "recyclage-mns-akwa": {
+      "piscine-debordement-spas-limbe": {
         description:
-          "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
-        duration: "2 mois",
+          "Piscine à débordement avec spas en cours de réalisation à Nguemè, Limbé.",
+        duration: "À préciser",
+      },
+      "decoration-limbe": {
+        description:
+          "Décoration intérieure et extérieure en cours de réalisation à Nguemè, Limbé.",
+        duration: "À préciser",
       },
     },
     // ⚠️ Témoignages de démonstration — à remplacer par de vrais retours clients avant mise en ligne.
