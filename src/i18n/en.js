@@ -376,6 +376,9 @@ export const en = {
       "BTP & finitions": "Construction & finishing",
       "Formation aquatique": "Aquatic training",
       "Décoration intérieure & extérieure": "Interior & exterior decoration",
+      "Piscine moderne": "Modern pool",
+      "Piscines VIP avec spas": "VIP pools with spas",
+      "Piscine à débordement avec spas": "Infinity pool with spas",
     },
     hoursDay: {
       "Lundi – Vendredi": "Monday – Friday",
