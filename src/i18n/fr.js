@@ -885,6 +885,26 @@ export const fr = {
           "Décoration intérieure et extérieure en cours de réalisation à Nguemè, Limbé.",
         duration: "À préciser",
       },
+      "ecole-natation-bonapriso": {
+        description:
+          "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
+        duration: "3 mois",
+      },
+      "recyclage-mns-akwa": {
+        description:
+          "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
+        duration: "2 mois",
+      },
+      "centre-nautique-ucac-icam": {
+        description:
+          "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+        duration: "À préciser",
+      },
+      "centre-nautique-soft-education": {
+        description:
+          "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
+        duration: "À préciser",
+      },
     },
     // ⚠️ Témoignages de démonstration — à remplacer par de vrais retours clients avant mise en ligne.
     testimonials: {

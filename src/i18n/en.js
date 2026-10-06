@@ -885,6 +885,26 @@ export const en = {
           "Interior and exterior decoration under way in Nguemè, Limbé.",
         duration: "To be confirmed",
       },
+      "ecole-natation-bonapriso": {
+        description:
+          "Learn-to-swim and initiation programme for primary school pupils, run by ASCY.",
+        duration: "3 months",
+      },
+      "recyclage-mns-akwa": {
+        description:
+          "Refresher and upskilling session for in-post lifeguards, run by ASCY.",
+        duration: "2 months",
+      },
+      "centre-nautique-ucac-icam": {
+        description:
+          "UCAC-ICAM aquatic training centre, in Yassa, Douala.",
+        duration: "To be confirmed",
+      },
+      "centre-nautique-soft-education": {
+        description:
+          "Soft Education aquatic training centre, in Total Nkolbong, Douala.",
+        duration: "To be confirmed",
+      },
     },
     // ⚠️ Sample testimonials — replace with real client feedback before launch.
     testimonials: {

@@ -10,6 +10,9 @@ import piscinesSpasImg from "../assets/images/sub-piscines-spas.jpg";
 import piscinesDebordementMiroirImg from "../assets/images/sub-piscines-debordement-miroir.jpg";
 import piscinesDebordementImg from "../assets/images/sub-piscines-debordement.jpg";
 import decorationInterieureImg from "../assets/images/sub-decoration-interieure.jpg";
+import ecoleNatationImg from "../assets/images/projet-ecole-natation-bonapriso.jpg";
+import recyclageMnsImg from "../assets/images/projet-recyclage-mns-akwa.jpg";
+import centreImg from "../assets/images/projet-centre-nautique-azur.jpg";
 import avantPiscinesImg from "../assets/images/avant-piscines.jpg";
 import avantDecorationImg from "../assets/images/avant-decoration.jpg";
 import avantBtpImg from "../assets/images/avant-btp.jpg";
@@ -111,6 +114,66 @@ export const projects = [
     image: decorationInterieureImg,
     description:
       "Décoration intérieure et extérieure en cours de réalisation à Nguemè, Limbé.",
+  },
+  {
+    id: "ecole-natation-bonapriso",
+    name: "École de natation de Bonapriso",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Bonapriso, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "2024",
+    duration: "3 mois",
+    client: "École primaire, Bonapriso",
+    image: ecoleNatationImg,
+    description:
+      "Programme d'initiation et d'apprentissage de la natation pour les élèves d'une école primaire, encadré par ASCY.",
+  },
+  {
+    id: "recyclage-mns-akwa",
+    name: "Recyclage MNS, Complexe Akwa",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Akwa, Douala",
+    status: "En cours",
+    progress: 70,
+    year: "2025",
+    duration: "2 mois",
+    client: "Complexe sportif, Akwa",
+    image: recyclageMnsImg,
+    description:
+      "Session de recyclage et de mise à niveau pour les maîtres-nageurs-sauveteurs en poste, pilotée par ASCY.",
+  },
+  {
+    id: "centre-nautique-ucac-icam",
+    name: "Centre nautique UCAC-ICAM",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Yassa, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "UCAC-ICAM",
+    image: centreImg,
+    description:
+      "Centre nautique de formation aquatique de l'UCAC-ICAM, à Yassa, Douala.",
+  },
+  {
+    id: "centre-nautique-soft-education",
+    name: "Centre nautique Soft Education",
+    poleId: "formation",
+    category: "Formation aquatique",
+    location: "Total Nkolbong, Douala",
+    status: "Réalisé",
+    progress: 100,
+    year: "À préciser",
+    duration: "À préciser",
+    client: "Soft Education",
+    image: centreImg,
+    description:
+      "Centre nautique de formation aquatique de Soft Education, à Total Nkolbong, Douala.",
   },
 ];
 
