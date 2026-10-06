@@ -30,10 +30,10 @@ export const siteConfig = {
   // à remplacer par les coordonnées exactes du siège dès que possible.
   map: { lat: 4.0435, lng: 9.7424 },
   social: {
-    youtube: "https://youtube.com",
-    linkedin: "https://linkedin.com",
+    youtube: "https://youtube.com/@mn3jgroup",
+    linkedin: "https://www.linkedin.com/in/motchoa-séraphin-6b787760",
     tiktok: "https://www.tiktok.com/@mn3j.group.sarl",
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
+    instagram: "https://www.instagram.com/seraphinmotchoa",
+    facebook: "https://www.facebook.com/share/1cgDRP92GR/",
   },
 };
