@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import PhotoFrame from "./PhotoFrame";
-import { statusStyles } from "../data/projects";
+import { statusStyles, progressBarClass } from "../data/projects";
 import { services } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -52,7 +52,7 @@ export default function ProjectCard({ project }) {
             </div>
             <div className="h-1.5 bg-black/5 rounded-full overflow-hidden">
               <div
-                className="h-full bg-green rounded-full"
+                className={`h-full ${progressBarClass(project.progress)} rounded-full`}
                 style={{ width: `${project.progress}%` }}
               />
             </div>

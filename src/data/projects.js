@@ -184,6 +184,15 @@ export const stats = [
   { value: "100%", label: "Clients satisfaits" },
 ];
 
+// Couleur de la barre d'avancement selon le pourcentage :
+// 100 % = vert (terminé), 61-99 % = bleu, 21-60 % = teal, 0-20 % = bleu ardoise.
+export function progressBarClass(progress) {
+  if (progress >= 100) return "bg-green";
+  if (progress > 60) return "bg-blue";
+  if (progress > 20) return "bg-teal";
+  return "bg-navy-light";
+}
+
 export const statusStyles = {
   "Réalisé": "bg-[#E7F3DA] text-green-dark",
   "En cours": "bg-[#FDE9C8] text-[#A8650F]",

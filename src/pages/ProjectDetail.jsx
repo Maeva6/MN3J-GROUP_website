@@ -3,7 +3,7 @@ import { MapPin, Calendar, Clock, User, Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import Seo from "../components/Seo";
-import { projects, statusStyles, beforeImages } from "../data/projects";
+import { projects, statusStyles, beforeImages, progressBarClass } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export default function ProjectDetail() {
@@ -99,7 +99,7 @@ export default function ProjectDetail() {
                 <span className="font-semibold text-navy">{project.progress}%</span>
               </div>
               <div className="h-1.5 bg-black/10 rounded-full overflow-hidden">
-                <div className="h-full bg-green rounded-full" style={{ width: `${project.progress}%` }} />
+                <div className={`h-full ${progressBarClass(project.progress)} rounded-full`} style={{ width: `${project.progress}%` }} />
               </div>
             </div>
           </div>
