@@ -46,6 +46,23 @@ h1, h2, h3, h4 {
   @apply inline-flex items-center gap-2 bg-navy text-white font-semibold px-6 py-3 rounded text-sm hover:bg-navy-dark transition-colors;
 }
 
+/* Graphiques SVG du tableau de bord admin (AdminDashboard, LineChart) : la
+   courbe se "dessine" au montage via un pathLength normalisé à 1000 (voir
+   LineChart.jsx), l'aire sous la courbe apparaît en fondu juste après. */
+@keyframes admin-chart-draw {
+  to { stroke-dashoffset: 0; }
+}
+.admin-chart-draw {
+  animation: admin-chart-draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+@keyframes admin-chart-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.admin-chart-fade {
+  animation: admin-chart-fade 1s ease 0.4s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;
