@@ -150,37 +150,55 @@ export const eventTypeColors = {
   Interne: { bg: "#fdf1dc", text: "#a8650f", bar: "#E6A23C" },
 };
 
+// Clients liés aux chantiers nommés de src/data/projects.js. Les 6 autres
+// chantiers (piscines et décoration) n'ont pas encore de client identifié
+// (project.client === "À préciser") : pas de fiche fictive créée pour eux,
+// ajoutez-en une ici dès que le nom du client est connu.
+const fmtTotal = (budgetM) => `${Math.round(budgetM * 1_000_000).toLocaleString("fr-FR")} FCFA`;
+
 export const clients = [
   {
     id: "c1",
-    name: "Sté Horizon SA",
-    email: "contact@horizon.ci",
-    phone: "+225 07 00 00 00 01",
+    name: "UCAC-ICAM",
+    type: "Institution",
+    city: "Douala",
+    email: "À préciser",
+    phone: "À préciser",
     projectsCount: 1,
-    totalValue: "45 000 000 FCFA",
+    totalValue: fmtTotal(70),
+    projectIds: ["centre-nautique-ucac-icam"],
   },
   {
     id: "c2",
-    name: "Particulier, Cocody",
-    email: "villa.palmiers@example.com",
-    phone: "+225 07 11 22 33",
+    name: "Soft Education",
+    type: "Entreprise",
+    city: "Douala",
+    email: "À préciser",
+    phone: "À préciser",
     projectsCount: 1,
-    totalValue: "18 500 000 FCFA",
+    totalValue: fmtTotal(55),
+    projectIds: ["centre-nautique-soft-education"],
   },
   {
     id: "c3",
-    name: "Ville de Grand-Bassam",
-    email: "services.techniques@grand-bassam.ci",
-    phone: "+225 21 30 10 10",
+    name: "École primaire, Bonapriso",
+    type: "Institution",
+    city: "Douala",
+    email: "À préciser",
+    phone: "À préciser",
     projectsCount: 1,
-    totalValue: "32 000 000 FCFA",
+    totalValue: fmtTotal(6),
+    projectIds: ["ecole-natation-bonapriso"],
   },
   {
     id: "c4",
-    name: "Particulier, Riviera",
-    email: "villa.bahia@example.com",
-    phone: "+225 07 44 55 66",
+    name: "Complexe sportif, Akwa",
+    type: "Entreprise",
+    city: "Douala",
+    email: "À préciser",
+    phone: "À préciser",
     projectsCount: 1,
-    totalValue: "9 800 000 FCFA",
+    totalValue: fmtTotal(4.5),
+    projectIds: ["recyclage-mns-akwa"],
   },
 ];

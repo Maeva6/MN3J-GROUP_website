@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Search, Download } from "lucide-react";
-import { projects as initialProjects, statusStyles } from "../../data/projects";
+import { useNavigate } from "react-router-dom";
+import { Plus, Pencil, Trash2, Search, Download, MapPin, Calendar } from "lucide-react";
+import { projects as initialProjects, statusStyles, progressBarClass } from "../../data/projects";
+import { projectExtras, projectSteps, teamMembers } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
+import Drawer from "../../components/admin/Drawer";
 import { exportToCsv } from "../../utils/exportCsv";
 
 const csvColumns = [
@@ -37,16 +40,19 @@ const inputClass = "w-full mt-1 border border-black/10 rounded-md px-3 py-2 text
 const labelClass = "text-xs font-semibold text-muted";
 
 export default function AdminChantiers() {
+  const navigate = useNavigate();
   const [chantiers, setChantiers] = useState(initialProjects);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("Tous");
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
+  const [openId, setOpenId] = useState(null);
 
+  const filters = ["Tous", ...statuses];
   const filtered = chantiers.filter((p) => {
-    const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-    const matchesStatus = statusFilter === "all" || p.status === statusFilter;
+    const matchesSearch = (p.name + p.location + p.client).toLowerCase().includes(search.toLowerCase());
+    const matchesStatus = statusFilter === "Tous" || p.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
@@ -65,6 +71,7 @@ export default function AdminChantiers() {
   const remove = (id) => {
     if (window.confirm("Supprimer ce chantier ?")) {
       setChantiers((prev) => prev.filter((p) => p.id !== id));
+      setOpenId((o) => (o === id ? null : o));
     }
   };
 
@@ -84,6 +91,23 @@ export default function AdminChantiers() {
     setModalOpen(false);
   };
 
+  const patch = (id, fields) => {
+    setChantiers((prev) => prev.map((p) => (p.id === id ? { ...p, ...fields } : p)));
+  };
+
+  const onStatusChange = (p, status) => {
+    const progress =
+      status === "Réalisé" ? 100 : status === "Planifié" ? 0 : Math.min(95, Math.max(5, p.progress || 5));
+    patch(p.id, { status, progress });
+  };
+
+  const onProgressChange = (p, progress) => {
+    const status = progress >= 100 ? "Réalisé" : progress <= 0 ? "Planifié" : "En cours";
+    patch(p.id, { progress, status });
+  };
+
+  const open = chantiers.find((p) => p.id === openId) || null;
+
   return (
     <>
       <div className="flex flex-wrap items-center gap-3 justify-between">
@@ -97,16 +121,23 @@ export default function AdminChantiers() {
               className="pl-9 pr-4 py-2 text-sm border border-black/10 rounded-md w-56"
             />
           </div>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="text-sm border border-black/10 rounded-md px-3 py-2 bg-white"
-          >
-            <option value="all">Tous les statuts</option>
-            {statuses.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
+          <div className="flex flex-wrap gap-2">
+            {filters.map((f) => {
+              const count = f === "Tous" ? chantiers.length : chantiers.filter((p) => p.status === f).length;
+              const active = statusFilter === f;
+              return (
+                <button
+                  key={f}
+                  onClick={() => setStatusFilter(f)}
+                  className={`text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-colors flex items-center gap-1.5 ${
+                    active ? "bg-navy text-white border-navy" : "text-muted border-black/10 hover:border-navy/40"
+                  }`}
+                >
+                  {f} <span className="opacity-70">{count}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -124,64 +155,203 @@ export default function AdminChantiers() {
         </div>
       </div>
 
-      <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
-        <div className="px-6 py-4 border-b border-black/5">
-          <h2 className="text-navy font-semibold text-sm">Liste des chantiers ({filtered.length})</h2>
-        </div>
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-xs text-muted uppercase tracking-wide">
-              <th className="px-6 py-3 font-medium">Chantier</th>
-              <th className="px-6 py-3 font-medium">Catégorie</th>
-              <th className="px-6 py-3 font-medium">Statut</th>
-              <th className="px-6 py-3 font-medium">Progression</th>
-              <th className="px-6 py-3 font-medium">Client</th>
-              <th className="px-6 py-3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((p) => (
-              <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors">
-                <td className="px-6 py-3 font-medium text-navy">
-                  <div className="flex items-center gap-3">
-                    {p.image && <img src={p.image} alt="" className="w-9 h-9 rounded object-cover shrink-0" />}
-                    {p.name}
+      <div className="text-xs text-muted -mt-2">{filtered.length} chantier{filtered.length > 1 ? "s" : ""} affiché{filtered.length > 1 ? "s" : ""} · cliquez sur une carte pour la modifier</div>
+
+      <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        {filtered.map((p) => {
+          const team = projectExtras[p.id]?.team || [];
+          const due = projectExtras[p.id]?.dueLabel;
+          return (
+            <div
+              key={p.id}
+              onClick={() => setOpenId(p.id)}
+              className="group bg-white border border-black/5 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+            >
+              <div className="relative h-36">
+                {p.image ? (
+                  <img src={p.image} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-navy to-blue" />
+                )}
+                <span className={`absolute top-3 left-3 text-[11px] font-bold px-2.5 py-1 rounded-full ${statusStyles[p.status]}`}>
+                  {p.status}
+                </span>
+                <span className="absolute bottom-3 left-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
+                  {p.category}
+                </span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    remove(p.id);
+                  }}
+                  aria-label="Supprimer"
+                  className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 text-[#B3261E] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
+                >
+                  <Trash2 size={13} />
+                </button>
+              </div>
+              <div className="p-4">
+                <div className="font-display font-semibold text-[15px] text-navy truncate">{p.name}</div>
+                <div className="text-[12.5px] text-muted mt-1 flex items-center gap-1 truncate">
+                  <MapPin size={11} className="shrink-0" /> {p.location} · {p.client}
+                </div>
+                <div className="flex items-center gap-2.5 mt-3.5">
+                  <div className="flex-1 h-1.5 bg-black/10 rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${progressBarClass(p.progress)}`} style={{ width: `${p.progress}%` }} />
                   </div>
-                </td>
-                <td className="px-6 py-3 text-muted">{p.category}</td>
-                <td className="px-6 py-3">
-                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${statusStyles[p.status]}`}>
-                    {p.status}
-                  </span>
-                </td>
-                <td className="px-6 py-3">
-                  <div className="w-28 h-1.5 bg-black/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-green rounded-full" style={{ width: `${p.progress}%` }} />
+                  <span className="text-xs font-bold text-navy">{p.progress}%</span>
+                </div>
+                <div className="flex items-center justify-between mt-3.5 pt-3 border-t border-black/5">
+                  <div className="flex -space-x-1.5">
+                    {team.map((i) => (
+                      <span
+                        key={i}
+                        className={`w-6 h-6 rounded-full border-2 border-white text-[9px] font-bold text-white flex items-center justify-center ${teamMembers[i]?.bg || "bg-navy-light"}`}
+                      >
+                        {i}
+                      </span>
+                    ))}
                   </div>
-                </td>
-                <td className="px-6 py-3 text-muted">{p.client}</td>
-                <td className="px-6 py-3">
-                  <div className="flex items-center gap-3">
-                    <button onClick={() => openEdit(p)} className="text-blue hover:text-navy" aria-label="Modifier">
-                      <Pencil size={15} />
-                    </button>
-                    <button onClick={() => remove(p.id)} className="text-red-500 hover:text-red-700" aria-label="Supprimer">
-                      <Trash2 size={15} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr>
-                <td colSpan={6} className="px-6 py-8 text-center text-muted text-sm">
-                  Aucun chantier ne correspond à cette recherche.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+                  {due && (
+                    <span className="flex items-center gap-1.5 text-xs text-muted">
+                      <Calendar size={12} /> {due}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        {filtered.length === 0 && (
+          <div className="sm:col-span-2 xl:col-span-3 bg-white border border-black/5 rounded-lg p-10 text-center text-muted text-sm">
+            Aucun chantier ne correspond à votre recherche.
+          </div>
+        )}
       </div>
+
+      {/* Panneau latéral : édition rapide (statut, progression, étapes) */}
+      <Drawer open={!!open} onClose={() => setOpenId(null)}>
+        {open && (
+          <>
+            <div className="relative h-44">
+              {open.image ? (
+                <img src={open.image} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-navy to-blue" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/80 via-navy-dark/10 to-transparent" />
+              <div className="absolute left-5 bottom-4 right-14">
+                <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${statusStyles[open.status]}`}>{open.status}</span>
+                <div className="font-display font-bold text-lg text-white mt-2 leading-tight">{open.name}</div>
+                <div className="text-[12.5px] text-white/80">{open.location} · {open.category}</div>
+              </div>
+            </div>
+
+            <div className="p-6 flex flex-col gap-5">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-surface rounded-md p-3">
+                  <div className="text-[11px] text-muted">Client</div>
+                  <div className="text-sm font-semibold text-navy mt-0.5 truncate">{open.client}</div>
+                </div>
+                <div className="bg-surface rounded-md p-3">
+                  <div className="text-[11px] text-muted">Échéance</div>
+                  <div className="text-sm font-semibold text-navy mt-0.5">{projectExtras[open.id]?.dueLabel || "—"}</div>
+                </div>
+              </div>
+
+              <label className={labelClass}>
+                Statut
+                <select
+                  className={`${inputClass} bg-white`}
+                  value={open.status}
+                  onChange={(e) => onStatusChange(open, e.target.value)}
+                >
+                  {statuses.map((s) => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+              </label>
+
+              <div>
+                <div className="flex justify-between text-xs font-semibold text-muted">
+                  <span>Avancement</span>
+                  <span className="font-display font-extrabold text-sm text-navy">{open.progress}%</span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  step={5}
+                  value={open.progress}
+                  onChange={(e) => onProgressChange(open, Number(e.target.value))}
+                  className="w-full mt-2.5 accent-green"
+                />
+              </div>
+
+              <div>
+                <div className="text-[11px] font-semibold tracking-wide text-muted">ÉTAPES DU CHANTIER</div>
+                <div className="flex flex-col mt-3">
+                  {projectSteps.map(([label, threshold], i) => {
+                    const done = open.progress >= threshold;
+                    const isCurrent = !done && (i === 0 || open.progress >= projectSteps[i - 1][1]);
+                    return (
+                      <div key={label} className="flex gap-3">
+                        <div className="flex flex-col items-center">
+                          <span
+                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 border-2 ${
+                              done
+                                ? "bg-green border-green text-[#12310F]"
+                                : isCurrent
+                                ? "bg-white border-[#E6A23C]"
+                                : "bg-white border-black/10"
+                            }`}
+                          >
+                            {done ? "✓" : ""}
+                          </span>
+                          {i < projectSteps.length - 1 && (
+                            <span className={`w-px flex-1 min-h-[14px] ${done ? "bg-green" : "bg-black/10"}`} />
+                          )}
+                        </div>
+                        <div className={`pb-3.5 text-[13px] ${done ? "text-ink font-medium" : isCurrent ? "text-[#A8650F] font-bold" : "text-muted"}`}>
+                          {label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-semibold tracking-wide text-muted">PHOTOS</div>
+                <div className="grid grid-cols-3 gap-2 mt-3">
+                  {open.image && <div className="h-20 rounded-md bg-cover bg-center" style={{ backgroundImage: `url(${open.image})` }} />}
+                  <button
+                    onClick={() => navigate("/admin/media")}
+                    className="h-20 rounded-md border-2 border-dashed border-black/15 text-blue text-xs font-semibold flex items-center justify-center hover:border-blue/50 transition-colors"
+                  >
+                    + Ajouter
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex gap-2.5 pt-2">
+                <button
+                  onClick={() => setOpenId(null)}
+                  className="flex-1 bg-green text-[#12310F] font-bold text-sm py-3 rounded-md hover:bg-green-dark hover:text-white transition-colors"
+                >
+                  Enregistrer
+                </button>
+                <button
+                  onClick={() => openEdit(open)}
+                  className="flex-1 border border-navy text-navy font-bold text-sm py-3 rounded-md hover:bg-navy hover:text-white transition-colors flex items-center justify-center gap-2"
+                >
+                  <Pencil size={14} /> Modifier
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </Drawer>
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editingId ? "Modifier le chantier" : "Ajouter un chantier"} wide>
         <form onSubmit={submit} className="grid md:grid-cols-2 gap-4">
