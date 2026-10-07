@@ -18,6 +18,7 @@ import { logoutAdmin } from "../../utils/adminAuth";
 import { projects } from "../../data/projects";
 import { quotes } from "../../data/adminData";
 import { AdminHeaderProvider, useAdminHeaderState } from "./AdminHeaderContext";
+import { AdminToastProvider } from "./AdminToastContext";
 
 // Deux sections, comme la maquette : PILOTAGE (activité commerciale et
 // opérationnelle) puis CONTENU DU SITE (ce qui alimente les pages publiques).
@@ -103,6 +104,7 @@ export default function AdminLayout() {
   };
 
   return (
+    <AdminToastProvider>
     <div className="flex min-h-screen bg-surface">
       {/* SIDEBAR */}
       <aside className="w-64 bg-navy-dark text-white flex flex-col shrink-0 sticky top-0 h-screen px-3 py-6">
@@ -167,6 +169,7 @@ export default function AdminLayout() {
         </div>
       </AdminHeaderProvider>
     </div>
+    </AdminToastProvider>
   );
 }
 

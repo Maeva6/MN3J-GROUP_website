@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { UploadCloud, X } from "lucide-react";
 import { projects } from "../../data/projects";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
 
 // Médiathèque : import simulé (pas de vrai stockage tant qu'aucun back-end
 // n'est branché — voir TODO similaire dans AdminChantiers.jsx). Les fichiers
@@ -17,6 +18,7 @@ const seedFiles = projects.slice(0, 3).map((p, i) => ({
 }));
 
 export default function AdminMedia() {
+  const showToast = useAdminToast();
   const [files, setFiles] = useState(seedFiles);
   const [target, setTarget] = useState(projects[0]?.name ?? "");
   const [filter, setFilter] = useState("Tous");
@@ -39,13 +41,20 @@ export default function AdminMedia() {
       progress: 0,
     }));
     setFiles((prev) => [...added, ...prev]);
+    let remaining = added.length;
     added.forEach((f) => {
       const iv = setInterval(() => {
         setFiles((prev) =>
           prev.map((x) => {
             if (x.id !== f.id) return x;
             const p = Math.min(100, x.progress + 8 + Math.random() * 14);
-            if (p >= 100) clearInterval(iv);
+            if (p >= 100) {
+              clearInterval(iv);
+              remaining -= 1;
+              if (remaining === 0) {
+                showToast(`${added.length} photo${added.length > 1 ? "s" : ""} ajoutée${added.length > 1 ? "s" : ""} à « ${target} ».`);
+              }
+            }
             return { ...x, progress: p };
           })
         );
@@ -54,7 +63,10 @@ export default function AdminMedia() {
     });
   };
 
-  const removeFile = (id) => setFiles((prev) => prev.filter((f) => f.id !== id));
+  const removeFile = (id) => {
+    setFiles((prev) => prev.filter((f) => f.id !== id));
+    showToast("Photo supprimée.");
+  };
 
   // En-tête commun : bouton "Importer des photos" ouvre directement le
   // sélecteur de fichiers.

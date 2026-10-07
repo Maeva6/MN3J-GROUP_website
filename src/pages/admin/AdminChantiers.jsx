@@ -7,6 +7,7 @@ import Modal from "../../components/admin/Modal";
 import Drawer from "../../components/admin/Drawer";
 import { exportToCsv } from "../../utils/exportCsv";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
 
 const csvColumns = [
   { key: "name", label: "Chantier" },
@@ -37,12 +38,14 @@ const emptyForm = {
   image: null,
 };
 
-const inputClass = "w-full mt-1 border border-black/10 rounded-md px-3 py-2 text-sm";
+const inputClass =
+  "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
 const labelClass = "text-xs font-semibold text-muted";
 
 export default function AdminChantiers() {
   const navigate = useNavigate();
   const location = useLocation();
+  const showToast = useAdminToast();
   const [chantiers, setChantiers] = useState(initialProjects);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("Tous");
@@ -90,10 +93,11 @@ export default function AdminChantiers() {
     setModalOpen(true);
   };
 
-  const remove = (id) => {
+  const remove = (id, name) => {
     if (window.confirm("Supprimer ce chantier ?")) {
       setChantiers((prev) => prev.filter((p) => p.id !== id));
       setOpenId((o) => (o === id ? null : o));
+      showToast(`« ${name} » supprimé.`);
     }
   };
 
@@ -106,9 +110,11 @@ export default function AdminChantiers() {
     e.preventDefault();
     if (editingId) {
       setChantiers((prev) => prev.map((p) => (p.id === editingId ? { ...p, ...form, progress: Number(form.progress) } : p)));
+      showToast(`« ${form.name} » mis à jour.`);
     } else {
       const id = form.name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `chantier-${Date.now()}`;
       setChantiers((prev) => [...prev, { ...form, id, progress: Number(form.progress) }]);
+      showToast(`« ${form.name} » ajouté aux chantiers.`);
     }
     setModalOpen(false);
   };
@@ -185,7 +191,7 @@ export default function AdminChantiers() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    remove(p.id);
+                    remove(p.id, p.name);
                   }}
                   aria-label="Supprimer"
                   className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 text-[#B3261E] opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
@@ -339,7 +345,10 @@ export default function AdminChantiers() {
 
               <div className="flex gap-2.5 pt-2">
                 <button
-                  onClick={() => setOpenId(null)}
+                  onClick={() => {
+                    showToast(`« ${open.name} » mis à jour.`);
+                    setOpenId(null);
+                  }}
                   className="flex-1 bg-green text-[#12310F] font-bold text-sm py-3 rounded-md hover:bg-green-dark hover:text-white transition-colors"
                 >
                   Enregistrer

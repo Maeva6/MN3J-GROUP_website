@@ -6,6 +6,7 @@ import Modal from "../../components/admin/Modal";
 import Avatar from "../../components/admin/Avatar";
 import { exportToCsv } from "../../utils/exportCsv";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
 
 const csvColumns = [
   { key: "name", label: "Client" },
@@ -26,10 +27,12 @@ const typeStyles = {
 };
 
 const emptyForm = { name: "", type: "Particulier", city: "", email: "", phone: "", projectsCount: 0, totalValue: "" };
-const inputClass = "w-full mt-1 border border-black/10 rounded-md px-3 py-2 text-sm";
+const inputClass =
+  "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
 const labelClass = "text-xs font-semibold text-muted";
 
 export default function AdminClients() {
+  const showToast = useAdminToast();
   const [clients, setClients] = useState(initialClients);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("Tous");
@@ -60,10 +63,11 @@ export default function AdminClients() {
     setModalOpen(true);
   };
 
-  const remove = (id) => {
+  const remove = (id, name) => {
     if (window.confirm("Supprimer ce client ?")) {
       setClients((prev) => prev.filter((c) => c.id !== id));
       setSelectedId((s) => (s === id ? null : s));
+      showToast(`« ${name} » supprimé.`);
     }
   };
 
@@ -71,10 +75,12 @@ export default function AdminClients() {
     e.preventDefault();
     if (editingId) {
       setClients((prev) => prev.map((c) => (c.id === editingId ? { ...c, ...form, projectsCount: Number(form.projectsCount) } : c)));
+      showToast(`« ${form.name} » mis à jour.`);
     } else {
       const id = `c-${Date.now()}`;
       setClients((prev) => [...prev, { ...form, id, projectsCount: Number(form.projectsCount), projectIds: [] }]);
       setSelectedId(id);
+      showToast(`« ${form.name} » ajouté aux clients.`);
     }
     setModalOpen(false);
   };
@@ -159,7 +165,7 @@ export default function AdminClients() {
                       <button onClick={(e) => { e.stopPropagation(); openEdit(c); }} className="text-blue hover:text-navy" aria-label="Modifier">
                         <Pencil size={15} />
                       </button>
-                      <button onClick={(e) => { e.stopPropagation(); remove(c.id); }} className="text-red-500 hover:text-red-700" aria-label="Supprimer">
+                      <button onClick={(e) => { e.stopPropagation(); remove(c.id, c.name); }} className="text-red-500 hover:text-red-700" aria-label="Supprimer">
                         <Trash2 size={15} />
                       </button>
                     </div>

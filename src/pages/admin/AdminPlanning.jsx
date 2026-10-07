@@ -1,6 +1,13 @@
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { calendarEvents, eventTypeColors } from "../../data/adminData";
+import Modal from "../../components/admin/Modal";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
+
+const inputClass =
+  "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
+const labelClass = "text-xs font-semibold text-muted";
 
 // Les événements sont stockés en jours relatifs à aujourd'hui (voir
 // src/data/adminData.js) : on calcule ici leur date absolue à chaque rendu,
@@ -16,16 +23,42 @@ function toIso(date) {
 }
 const capitalize = (s) => s.replace(/^./, (c) => c.toUpperCase());
 
+const emptyForm = { title: "", type: "Interne", date: "", time: "09:00", place: "" };
+
 export default function AdminPlanning() {
+  const showToast = useAdminToast();
   const [calOffset, setCalOffset] = useState(0);
   const today = useMemo(() => new Date(), []);
   const todayIso = toIso(today);
   const [selDay, setSelDay] = useState(todayIso);
+  const [userEvents, setUserEvents] = useState([]);
+  const [addOpen, setAddOpen] = useState(false);
+  const [form, setForm] = useState(emptyForm);
 
-  const events = useMemo(
+  const seedEvents = useMemo(
     () => calendarEvents.map((e) => ({ ...e, date: addDays(today, e.offsetDays), iso: toIso(addDays(today, e.offsetDays)) })),
     [today]
   );
+  const events = useMemo(
+    () => [...seedEvents, ...userEvents.map((e) => ({ ...e, date: new Date(`${e.iso}T00:00`) }))],
+    [seedEvents, userEvents]
+  );
+
+  const openAdd = () => {
+    setForm({ ...emptyForm, date: selDay });
+    setAddOpen(true);
+  };
+
+  // En-tête commun : bouton "Nouvel événement".
+  useAdminHeaderActions({ newLabel: "Nouvel événement", onNew: openAdd });
+
+  const submitAdd = (e) => {
+    e.preventDefault();
+    setUserEvents((prev) => [...prev, { title: form.title, type: form.type, time: form.time, place: form.place, iso: form.date }]);
+    setSelDay(form.date);
+    setAddOpen(false);
+    showToast(`« ${form.title} » ajouté au planning.`);
+  };
 
   const base = new Date(today.getFullYear(), today.getMonth() + calOffset, 1);
   const firstWeekday = (base.getDay() + 6) % 7;
@@ -175,6 +208,41 @@ export default function AdminPlanning() {
           </div>
         </div>
       </div>
+
+      <Modal open={addOpen} onClose={() => setAddOpen(false)} title="Nouvel événement" wide>
+        <form onSubmit={submitAdd} className="grid md:grid-cols-2 gap-4">
+          <div className="md:col-span-2">
+            <label className={labelClass}>Titre</label>
+            <input required className={inputClass} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>Type</label>
+            <select className={`${inputClass} bg-white`} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
+              {Object.keys(eventTypeColors).map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className={labelClass}>Lieu / chantier concerné</label>
+            <input className={inputClass} value={form.place} onChange={(e) => setForm({ ...form, place: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>Date</label>
+            <input required type="date" className={inputClass} value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>Heure</label>
+            <input required type="time" className={inputClass} value={form.time} onChange={(e) => setForm({ ...form, time: e.target.value })} />
+          </div>
+          <div className="md:col-span-2 flex items-center justify-end gap-3 pt-2">
+            <button type="button" onClick={() => setAddOpen(false)} className="text-sm font-semibold text-muted px-4 py-2.5">
+              Annuler
+            </button>
+            <button type="submit" className="bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors">
+              Ajouter
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 }

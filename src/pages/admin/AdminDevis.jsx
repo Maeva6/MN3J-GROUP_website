@@ -4,6 +4,8 @@ import { quotes as initialQuotes, quoteStatuses, quoteStatusStyles } from "../..
 import Modal from "../../components/admin/Modal";
 import Avatar from "../../components/admin/Avatar";
 import { exportToCsv } from "../../utils/exportCsv";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
 
 const csvColumns = [
   { key: "name", label: "Nom" },
@@ -25,23 +27,58 @@ const columnColors = {
   "Refusé": "#d26a5c",
 };
 
+// Mêmes libellés que le formulaire de devis public (src/i18n/fr.js →
+// contact.projectTypes / contact.budgetOptions), pour que les devis saisis
+// manuellement ici restent cohérents avec ceux reçus via le site.
+const projectTypes = ["Piscine haut de gamme", "Décoration", "BTP & finitions", "Formation aquatique"];
+const budgetOptions = ["Moins de 5M FCFA", "5M – 15M FCFA", "15M – 40M FCFA", "Plus de 40M FCFA"];
+
+const emptyForm = { name: "", email: "", phone: "", projectType: projectTypes[0], budget: budgetOptions[0], message: "" };
+const inputClass =
+  "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
+const labelClass = "text-xs font-semibold text-muted";
+
 export default function AdminDevis() {
+  const showToast = useAdminToast();
   const [quotes, setQuotes] = useState(initialQuotes);
   const [selected, setSelected] = useState(null);
+  const [addOpen, setAddOpen] = useState(false);
+  const [form, setForm] = useState(emptyForm);
   const [draggedId, setDraggedId] = useState(null);
   const [overCol, setOverCol] = useState(null);
 
-  const updateStatus = (id, status) => {
-    setQuotes((prev) => prev.map((q) => (q.id === id ? { ...q, status } : q)));
+  const updateStatus = (id, status, { silent } = {}) => {
+    const q = quotes.find((x) => x.id === id);
+    setQuotes((prev) => prev.map((x) => (x.id === id ? { ...x, status } : x)));
     setSelected((s) => (s && s.id === id ? { ...s, status } : s));
+    if (!silent && q && q.status !== status) showToast(`Devis de ${q.name} déplacé vers « ${status} ».`);
   };
 
   const remove = (id) => {
+    const q = quotes.find((x) => x.id === id);
     if (window.confirm("Supprimer cette demande de devis ?")) {
-      setQuotes((prev) => prev.filter((q) => q.id !== id));
+      setQuotes((prev) => prev.filter((x) => x.id !== id));
       setSelected((s) => (s && s.id === id ? null : s));
+      if (q) showToast(`Devis de ${q.name} supprimé.`);
     }
   };
+
+  const openAdd = () => {
+    setForm(emptyForm);
+    setAddOpen(true);
+  };
+
+  const submitAdd = (e) => {
+    e.preventDefault();
+    const id = `m${Date.now()}`;
+    const today = new Date().toISOString().slice(0, 10);
+    setQuotes((prev) => [{ ...form, id, status: "Nouveau", date: today }, ...prev]);
+    setAddOpen(false);
+    showToast(`Devis de ${form.name} ajouté.`);
+  };
+
+  // En-tête commun : bouton "Nouveau devis".
+  useAdminHeaderActions({ newLabel: "Nouveau devis", onNew: openAdd });
 
   const stats = quoteStatuses.map((status) => ({
     status,
@@ -196,6 +233,47 @@ export default function AdminDevis() {
             </div>
           </div>
         )}
+      </Modal>
+
+      <Modal open={addOpen} onClose={() => setAddOpen(false)} title="Nouveau devis" wide>
+        <form onSubmit={submitAdd} className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass}>Nom du client</label>
+            <input required className={inputClass} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>Téléphone</label>
+            <input required className={inputClass} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>E-mail</label>
+            <input type="email" className={inputClass} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          </div>
+          <div>
+            <label className={labelClass}>Type de projet</label>
+            <select className={`${inputClass} bg-white`} value={form.projectType} onChange={(e) => setForm({ ...form, projectType: e.target.value })}>
+              {projectTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div className="md:col-span-2">
+            <label className={labelClass}>Budget estimé</label>
+            <select className={`${inputClass} bg-white`} value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })}>
+              {budgetOptions.map((b) => <option key={b} value={b}>{b}</option>)}
+            </select>
+          </div>
+          <div className="md:col-span-2">
+            <label className={labelClass}>Message / besoin exprimé</label>
+            <textarea rows={3} className={inputClass} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+          </div>
+          <div className="md:col-span-2 flex items-center justify-end gap-3 pt-2">
+            <button type="button" onClick={() => setAddOpen(false)} className="text-sm font-semibold text-muted px-4 py-2.5">
+              Annuler
+            </button>
+            <button type="submit" className="bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors">
+              Ajouter
+            </button>
+          </div>
+        </form>
       </Modal>
     </>
   );

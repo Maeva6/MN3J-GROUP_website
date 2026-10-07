@@ -3,12 +3,14 @@ import { Check } from "lucide-react";
 import { siteConfig } from "../../data/siteConfig";
 import { teamMembers } from "../../data/adminData";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
+import { useAdminToast } from "./AdminToastContext";
 
 // Formulaire local — modifie uniquement une copie en mémoire de siteConfig.
 // Pour que ces changements soient réellement appliqués au site, reportez-les
 // dans src/data/siteConfig.js (ou branchez ce formulaire sur une API back-end).
 
-const inputClass = "w-full mt-1 border border-black/10 rounded-md px-3 py-2 text-sm";
+const inputClass =
+  "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
 const labelClass = "text-xs font-semibold text-muted";
 
 const tabs = ["Entreprise", "Utilisateurs", "Notifications"];
@@ -30,8 +32,8 @@ const notifDefs = [
 ];
 
 export default function AdminParametres() {
+  const showToast = useAdminToast();
   const [tab, setTab] = useState("Entreprise");
-  const [toast, setToast] = useState(null);
 
   const [form, setForm] = useState({
     companyName: siteConfig.companyName,
@@ -48,11 +50,6 @@ export default function AdminParametres() {
   const [saved, setSaved] = useState(false);
 
   const [notif, setNotif] = useState({ devis: true, chantier: true, hebdo: false, sms: true });
-
-  const showToast = (msg) => {
-    setToast(msg);
-    setTimeout(() => setToast(null), 3000);
-  };
 
   const updateHour = (idx, time) => {
     setHours((prev) => prev.map((h, i) => (i === idx ? { ...h, time } : h)));
@@ -242,15 +239,6 @@ export default function AdminParametres() {
               </span>
             </button>
           ))}
-        </div>
-      )}
-
-      {toast && (
-        <div className="fixed right-7 bottom-7 z-40 flex items-center gap-3 bg-navy-dark text-white px-5 py-3.5 rounded-lg shadow-card text-[13.5px]">
-          <span className="w-6 h-6 rounded-full bg-green flex items-center justify-center shrink-0">
-            <Check size={13} className="text-[#12310F]" />
-          </span>
-          {toast}
         </div>
       )}
     </div>
