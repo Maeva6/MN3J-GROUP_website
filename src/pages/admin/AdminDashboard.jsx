@@ -19,6 +19,7 @@ import RevenueLineChart from "../../components/admin/charts/RevenueLineChart";
 import PoleDonutChart from "../../components/admin/charts/PoleDonutChart";
 import Sparkline from "../../components/admin/charts/Sparkline";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
+import useMountReady from "./useMountReady";
 
 // Anime le chiffre de 0 jusqu'à sa valeur finale au montage (indépendant de
 // framer-motion : un nombre affiché comme texte, pas une transform/opacity,
@@ -55,9 +56,12 @@ function parseFcfa(value) {
 }
 
 function ConversionGauge({ percent }) {
+  const ready = useMountReady();
   const radius = 40;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference * (1 - percent / 100);
+  // Cercle vide (offset = circumference) jusqu'au montage, puis se remplit :
+  // comme pour le donut, sans ce décalage il n'y a rien à animer.
+  const offset = ready ? circumference * (1 - percent / 100) : circumference;
   return (
     <svg viewBox="0 0 100 100" className="w-20 h-20 -rotate-90 shrink-0">
       <circle cx="50" cy="50" r={radius} fill="none" className="stroke-surface" strokeWidth="10" />
@@ -121,6 +125,7 @@ function buildActivity() {
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
+  const ready = useMountReady();
   const [period, setPeriod] = useState("12m");
   const [search, setSearch] = useState("");
 
@@ -230,11 +235,14 @@ export default function AdminDashboard() {
             <CountUp value={enCours} /> <span className="text-[15px] font-semibold text-muted ml-1">/ {projects.length}</span>
           </div>
           <div className="flex gap-1 mt-3.5 h-2 rounded overflow-hidden">
-            {mix.map((m) => (
+            {mix.map((m, i) => (
               <div
                 key={m.label}
-                className={`${m.color} transition-[width] duration-700`}
-                style={{ width: projects.length ? `${(m.count / projects.length) * 100}%` : 0 }}
+                className={`${m.color} transition-[width] duration-[1200ms] ease-out`}
+                style={{
+                  width: ready && projects.length ? `${(m.count / projects.length) * 100}%` : "0%",
+                  transitionDelay: `${i * 0.1}s`,
+                }}
               />
             ))}
           </div>
@@ -337,7 +345,7 @@ export default function AdminDashboard() {
           <h2 className="text-navy font-semibold text-sm">Pipeline des devis</h2>
           <div className="text-xs text-muted mt-1">{quotes.length} demandes reçues</div>
           <div className="flex flex-col gap-4 mt-5">
-            {pipeline.map(({ status, count }) => (
+            {pipeline.map(({ status, count }, i) => (
               <div key={status}>
                 <div className="flex justify-between text-[13px] mb-1.5">
                   <span className="text-ink font-medium">{status}</span>
@@ -345,8 +353,12 @@ export default function AdminDashboard() {
                 </div>
                 <div className="h-2.5 bg-surface rounded-full overflow-hidden">
                   <div
-                    className="h-full rounded-full transition-[width] duration-700"
-                    style={{ width: `${(count / maxPipeline) * 100}%`, background: pipelineColors[status] }}
+                    className="h-full rounded-full transition-[width] duration-[1100ms] ease-out"
+                    style={{
+                      width: ready ? `${(count / maxPipeline) * 100}%` : "0%",
+                      background: pipelineColors[status],
+                      transitionDelay: `${i * 0.12}s`,
+                    }}
                   />
                 </div>
               </div>
@@ -434,8 +446,8 @@ export default function AdminDashboard() {
                     <div className="flex items-center gap-2.5">
                       <div className="w-24 h-1.5 bg-black/10 rounded-full overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${progressBarClass(p.progress)}`}
-                          style={{ width: `${p.progress}%` }}
+                          className={`h-full rounded-full ${progressBarClass(p.progress)} transition-[width] duration-[1200ms] ease-out`}
+                          style={{ width: ready ? `${p.progress}%` : "0%" }}
                         />
                       </div>
                       <span className="text-xs font-semibold text-navy w-9 shrink-0">{p.progress}%</span>

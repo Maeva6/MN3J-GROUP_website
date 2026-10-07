@@ -185,7 +185,7 @@ export default function AdminClients() {
       </div>
 
       {selected && (
-        <div className="flex-1 min-w-[280px] max-w-sm bg-white border border-black/5 rounded-lg p-6 sticky top-24">
+        <div key={selected.id} className="flex-1 min-w-[280px] max-w-sm bg-white border border-black/5 rounded-lg p-6 sticky top-24 admin-fade-in">
           <div className="flex items-center gap-3.5">
             <span className="w-14 h-14 rounded-full bg-navy/5 text-navy font-display font-bold text-lg flex items-center justify-center shrink-0">
               {selected.name.slice(0, 2).toUpperCase()}

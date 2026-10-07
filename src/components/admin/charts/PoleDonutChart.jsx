@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useMountReady from "../../../pages/admin/useMountReady";
 
 const RADIUS = 70;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -7,6 +8,7 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 // réagissent ensemble), centre affiche le total ou le segment survolé.
 export default function PoleDonutChart({ segments, totalLabel }) {
   const [hover, setHover] = useState(null);
+  const ready = useMountReady();
   const total = segments.reduce((sum, s) => sum + s.amount, 0) || 1;
 
   let cumulative = 0;
@@ -15,7 +17,10 @@ export default function PoleDonutChart({ segments, totalLabel }) {
     const arc = {
       ...s,
       pct: Math.round((s.amount / total) * 100),
-      dash: `${Math.max(0, len - 3)} ${CIRCUMFERENCE}`,
+      // Vide (0 CIRCUMFERENCE) jusqu'au montage, puis pousse vers sa vraie
+      // longueur : sans ce décalage, le cercle apparaît déjà plein et la
+      // transition CSS n'a rien à animer.
+      dash: ready ? `${Math.max(0, len - 3)} ${CIRCUMFERENCE}` : `0 ${CIRCUMFERENCE}`,
       offset: -cumulative,
       strokeWidth: hover === i ? 28 : 22,
     };

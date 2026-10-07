@@ -8,6 +8,7 @@ import Drawer from "../../components/admin/Drawer";
 import { exportToCsv } from "../../utils/exportCsv";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
 import { useAdminToast } from "./AdminToastContext";
+import useMountReady from "./useMountReady";
 
 const csvColumns = [
   { key: "name", label: "Chantier" },
@@ -46,6 +47,7 @@ export default function AdminChantiers() {
   const navigate = useNavigate();
   const location = useLocation();
   const showToast = useAdminToast();
+  const ready = useMountReady();
   const [chantiers, setChantiers] = useState(initialProjects);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("Tous");
@@ -212,7 +214,10 @@ export default function AdminChantiers() {
                 </div>
                 <div className="flex items-center gap-2.5 mt-3.5">
                   <div className="flex-1 h-1.5 bg-black/10 rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full ${progressBarClass(p.progress)}`} style={{ width: `${p.progress}%` }} />
+                    <div
+                      className={`h-full rounded-full ${progressBarClass(p.progress)} transition-[width] duration-[1200ms] ease-out`}
+                      style={{ width: ready ? `${p.progress}%` : "0%" }}
+                    />
                   </div>
                   <span className="text-xs font-bold text-navy">{p.progress}%</span>
                 </div>
@@ -314,7 +319,7 @@ export default function AdminChantiers() {
                       <div key={label} className="flex gap-3">
                         <div className="flex flex-col items-center">
                           <span
-                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 border-2 ${
+                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 border-2 transition-all duration-300 ${
                               done
                                 ? "bg-green border-green text-[#12310F]"
                                 : isCurrent
@@ -325,7 +330,7 @@ export default function AdminChantiers() {
                             {done ? "✓" : ""}
                           </span>
                           {i < projectSteps.length - 1 && (
-                            <span className={`w-px flex-1 min-h-[14px] ${done ? "bg-green" : "bg-black/10"}`} />
+                            <span className={`w-px flex-1 min-h-[14px] transition-colors duration-300 ${done ? "bg-green" : "bg-black/10"}`} />
                           )}
                         </div>
                         <div className={`pb-3.5 text-[13px] ${done ? "text-ink font-medium" : isCurrent ? "text-[#A8650F] font-bold" : "text-muted"}`}>
