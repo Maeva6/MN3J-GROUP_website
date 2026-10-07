@@ -30,6 +30,8 @@ const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminChantiers = lazy(() => import("./pages/admin/AdminChantiers"));
 const AdminDevis = lazy(() => import("./pages/admin/AdminDevis"));
 const AdminClients = lazy(() => import("./pages/admin/AdminClients"));
+const AdminPlanning = lazy(() => import("./pages/admin/AdminPlanning"));
+const AdminMedia = lazy(() => import("./pages/admin/AdminMedia"));
 const AdminParametres = lazy(() => import("./pages/admin/AdminParametres"));
 
 function AdminLoader() {
@@ -115,6 +117,8 @@ export default function App() {
             <Route path="chantiers" element={<AdminChantiers />} />
             <Route path="devis" element={<AdminDevis />} />
             <Route path="clients" element={<AdminClients />} />
+            <Route path="planning" element={<AdminPlanning />} />
+            <Route path="media" element={<AdminMedia />} />
             <Route path="parametres" element={<AdminParametres />} />
           </Route>
         </Route>
