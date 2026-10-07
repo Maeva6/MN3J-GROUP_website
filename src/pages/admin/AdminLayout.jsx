@@ -199,7 +199,7 @@ function HeaderBar({ subtitle, title }) {
 
       <span className="relative w-10 h-10 rounded-lg border border-black/5 bg-white flex items-center justify-center shrink-0" aria-hidden="true">
         <Bell size={17} className="text-[#3a4550]" />
-        <span className="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-green animate-pulse" />
+        <span className="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-green admin-bell-dot" />
       </span>
 
       {actions?.newLabel && actions?.onNew && (

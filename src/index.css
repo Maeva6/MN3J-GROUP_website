@@ -63,6 +63,33 @@ h1, h2, h3, h4 {
   animation: admin-chart-fade 1s ease 0.4s both;
 }
 
+/* Animations d'entrée communes à l'espace admin (cartes, lignes de tableau,
+   sections de page) — portées des keyframes bUp/bIn de la maquette fournie. */
+@keyframes admin-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.admin-fade-up {
+  animation: admin-fade-up 0.45s ease both;
+}
+@keyframes admin-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.admin-fade-in {
+  animation: admin-fade-in 0.4s ease both;
+}
+
+/* Pastille de notification de l'en-tête admin : anneau qui se propage et
+   s'estompe, plutôt que le simple clignotement d'opacité de Tailwind. */
+@keyframes admin-bell-ring {
+  0% { box-shadow: 0 0 0 0 rgba(125, 191, 63, 0.55); }
+  100% { box-shadow: 0 0 0 10px rgba(125, 191, 63, 0); }
+}
+.admin-bell-dot {
+  animation: admin-bell-ring 1.8s ease-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;

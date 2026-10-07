@@ -138,7 +138,13 @@ export default function AdminChantiers() {
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-3 justify-between">
+      {/* Le fondu d'entrée reste sur ce conteneur, pas sur la racine : le
+          Drawer/Modal ci-dessous sont en position fixed et un ancêtre animant
+          `transform` (via admin-fade-up) casserait leur positionnement le
+          temps de l'animation si l'un des deux est déjà ouvert au montage
+          (cas du lien "Nouveau chantier" du tableau de bord). */}
+      <div className="space-y-8 admin-fade-up">
+        <div className="flex flex-wrap items-center gap-3 justify-between">
         <div className="flex flex-wrap gap-2">
           {filters.map((f) => {
             const count = f === "Tous" ? chantiers.length : chantiers.filter((p) => p.status === f).length;
@@ -174,7 +180,7 @@ export default function AdminChantiers() {
             <div
               key={p.id}
               onClick={() => setOpenId(p.id)}
-              className="group bg-white border border-black/5 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+              className="group bg-white border border-black/5 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-card admin-fade-up"
             >
               <div className="relative h-36">
                 {p.image ? (
@@ -236,6 +242,7 @@ export default function AdminChantiers() {
             Aucun chantier ne correspond à votre recherche.
           </div>
         )}
+      </div>
       </div>
 
       {/* Panneau latéral : édition rapide (statut, progression, étapes) */}

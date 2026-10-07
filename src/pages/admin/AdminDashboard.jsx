@@ -282,7 +282,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white border border-black/5 rounded-lg p-6">
+        <div className="lg:col-span-2 bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.3s" }}>
           <div className="flex justify-between items-start gap-4 flex-wrap">
             <div>
               <h2 className="text-navy font-semibold text-sm">Chiffre d'affaires mensuel</h2>
@@ -325,7 +325,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white border border-black/5 rounded-lg p-6">
+        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.38s" }}>
           <h2 className="text-navy font-semibold text-sm">Répartition par pôle</h2>
           <div className="text-xs text-muted mt-1 mb-2">Part du budget cumulé des chantiers</div>
           <PoleDonutChart segments={poleSegments} totalLabel={`${poleTotal}M`} />
@@ -333,7 +333,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
-        <div className="bg-white border border-black/5 rounded-lg p-6">
+        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.44s" }}>
           <h2 className="text-navy font-semibold text-sm">Pipeline des devis</h2>
           <div className="text-xs text-muted mt-1">{quotes.length} demandes reçues</div>
           <div className="flex flex-col gap-4 mt-5">
@@ -354,7 +354,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
+        <div className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-up" style={{ animationDelay: "0.5s" }}>
           <div className="px-6 py-4 border-b border-black/5 flex items-center justify-between">
             <h2 className="text-navy font-semibold text-sm">Derniers devis</h2>
             <Link to="/admin/devis" className="text-blue text-xs font-semibold flex items-center gap-1 hover:underline">
@@ -379,7 +379,7 @@ export default function AdminDashboard() {
           </ul>
         </div>
 
-        <div className="bg-white border border-black/5 rounded-lg p-6">
+        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.56s" }}>
           <h2 className="text-navy font-semibold text-sm mb-4">Activité récente</h2>
           <div className="flex flex-col">
             {activity.map((a, i) => (
@@ -398,7 +398,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
+      <div className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-up" style={{ animationDelay: "0.62s" }}>
         <div className="px-6 py-4 border-b border-black/5 flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-navy font-semibold text-sm">Suivi des chantiers</h2>
@@ -423,7 +423,7 @@ export default function AdminDashboard() {
             </thead>
             <tbody>
               {rows.map((p) => (
-                <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors">
+                <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors admin-fade-in">
                   <td className="px-6 py-3 font-medium text-navy max-w-[260px] truncate">{p.name}</td>
                   <td className="px-6 py-3">
                     <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${statusStyles[p.status]}`}>

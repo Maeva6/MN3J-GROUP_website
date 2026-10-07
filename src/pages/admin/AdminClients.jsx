@@ -96,7 +96,7 @@ export default function AdminClients() {
   });
 
   return (
-    <div className="flex flex-wrap items-start gap-6">
+    <div className="flex flex-wrap items-start gap-6 admin-fade-up">
       <div className="flex-1 min-w-[480px] bg-white border border-black/5 rounded-lg overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-b border-black/5">
           <div className="flex flex-wrap gap-2">

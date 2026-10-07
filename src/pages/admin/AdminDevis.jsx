@@ -87,6 +87,13 @@ export default function AdminDevis() {
 
   return (
     <>
+      {/* Le fondu d'entrée reste sur ce conteneur, pas sur la racine (voir le
+          même commentaire dans AdminChantiers.jsx) : les Modal ci-dessous sont
+          en position fixed. Les cartes du Kanban n'ont pas leur propre
+          animation d'entrée : elles portent déjà une opacité inline pendant
+          le glisser-déposer, qu'une animation CSS sur la même propriété
+          écraserait. */}
+      <div className="space-y-6 admin-fade-up">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s) => (
           <div key={s.status} className="bg-white border border-black/5 rounded-lg p-5 flex items-center gap-3.5">
@@ -180,6 +187,7 @@ export default function AdminDevis() {
             );
           })}
         </div>
+      </div>
       </div>
 
       <Modal open={!!selected} onClose={() => setSelected(null)} title="Détail de la demande">

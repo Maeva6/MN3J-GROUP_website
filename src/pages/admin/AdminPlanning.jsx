@@ -83,7 +83,7 @@ export default function AdminPlanning() {
     .slice(0, 5);
 
   return (
-    <div className="flex flex-wrap items-start gap-6">
+    <div className="flex flex-wrap items-start gap-6 admin-fade-up">
       <div className="flex-1 min-w-[520px] bg-white border border-black/5 rounded-lg p-6">
         <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
           <div className="flex items-center gap-2.5">
@@ -165,7 +165,7 @@ export default function AdminPlanning() {
           <h3 className="font-display font-semibold text-navy text-base mt-1">{selDayLabel}</h3>
           <div className="flex flex-col gap-2.5 mt-4">
             {dayEvents.map((e, i) => (
-              <div key={i} className="flex gap-3 p-3 rounded-md" style={{ background: eventTypeColors[e.type]?.bg }}>
+              <div key={`${selDay}-${i}`} className="flex gap-3 p-3 rounded-md admin-fade-up" style={{ background: eventTypeColors[e.type]?.bg }}>
                 <span className="w-1 rounded shrink-0" style={{ background: eventTypeColors[e.type]?.bar }} />
                 <div className="min-w-0">
                   <div className="text-[11.5px] font-bold" style={{ color: eventTypeColors[e.type]?.text }}>

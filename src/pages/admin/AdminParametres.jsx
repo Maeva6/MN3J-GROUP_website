@@ -73,7 +73,7 @@ export default function AdminParametres() {
   );
 
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="max-w-3xl space-y-6 admin-fade-up">
       <div className="flex gap-1 border-b border-black/10">
         {tabs.map((t) => (
           <button
@@ -89,7 +89,7 @@ export default function AdminParametres() {
       </div>
 
       {tab === "Entreprise" && (
-        <form ref={formRef} onSubmit={submit} className="space-y-6">
+        <form key="Entreprise" ref={formRef} onSubmit={submit} className="space-y-6 admin-fade-in">
           {saved && (
             <div className="bg-green/10 border border-green/30 rounded-md p-4 text-green-dark text-sm flex items-center gap-2">
               <Check size={16} /> Modifications enregistrées localement. Reportez-les dans src/data/siteConfig.js pour les rendre définitives.
@@ -179,7 +179,7 @@ export default function AdminParametres() {
       )}
 
       {tab === "Utilisateurs" && (
-        <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
+        <div key="Utilisateurs" className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-in">
           <div className="flex items-center justify-between px-6 py-5">
             <div>
               <h2 className="text-navy font-semibold text-sm">Membres de l'équipe</h2>
@@ -213,7 +213,7 @@ export default function AdminParametres() {
       )}
 
       {tab === "Notifications" && (
-        <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
+        <div key="Notifications" className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-in">
           <div className="px-6 py-5">
             <h2 className="text-navy font-semibold text-sm">Notifications</h2>
             <div className="text-xs text-muted mt-0.5">Choisissez quand l'équipe est alertée.</div>

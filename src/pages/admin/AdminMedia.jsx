@@ -77,7 +77,7 @@ export default function AdminMedia() {
   const filtered = filter === "Tous" ? files : files.filter((f) => f.chantier === filter);
 
   return (
-    <>
+    <div className="space-y-6 admin-fade-up">
       <div className="bg-white border border-black/5 rounded-lg p-5 flex flex-wrap gap-5 items-stretch">
         <div className="flex-1 min-w-[220px]">
           <h2 className="font-display font-semibold text-navy text-base">Importer des photos</h2>
@@ -155,7 +155,7 @@ export default function AdminMedia() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {filtered.map((f) => (
-          <div key={f.id} className="relative bg-white border border-black/5 rounded-lg overflow-hidden">
+          <div key={f.id} className="relative bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-up">
             <div
               className="h-36 bg-cover bg-center transition-opacity"
               style={{ backgroundImage: `url(${f.url})`, opacity: f.progress < 100 ? 0.5 : 1 }}
@@ -184,6 +184,6 @@ export default function AdminMedia() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
