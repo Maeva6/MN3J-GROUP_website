@@ -238,7 +238,7 @@ export default function AdminParametres() {
       )}
 
       {toast && (
-        <div className="fixed right-7 bottom-7 z-40 flex items-center gap-3 bg-navy-dark text-white px-4.5 py-3.5 rounded-lg shadow-card text-[13.5px]">
+        <div className="fixed right-7 bottom-7 z-40 flex items-center gap-3 bg-navy-dark text-white px-5 py-3.5 rounded-lg shadow-card text-[13.5px]">
           <span className="w-6 h-6 rounded-full bg-green flex items-center justify-center shrink-0">
             <Check size={13} className="text-[#12310F]" />
           </span>
