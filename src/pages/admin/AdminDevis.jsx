@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Trash2, Download } from "lucide-react";
+import { Trash2, Download, ArrowLeftRight } from "lucide-react";
 import { quotes as initialQuotes, quoteStatuses, quoteStatusStyles } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
-import Avatar from "../../components/admin/Avatar";
 import { exportToCsv } from "../../utils/exportCsv";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
 import { useAdminToast } from "./AdminToastContext";
@@ -34,6 +33,14 @@ const projectTypes = ["Piscine haut de gamme", "Décoration", "BTP & finitions",
 const budgetOptions = ["Moins de 5M FCFA", "5M – 15M FCFA", "15M – 40M FCFA", "Plus de 40M FCFA"];
 
 const emptyForm = { name: "", email: "", phone: "", projectType: projectTypes[0], budget: budgetOptions[0], message: "" };
+
+function initials(name) {
+  const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
 const inputClass =
   "w-full mt-1.5 border border-black/10 rounded-md px-3.5 py-2.5 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-green/25 focus:border-green";
 const labelClass = "text-xs font-semibold text-muted";
@@ -80,10 +87,23 @@ export default function AdminDevis() {
   // En-tête commun : bouton "Nouveau devis".
   useAdminHeaderActions({ newLabel: "Nouveau devis", onNew: openAdd });
 
-  const stats = quoteStatuses.map((status) => ({
-    status,
-    count: quotes.filter((q) => q.status === status).length,
-  }));
+  // Les 4 cartes de la maquette ("En négociation", "Montant signé", "Taux de
+  // conversion", "Délai moyen de réponse") totalisent des montants en FCFA —
+  // nos devis n'ont qu'une tranche de budget ("5M – 15M FCFA"), pas un
+  // montant exact, donc impossible à additionner honnêtement. On garde les 3
+  // cartes calculables (en comptant les devis plutôt qu'en sommant un montant
+  // inventé) et on remplace "Délai moyen de réponse" — qu'on ne peut pas
+  // mesurer sans horodatage réel — par le compte des devis refusés.
+  const dvStats = [
+    { label: "En négociation", value: quotes.filter((q) => q.status === "Nouveau" || q.status === "Contacté").length, color: "#2B5AA0" },
+    { label: "Signés", value: quotes.filter((q) => q.status === "Accepté").length, color: "#7DBF3F" },
+    {
+      label: "Taux de conversion",
+      value: `${quotes.length ? Math.round((quotes.filter((q) => q.status === "Accepté").length / quotes.length) * 100) : 0} %`,
+      color: "#E6A23C",
+    },
+    { label: "Refusés", value: quotes.filter((q) => q.status === "Refusé").length, color: "#d26a5c" },
+  ];
 
   return (
     <>
@@ -95,12 +115,12 @@ export default function AdminDevis() {
           écraserait. */}
       <div className="space-y-6 admin-fade-up">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((s) => (
-          <div key={s.status} className="bg-white border border-black/5 rounded-lg p-5 flex items-center gap-3.5">
-            <span className="w-2.5 h-9 rounded shrink-0" style={{ background: columnColors[s.status] }} />
-            <div>
-              <div className="text-xs text-muted">{s.status}</div>
-              <div className="text-xl font-display font-extrabold text-navy mt-0.5">{s.count}</div>
+        {dvStats.map((s) => (
+          <div key={s.label} className="bg-white border border-black/5 rounded-lg p-5 flex items-center gap-3.5 hover:shadow-card transition-shadow">
+            <span className="w-2.5 h-9 rounded shrink-0" style={{ background: s.color }} />
+            <div className="min-w-0">
+              <div className="text-[12.5px] text-muted whitespace-nowrap">{s.label}</div>
+              <div className="text-xl font-display font-extrabold text-navy mt-0.5 whitespace-nowrap">{s.value}</div>
             </div>
           </div>
         ))}
@@ -108,6 +128,7 @@ export default function AdminDevis() {
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <p className="text-xs text-muted flex items-center gap-2">
+          <ArrowLeftRight size={14} className="text-blue shrink-0" />
           Glissez une carte d'une colonne à l'autre pour changer le statut d'un devis.
         </p>
         <button
@@ -138,7 +159,7 @@ export default function AdminDevis() {
                   setOverCol(null);
                 }}
                 className={`rounded-lg p-3.5 min-h-[420px] border-2 border-dashed transition-colors ${
-                  isOver ? "bg-green/10 border-green" : "bg-surface border-transparent"
+                  isOver ? "bg-green/10 border-green" : "bg-[#E9EDF1] border-transparent"
                 }`}
               >
                 <div className="flex items-center gap-2 px-1 pb-3.5">
@@ -167,14 +188,16 @@ export default function AdminDevis() {
                         <span className="font-semibold">DV-{q.id}</span>
                         <span>{q.date}</span>
                       </div>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Avatar name={q.name} size="sm" />
-                        <span className="text-sm font-semibold text-ink truncate">{q.name}</span>
-                      </div>
+                      <div className="text-sm font-semibold text-ink mt-2 truncate">{q.name}</div>
                       <span className="inline-block mt-2 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-navy/5 text-navy">
                         {q.projectType}
                       </span>
-                      <div className="text-[12px] text-muted mt-2.5 pt-2.5 border-t border-black/5 truncate">{q.budget}</div>
+                      <div className="flex justify-between items-center mt-3 pt-2.5 border-t border-black/5">
+                        <span className="font-display font-bold text-[13.5px] text-navy truncate">{q.budget}</span>
+                        <span className="w-[26px] h-[26px] rounded-full bg-[#E6EEF8] text-navy flex items-center justify-center font-display font-bold text-[10px] shrink-0">
+                          {initials(q.name)}
+                        </span>
+                      </div>
                     </div>
                   ))}
                   {cards.length === 0 && (
