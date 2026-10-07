@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Plus, Pencil, Trash2, Search, Download, MapPin, Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Pencil, Trash2, Download, MapPin, Calendar } from "lucide-react";
 import { projects as initialProjects, statusStyles, progressBarClass } from "../../data/projects";
 import { projectExtras, projectSteps, teamMembers } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
 import Drawer from "../../components/admin/Drawer";
 import { exportToCsv } from "../../utils/exportCsv";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
 
 const csvColumns = [
   { key: "name", label: "Chantier" },
@@ -41,6 +42,7 @@ const labelClass = "text-xs font-semibold text-muted";
 
 export default function AdminChantiers() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [chantiers, setChantiers] = useState(initialProjects);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("Tous");
@@ -61,6 +63,26 @@ export default function AdminChantiers() {
     setForm(emptyForm);
     setModalOpen(true);
   };
+
+  // En-tête commun : recherche + bouton "Nouveau chantier".
+  useAdminHeaderActions({
+    showSearch: true,
+    searchValue: search,
+    onSearchChange: setSearch,
+    searchPlaceholder: "Rechercher un chantier…",
+    newLabel: "Nouveau chantier",
+    onNew: openAdd,
+  });
+
+  // Arrivée depuis le tableau de bord ("Nouveau chantier") : ouvre directement
+  // le formulaire d'ajout.
+  useEffect(() => {
+    if (location.state?.openAdd) {
+      openAdd();
+      navigate(".", { replace: true, state: null });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state]);
 
   const openEdit = (p) => {
     setEditingId(p.id);
@@ -111,48 +133,29 @@ export default function AdminChantiers() {
   return (
     <>
       <div className="flex flex-wrap items-center gap-3 justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="relative">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Rechercher un chantier…"
-              className="pl-9 pr-4 py-2 text-sm border border-black/10 rounded-md w-56"
-            />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {filters.map((f) => {
-              const count = f === "Tous" ? chantiers.length : chantiers.filter((p) => p.status === f).length;
-              const active = statusFilter === f;
-              return (
-                <button
-                  key={f}
-                  onClick={() => setStatusFilter(f)}
-                  className={`text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-colors flex items-center gap-1.5 ${
-                    active ? "bg-navy text-white border-navy" : "text-muted border-black/10 hover:border-navy/40"
-                  }`}
-                >
-                  {f} <span className="opacity-70">{count}</span>
-                </button>
-              );
-            })}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {filters.map((f) => {
+            const count = f === "Tous" ? chantiers.length : chantiers.filter((p) => p.status === f).length;
+            const active = statusFilter === f;
+            return (
+              <button
+                key={f}
+                onClick={() => setStatusFilter(f)}
+                className={`text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-colors flex items-center gap-1.5 ${
+                  active ? "bg-navy text-white border-navy" : "text-muted border-black/10 hover:border-navy/40"
+                }`}
+              >
+                {f} <span className="opacity-70">{count}</span>
+              </button>
+            );
+          })}
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => exportToCsv("chantiers-mn3j-group.csv", filtered, csvColumns)}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2.5 rounded-md hover:border-navy/40 transition-colors"
-          >
-            <Download size={14} /> Exporter
-          </button>
-          <button
-            onClick={openAdd}
-            className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2.5 rounded-md hover:bg-navy-dark transition-colors"
-          >
-            <Plus size={14} /> Ajouter un chantier
-          </button>
-        </div>
+        <button
+          onClick={() => exportToCsv("chantiers-mn3j-group.csv", filtered, csvColumns)}
+          className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2.5 rounded-md hover:border-navy/40 transition-colors shrink-0"
+        >
+          <Download size={14} /> Exporter
+        </button>
       </div>
 
       <div className="text-xs text-muted -mt-2">{filtered.length} chantier{filtered.length > 1 ? "s" : ""} affiché{filtered.length > 1 ? "s" : ""} · cliquez sur une carte pour la modifier</div>

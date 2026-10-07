@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Search, Download, Phone, Mail, MapPin } from "lucide-react";
+import { Pencil, Trash2, Download, Phone, Mail, MapPin } from "lucide-react";
 import { clients as initialClients } from "../../data/adminData";
 import { projects, statusStyles } from "../../data/projects";
 import Modal from "../../components/admin/Modal";
 import Avatar from "../../components/admin/Avatar";
 import { exportToCsv } from "../../utils/exportCsv";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
 
 const csvColumns = [
   { key: "name", label: "Client" },
@@ -78,6 +79,16 @@ export default function AdminClients() {
     setModalOpen(false);
   };
 
+  // En-tête commun : recherche + bouton "Nouveau client".
+  useAdminHeaderActions({
+    showSearch: true,
+    searchValue: search,
+    onSearchChange: setSearch,
+    searchPlaceholder: "Rechercher un client…",
+    newLabel: "Nouveau client",
+    onNew: openAdd,
+  });
+
   return (
     <div className="flex flex-wrap items-start gap-6">
       <div className="flex-1 min-w-[480px] bg-white border border-black/5 rounded-lg overflow-hidden">
@@ -99,29 +110,11 @@ export default function AdminClients() {
               );
             })}
           </div>
-          <div className="relative">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Rechercher un client…"
-              className="pl-9 pr-4 py-2 text-sm border border-black/10 rounded-md w-52"
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center justify-end gap-3 px-5 py-3 border-b border-black/5">
           <button
             onClick={() => exportToCsv("clients-mn3j-group.csv", filtered, csvColumns)}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2 rounded-md hover:border-navy/40 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2 rounded-md hover:border-navy/40 transition-colors shrink-0"
           >
             <Download size={14} /> Exporter
-          </button>
-          <button
-            onClick={openAdd}
-            className="inline-flex items-center gap-2 bg-navy text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-navy-dark transition-colors"
-          >
-            <Plus size={14} /> Ajouter un client
           </button>
         </div>
 

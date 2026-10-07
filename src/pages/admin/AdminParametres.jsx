@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check } from "lucide-react";
 import { siteConfig } from "../../data/siteConfig";
 import { teamMembers } from "../../data/adminData";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
 
 // Formulaire local — modifie uniquement une copie en mémoire de siteConfig.
 // Pour que ces changements soient réellement appliqués au site, reportez-les
@@ -67,6 +68,13 @@ export default function AdminParametres() {
     setNotif((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
+  // En-tête commun : bouton "Enregistrer", visible seulement pour l'onglet
+  // Entreprise, qui possède un vrai formulaire à soumettre.
+  const formRef = useRef(null);
+  useAdminHeaderActions(
+    tab === "Entreprise" ? { newLabel: "Enregistrer", onNew: () => formRef.current?.requestSubmit() } : null
+  );
+
   return (
     <div className="max-w-3xl space-y-6">
       <div className="flex gap-1 border-b border-black/10">
@@ -84,7 +92,7 @@ export default function AdminParametres() {
       </div>
 
       {tab === "Entreprise" && (
-        <form onSubmit={submit} className="space-y-6">
+        <form ref={formRef} onSubmit={submit} className="space-y-6">
           {saved && (
             <div className="bg-green/10 border border-green/30 rounded-md p-4 text-green-dark text-sm flex items-center gap-2">
               <Check size={16} /> Modifications enregistrées localement. Reportez-les dans src/data/siteConfig.js pour les rendre définitives.

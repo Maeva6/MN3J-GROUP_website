@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "WebFetch(domain:www.pexels.com)"
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(grep -n \"Taux de conversion devis\\\\|Activité récente\\\\|^      </div>$\\\\|Suivi des chantiers\" AdminDashboard.jsx)"
     ]
   }
 }

@@ -9,11 +9,15 @@ import {
   Settings,
   LogOut,
   ExternalLink,
+  Search,
+  Bell,
+  Plus,
 } from "lucide-react";
 import logo from "../../assets/images/logo.jpeg";
 import { logoutAdmin } from "../../utils/adminAuth";
 import { projects } from "../../data/projects";
 import { quotes } from "../../data/adminData";
+import { AdminHeaderProvider, useAdminHeaderState } from "./AdminHeaderContext";
 
 // Deux sections, comme la maquette : PILOTAGE (activité commerciale et
 // opérationnelle) puis CONTENU DU SITE (ce qui alimente les pages publiques).
@@ -154,16 +158,55 @@ export default function AdminLayout() {
       </aside>
 
       {/* MAIN */}
-      <div className="flex-1 min-w-0">
-        <header className="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-black/5 px-8 py-4">
-          <div className="text-[12.5px] text-muted">{subtitle}</div>
-          <h1 className="text-navy font-display font-bold text-xl mt-0.5">{title}</h1>
-        </header>
-
-        <div className="p-8 space-y-8">
-          <Outlet />
+      <AdminHeaderProvider>
+        <div className="flex-1 min-w-0">
+          <HeaderBar subtitle={subtitle} title={title} />
+          <div className="p-8 space-y-8">
+            <Outlet />
+          </div>
         </div>
-      </div>
+      </AdminHeaderProvider>
     </div>
+  );
+}
+
+// Lit les actions déclarées par la page affichée (recherche, bouton "Nouveau")
+// via le contexte — voir AdminHeaderContext.jsx.
+function HeaderBar({ subtitle, title }) {
+  const actions = useAdminHeaderState();
+
+  return (
+    <header className="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-black/5 px-8 py-4 flex items-center gap-5 flex-wrap">
+      <div className="flex-1 min-w-[200px]">
+        <div className="text-[12.5px] text-muted">{subtitle}</div>
+        <h1 className="text-navy font-display font-bold text-xl mt-0.5">{title}</h1>
+      </div>
+
+      {actions?.showSearch && (
+        <div className="flex items-center gap-2 bg-surface border border-black/5 rounded-lg px-3 py-2.5 w-60 max-w-full">
+          <Search size={15} className="text-muted shrink-0" />
+          <input
+            value={actions.searchValue || ""}
+            onChange={(e) => actions.onSearchChange?.(e.target.value)}
+            placeholder={actions.searchPlaceholder || "Rechercher…"}
+            className="bg-transparent outline-none text-[13.5px] flex-1 min-w-0 text-ink"
+          />
+        </div>
+      )}
+
+      <span className="relative w-10 h-10 rounded-lg border border-black/5 bg-white flex items-center justify-center shrink-0" aria-hidden="true">
+        <Bell size={17} className="text-[#3a4550]" />
+        <span className="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-green animate-pulse" />
+      </span>
+
+      {actions?.newLabel && actions?.onNew && (
+        <button
+          onClick={actions.onNew}
+          className="inline-flex items-center gap-2 bg-green text-[#12310F] font-bold text-[13.5px] px-4 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green/30 transition-all shrink-0 whitespace-nowrap"
+        >
+          <Plus size={16} /> {actions.newLabel}
+        </button>
+      )}
+    </header>
   );
 }

@@ -126,6 +126,11 @@ export const monthlyRevenue = {
   previous: [14, 16, 15, 20, 22, 21, 26, 29, 27, 31, 35, 39],
 };
 
+// Tendance du nombre de devis en attente (8 derniers relevés) — série de
+// démonstration pour la mini-courbe de la carte KPI "Devis en attente",
+// indépendante des vrais devis listés plus haut (comme monthlyRevenue).
+export const pendingQuotesTrend = [6, 8, 7, 9, 8, 11, 10, 13];
+
 // Événements du planning — exprimés en jours relatifs à aujourd'hui (et non
 // en dates figées) pour ne pas devenir obsolètes au fil du temps. `type` doit
 // correspondre à une clé de `eventTypeColors` ci-dessous.

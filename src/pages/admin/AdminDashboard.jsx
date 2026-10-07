@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, HardHat, Clock, FileText, Wallet } from "lucide-react";
+import { ArrowRight, HardHat, FileText } from "lucide-react";
 import { projects, statusStyles, progressBarClass } from "../../data/projects";
 import {
   quotes,
@@ -11,11 +11,14 @@ import {
   projectExtras,
   poleLabels,
   monthlyRevenue,
+  pendingQuotesTrend,
   teamMembers,
 } from "../../data/adminData";
 import Avatar from "../../components/admin/Avatar";
 import RevenueLineChart from "../../components/admin/charts/RevenueLineChart";
 import PoleDonutChart from "../../components/admin/charts/PoleDonutChart";
+import Sparkline from "../../components/admin/charts/Sparkline";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
 
 // Anime le chiffre de 0 jusqu'à sa valeur finale au montage (indépendant de
 // framer-motion : un nombre affiché comme texte, pas une transform/opacity,
@@ -56,7 +59,7 @@ function ConversionGauge({ percent }) {
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - percent / 100);
   return (
-    <svg viewBox="0 0 100 100" className="w-24 h-24 -rotate-90 shrink-0">
+    <svg viewBox="0 0 100 100" className="w-20 h-20 -rotate-90 shrink-0">
       <circle cx="50" cy="50" r={radius} fill="none" className="stroke-surface" strokeWidth="10" />
       <circle
         cx="50"
@@ -75,7 +78,7 @@ function ConversionGauge({ percent }) {
         y="54"
         textAnchor="middle"
         className="fill-navy"
-        style={{ font: "bold 20px Poppins, sans-serif", transform: "rotate(90deg)", transformOrigin: "50px 50px" }}
+        style={{ font: "bold 19px Poppins, sans-serif", transform: "rotate(90deg)", transformOrigin: "50px 50px" }}
       >
         {percent}%
       </text>
@@ -117,7 +120,9 @@ function buildActivity() {
 }
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
   const [period, setPeriod] = useState("12m");
+  const [search, setSearch] = useState("");
 
   const enCours = projects.filter((p) => p.status === "En cours").length;
   const realises = projects.filter((p) => p.status === "Réalisé").length;
@@ -128,6 +133,20 @@ export default function AdminDashboard() {
     ? Math.round((quotes.filter((q) => q.status === "Accepté").length / quotes.length) * 100)
     : 0;
   const caTotal = monthlyRevenue.current.reduce((a, b) => a + b, 0);
+  const caPrevTotal = monthlyRevenue.previous.reduce((a, b) => a + b, 0);
+  const caDelta = Math.round((caTotal / caPrevTotal - 1) * 100);
+
+  // En-tête commun (AdminLayout) : recherche filtrant le tableau "Suivi des
+  // chantiers" plus bas, et bouton "Nouveau chantier" renvoyant vers la page
+  // Chantiers avec l'intention d'ouvrir directement le formulaire d'ajout.
+  useAdminHeaderActions({
+    showSearch: true,
+    searchValue: search,
+    onSearchChange: setSearch,
+    searchPlaceholder: "Rechercher un chantier…",
+    newLabel: "Nouveau chantier",
+    onNew: () => navigate("/admin/chantiers", { state: { openAdd: true } }),
+  });
 
   const n = period === "12m" ? 12 : 6;
   const months = monthlyRevenue.months.slice(-n);
@@ -137,33 +156,10 @@ export default function AdminDashboard() {
   const prevTotal = previous.reduce((a, b) => a + b, 0);
   const periodDelta = Math.round((periodTotal / prevTotal - 1) * 100);
 
-  const kpis = [
-    {
-      icon: Wallet,
-      value: caTotal,
-      label: "Chiffre d'affaires (12 mois)",
-      sub: `${caTotal.toLocaleString("fr-FR")} M FCFA`,
-      highlight: true,
-    },
-    {
-      icon: HardHat,
-      value: enCours,
-      label: "Chantiers en cours",
-      sub: `${projects.length} au total`,
-    },
-    {
-      icon: FileText,
-      value: nouveauxDevis,
-      label: "Devis en attente",
-      sub: quotes.length ? `${Math.round((nouveauxDevis / quotes.length) * 100)}% des devis reçus` : "—",
-    },
-    {
-      icon: Clock,
-      value: tauxConversion,
-      label: "Taux de conversion",
-      sub: `${quotes.filter((q) => q.status === "Accepté").length} devis acceptés sur ${quotes.length}`,
-      suffix: "%",
-    },
+  const mix = [
+    { label: "Réalisés", count: realises, color: "bg-green", dot: "#7DBF3F" },
+    { label: "En cours", count: enCours, color: "bg-[#E6A23C]", dot: "#E6A23C" },
+    { label: "Planifiés", count: planifies, color: "bg-navy-light", dot: "#3F6690" },
   ];
 
   // Répartition du CA par pôle, calculée à partir des budgets de chantiers
@@ -188,48 +184,101 @@ export default function AdminDashboard() {
   const recentQuotes = quotes.slice(0, 5);
   const activity = buildActivity();
 
-  const rows = projects.map((p) => {
-    const extra = projectExtras[p.id] || {};
-    return { ...p, ...extra };
+  const rows = projects
+    .map((p) => ({ ...p, ...(projectExtras[p.id] || {}) }))
+    .filter((p) => (p.name + p.location + p.client).toLowerCase().includes(search.toLowerCase()));
+
+  const cardMotion = (i) => ({
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay: i * 0.08, duration: 0.4, ease: "easeOut" },
+    whileHover: { y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } },
   });
 
   return (
     <>
       <div className="grid md:grid-cols-4 gap-5">
-        {kpis.map((k, i) => (
-          <motion.div
-            key={k.label}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08, duration: 0.4, ease: "easeOut" }}
-            whileHover={{ y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-            className={`group rounded-lg p-6 cursor-default transition-shadow duration-300 ${
-              k.highlight
-                ? "bg-gradient-to-br from-navy to-blue text-white hover:shadow-card"
-                : "bg-white border border-black/5 hover:shadow-card hover:border-navy/10"
-            }`}
-          >
-            <div
-              className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${
-                k.highlight ? "bg-white/15" : "bg-navy/5"
-              }`}
-            >
-              <k.icon size={16} className={k.highlight ? "text-white" : "text-navy"} />
+        {/* 1. Chiffre d'affaires — carte mise en avant, courbe de fond */}
+        <motion.div
+          {...cardMotion(0)}
+          className="relative overflow-hidden rounded-lg p-6 bg-gradient-to-br from-navy to-blue text-white hover:shadow-card transition-shadow duration-300"
+        >
+          <span className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-white/[0.06]" />
+          <div className="flex justify-between items-center relative">
+            <span className="text-[13px] text-white/80">Chiffre d'affaires (12 mois)</span>
+            <span className={`text-[11.5px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${caDelta >= 0 ? "bg-green/25 text-[#c6ec9d]" : "bg-[#B3261E]/30 text-white"}`}>
+              {caDelta >= 0 ? "▲" : "▼"} {Math.abs(caDelta)} %
+            </span>
+          </div>
+          <div className="font-display font-extrabold text-[32px] mt-2.5 relative">
+            <CountUp value={caTotal} /> <span className="text-[15px] font-semibold text-white/80 ml-1">M FCFA</span>
+          </div>
+          <div className="mt-2.5 relative">
+            <Sparkline values={monthlyRevenue.current} color="#7DBF3F" fillOpacity={0.25} />
+          </div>
+        </motion.div>
+
+        {/* 2. Chantiers actifs — fraction + mix de statuts */}
+        <motion.div {...cardMotion(1)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+          <div className="flex justify-between items-center">
+            <span className="text-[13px] text-muted">Chantiers actifs</span>
+            <span className="w-9 h-9 rounded-lg bg-[#fdf1dc] flex items-center justify-center shrink-0">
+              <HardHat size={16} className="text-[#A8650F]" />
+            </span>
+          </div>
+          <div className="font-display font-extrabold text-[32px] text-navy mt-2">
+            <CountUp value={enCours} /> <span className="text-[15px] font-semibold text-muted ml-1">/ {projects.length}</span>
+          </div>
+          <div className="flex gap-1 mt-3.5 h-2 rounded overflow-hidden">
+            {mix.map((m) => (
+              <div
+                key={m.label}
+                className={`${m.color} transition-[width] duration-700`}
+                style={{ width: projects.length ? `${(m.count / projects.length) * 100}%` : 0 }}
+              />
+            ))}
+          </div>
+          <div className="flex gap-3.5 mt-2.5 text-[11.5px] text-muted flex-wrap">
+            {mix.map((m) => (
+              <span key={m.label} className="flex items-center gap-1.5 whitespace-nowrap">
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: m.dot }} /> {m.count} {m.label.toLowerCase()}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 3. Devis en attente — mini-courbe de tendance */}
+        <motion.div {...cardMotion(2)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+          <div className="flex justify-between items-center">
+            <span className="text-[13px] text-muted">Devis en attente</span>
+            <span className="w-9 h-9 rounded-lg bg-[#e6eef8] flex items-center justify-center shrink-0">
+              <FileText size={16} className="text-blue" />
+            </span>
+          </div>
+          <div className="font-display font-extrabold text-[32px] text-navy mt-2">
+            <CountUp value={nouveauxDevis} />
+          </div>
+          <div className="mt-1.5">
+            <Sparkline values={pendingQuotesTrend} color="#2B5AA0" height={34} />
+          </div>
+          <div className="text-[11.5px] text-muted mt-1">
+            {quotes.length ? `${Math.round((nouveauxDevis / quotes.length) * 100)}% des devis reçus` : "—"}
+          </div>
+        </motion.div>
+
+        {/* 4. Taux de conversion — jauge directement dans la carte */}
+        <motion.div {...cardMotion(3)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+          <span className="text-[13px] text-muted">Taux de conversion</span>
+          <div className="flex items-center gap-3 mt-1">
+            <ConversionGauge percent={tauxConversion} />
+            <div>
+              <div className="font-display font-extrabold text-[26px] text-navy leading-none">{tauxConversion}%</div>
+              <div className="text-[11.5px] text-muted mt-1.5 leading-snug">
+                {quotes.filter((q) => q.status === "Accepté").length} acceptés sur {quotes.length}
+              </div>
             </div>
-            <div className={`text-2xl font-display font-bold ${k.highlight ? "text-white" : "text-navy"}`}>
-              <CountUp value={k.value} />
-              {k.suffix || ""}
-            </div>
-            <div className={`text-xs mt-1 ${k.highlight ? "text-white/70" : "text-muted"}`}>{k.label}</div>
-            <div
-              className={`text-[11px] font-semibold mt-2 inline-block px-2 py-0.5 rounded-full transition-colors duration-300 ${
-                k.highlight ? "bg-white/15 text-white" : "bg-green/15 text-green-dark group-hover:bg-green/25"
-              }`}
-            >
-              {k.sub}
-            </div>
-          </motion.div>
-        ))}
+          </div>
+        </motion.div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -244,11 +293,20 @@ export default function AdminDashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex bg-surface rounded-md p-1">
-              {[
-                ["6m", "6 mois"],
-                ["12m", "12 mois"],
-              ].map(([key, label]) => (
+            <div className="flex items-center gap-4 flex-wrap">
+              <div className="flex gap-3.5 text-[12px] text-muted">
+                <span className="flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="w-3.5 h-0.5 rounded-sm bg-blue" /> 2025–2026
+                </span>
+                <span className="flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="w-3.5 h-0 border-t-2 border-dashed border-[#9DB4D3]" /> Année précédente
+                </span>
+              </div>
+              <div className="flex bg-surface rounded-md p-1">
+                {[
+                  ["6m", "6 mois"],
+                  ["12m", "12 mois"],
+                ].map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => setPeriod(key)}
@@ -258,7 +316,8 @@ export default function AdminDashboard() {
                 >
                   {label}
                 </button>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
           <div className="mt-3">
@@ -321,31 +380,20 @@ export default function AdminDashboard() {
         </div>
 
         <div className="bg-white border border-black/5 rounded-lg p-6">
-          <h2 className="text-navy font-semibold text-sm mb-1">Taux de conversion devis</h2>
-          <div className="flex items-center gap-4 mt-3">
-            <ConversionGauge percent={tauxConversion} />
-            <div>
-              <div className="text-xs text-muted leading-relaxed">
-                {quotes.filter((q) => q.status === "Accepté").length} devis acceptés sur {quotes.length}
-              </div>
-            </div>
-          </div>
-          <div className="mt-5 pt-5 border-t border-black/5">
-            <h3 className="text-navy font-semibold text-xs mb-3">Activité récente</h3>
-            <div className="flex flex-col">
-              {activity.map((a, i) => (
-                <div key={i} className="flex gap-3">
-                  <div className="flex flex-col items-center">
-                    <span className="w-2.5 h-2.5 rounded-full border-2 bg-white mt-1 shrink-0" style={{ borderColor: a.color }} />
-                    {i < activity.length - 1 && <span className="flex-1 w-px bg-black/5 my-1" />}
-                  </div>
-                  <div className="pb-4 text-[12.5px] leading-relaxed">
-                    <span className="font-semibold text-navy">{a.who}</span> {a.text}
-                    <div className="text-[11px] text-muted mt-0.5">{a.when}</div>
-                  </div>
+          <h2 className="text-navy font-semibold text-sm mb-4">Activité récente</h2>
+          <div className="flex flex-col">
+            {activity.map((a, i) => (
+              <div key={i} className="flex gap-3">
+                <div className="flex flex-col items-center">
+                  <span className="w-2.5 h-2.5 rounded-full border-2 bg-white mt-1 shrink-0" style={{ borderColor: a.color }} />
+                  {i < activity.length - 1 && <span className="flex-1 w-px bg-black/5 my-1" />}
                 </div>
-              ))}
-            </div>
+                <div className="pb-4 text-[12.5px] leading-relaxed">
+                  <span className="font-semibold text-navy">{a.who}</span> {a.text}
+                  <div className="text-[11px] text-muted mt-0.5">{a.when}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -374,7 +422,7 @@ export default function AdminDashboard() {
               </tr>
             </thead>
             <tbody>
-              {rows.slice(0, 6).map((p) => (
+              {rows.map((p) => (
                 <tr key={p.id} className="border-t border-black/5 hover:bg-surface transition-colors">
                   <td className="px-6 py-3 font-medium text-navy max-w-[260px] truncate">{p.name}</td>
                   <td className="px-6 py-3">
@@ -408,6 +456,13 @@ export default function AdminDashboard() {
                   <td className="px-6 py-3 text-muted whitespace-nowrap">{p.dueLabel || "—"}</td>
                 </tr>
               ))}
+              {rows.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-6 py-8 text-center text-muted text-sm">
+                    Aucun chantier ne correspond à cette recherche.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

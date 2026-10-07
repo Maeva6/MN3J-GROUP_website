@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { UploadCloud, X } from "lucide-react";
 import { projects } from "../../data/projects";
+import { useAdminHeaderActions } from "./AdminHeaderContext";
 
 // Médiathèque : import simulé (pas de vrai stockage tant qu'aucun back-end
 // n'est branché — voir TODO similaire dans AdminChantiers.jsx). Les fichiers
@@ -54,6 +55,10 @@ export default function AdminMedia() {
   };
 
   const removeFile = (id) => setFiles((prev) => prev.filter((f) => f.id !== id));
+
+  // En-tête commun : bouton "Importer des photos" ouvre directement le
+  // sélecteur de fichiers.
+  useAdminHeaderActions({ newLabel: "Importer des photos", onNew: () => fileRef.current?.click() });
 
   const names = [...new Set(files.map((f) => f.chantier))];
   const filters = ["Tous", ...names];
