@@ -20,7 +20,9 @@ function sameVisibleContent(a, b) {
     a.showSearch === b.showSearch &&
     a.searchValue === b.searchValue &&
     a.searchPlaceholder === b.searchPlaceholder &&
-    a.newLabel === b.newLabel
+    a.newLabel === b.newLabel &&
+    a.dateLabel === b.dateLabel &&
+    a.greeting === b.greeting
   );
 }
 
@@ -40,7 +42,9 @@ export function useAdminHeaderState() {
 }
 
 // Appelé par chaque page pour déclarer ce que l'en-tête doit afficher :
-// { showSearch, searchValue, onSearchChange, searchPlaceholder, newLabel, onNew }
+// { showSearch, searchValue, onSearchChange, searchPlaceholder, newLabel, onNew,
+//   dateLabel, greeting } — dateLabel/greeting remplacent le sous-titre/titre
+// générique par la date du jour + une salutation (utilisé par le tableau de bord).
 // (ou `null` pour ne rien afficher). Se nettoie automatiquement au démontage.
 export function useAdminHeaderActions(config) {
   const ctx = useContext(Ctx);

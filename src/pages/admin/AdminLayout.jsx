@@ -181,8 +181,17 @@ function HeaderBar({ subtitle, title }) {
   return (
     <header className="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-black/5 px-8 py-4 flex items-center gap-5 flex-wrap">
       <div className="flex-1 min-w-[200px]">
-        <div className="text-[12.5px] text-muted">{subtitle}</div>
-        <h1 className="text-navy font-display font-bold text-xl mt-0.5">{title}</h1>
+        {actions?.greeting ? (
+          <>
+            <div className="text-[12.5px] text-muted capitalize">{actions.dateLabel}</div>
+            <h1 className="text-navy font-display font-bold text-xl mt-0.5">{actions.greeting}</h1>
+          </>
+        ) : (
+          <>
+            <div className="text-[12.5px] text-muted">{subtitle}</div>
+            <h1 className="text-navy font-display font-bold text-xl mt-0.5">{title}</h1>
+          </>
+        )}
       </div>
 
       {actions?.showSearch && (

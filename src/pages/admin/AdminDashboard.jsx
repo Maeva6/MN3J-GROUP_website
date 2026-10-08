@@ -141,10 +141,24 @@ export default function AdminDashboard() {
   const caPrevTotal = monthlyRevenue.previous.reduce((a, b) => a + b, 0);
   const caDelta = Math.round((caTotal / caPrevTotal - 1) * 100);
 
+  // Date du jour + salutation personnalisée (en-tête du tableau de bord
+  // uniquement, comme dans la maquette) — le prénom vient de la même fiche
+  // "MN" que le bloc utilisateur de la sidebar, pour rester cohérent si ce
+  // nom change un jour.
+  const dateLabel = new Date().toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const firstName = teamMembers.MN.name.split(" ")[0];
+
   // En-tête commun (AdminLayout) : recherche filtrant le tableau "Suivi des
   // chantiers" plus bas, et bouton "Nouveau chantier" renvoyant vers la page
   // Chantiers avec l'intention d'ouvrir directement le formulaire d'ajout.
   useAdminHeaderActions({
+    dateLabel,
+    greeting: `Bonjour ${firstName}, voici l'activité du mois`,
     showSearch: true,
     searchValue: search,
     onSearchChange: setSearch,
