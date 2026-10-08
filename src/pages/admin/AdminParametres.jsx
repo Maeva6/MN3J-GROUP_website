@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
-import { Check } from "lucide-react";
+import { Check, Trash2, Mail } from "lucide-react";
 import { siteConfig } from "../../data/siteConfig";
 import { teamMembers } from "../../data/adminData";
+import Modal from "../../components/admin/Modal";
+import Avatar from "../../components/admin/Avatar";
 import { useAdminHeaderActions } from "./AdminHeaderContext";
 import { useAdminToast } from "./AdminToastContext";
 
@@ -23,6 +25,9 @@ const accessStyles = {
   "Éditeur": "bg-[#E6EEF8] text-blue",
   "Lecture seule": "bg-black/5 text-muted",
 };
+
+const accessOptions = ["Administrateur", "Éditeur", "Lecture seule"];
+const emptyInvite = { name: "", email: "", role: "", access: "Éditeur" };
 
 const notifDefs = [
   { key: "devis", label: "Nouvelle demande de devis", desc: "Email immédiat à l'administrateur" },
@@ -50,6 +55,30 @@ export default function AdminParametres() {
   const [saved, setSaved] = useState(false);
 
   const [notif, setNotif] = useState({ devis: true, chantier: true, hebdo: false, sms: true });
+
+  // Invitations — en mémoire uniquement (pas de back-end branché, donc pas
+  // d'e-mail réellement envoyé) : la personne invitée apparaît avec le
+  // statut "En attente" tant qu'elle n'a pas (fictivement) accepté.
+  const [invited, setInvited] = useState([]);
+  const [inviteOpen, setInviteOpen] = useState(false);
+  const [inviteForm, setInviteForm] = useState(emptyInvite);
+
+  const openInvite = () => {
+    setInviteForm(emptyInvite);
+    setInviteOpen(true);
+  };
+
+  const submitInvite = (e) => {
+    e.preventDefault();
+    setInvited((prev) => [...prev, { ...inviteForm, id: `inv-${Date.now()}` }]);
+    showToast(`Invitation envoyée à ${inviteForm.name} (${inviteForm.email}).`);
+    setInviteOpen(false);
+  };
+
+  const cancelInvite = (id, name) => {
+    setInvited((prev) => prev.filter((m) => m.id !== id));
+    showToast(`Invitation de « ${name} » annulée.`);
+  };
 
   const updateHour = (idx, time) => {
     setHours((prev) => prev.map((h, i) => (i === idx ? { ...h, time } : h)));
@@ -186,7 +215,7 @@ export default function AdminParametres() {
               <div className="text-xs text-muted mt-0.5">Gérez les accès au back-office.</div>
             </div>
             <button
-              onClick={() => showToast("Invitation envoyée")}
+              onClick={openInvite}
               className="border border-navy text-navy font-semibold text-[13px] px-4 py-2 rounded-md hover:bg-navy hover:text-white transition-colors whitespace-nowrap"
             >
               + Inviter un membre
@@ -207,6 +236,29 @@ export default function AdminParametres() {
               <span className="flex items-center gap-1.5 text-xs text-green-dark min-w-[60px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-green" /> Actif
               </span>
+            </div>
+          ))}
+          {invited.map((m) => (
+            <div key={m.id} className="flex flex-wrap items-center gap-3.5 px-6 py-3.5 border-t border-black/5">
+              <Avatar name={m.name} size="md" />
+              <div className="flex-1 min-w-[160px]">
+                <div className="text-[13.5px] font-semibold text-navy">{m.name}</div>
+                <div className="text-xs text-muted">{m.role || "—"} · {m.email}</div>
+              </div>
+              <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${accessStyles[m.access]}`}>
+                {m.access}
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-[#A8650F] min-w-[70px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E6A23C]" /> En attente
+              </span>
+              <button
+                onClick={() => cancelInvite(m.id, m.name)}
+                className="text-red-500 hover:text-red-700"
+                aria-label="Annuler l'invitation"
+                title="Annuler l'invitation"
+              >
+                <Trash2 size={15} />
+              </button>
             </div>
           ))}
         </div>
@@ -241,6 +293,65 @@ export default function AdminParametres() {
           ))}
         </div>
       )}
+
+      <Modal open={inviteOpen} onClose={() => setInviteOpen(false)} title="Inviter un membre">
+        <form onSubmit={submitInvite} className="space-y-4">
+          <p className="text-xs text-muted flex items-center gap-2 bg-surface rounded-md px-3.5 py-2.5">
+            <Mail size={14} className="text-blue shrink-0" />
+            L'invitation reste locale à cette session (pas d'e-mail réellement envoyé) tant que le back-office n'est pas connecté à un serveur.
+          </p>
+          <div>
+            <label className={labelClass}>Nom complet</label>
+            <input
+              required
+              className={inputClass}
+              value={inviteForm.name}
+              onChange={(e) => setInviteForm({ ...inviteForm, name: e.target.value })}
+              placeholder="Ex. Awa Koffi"
+            />
+          </div>
+          <div>
+            <label className={labelClass}>E-mail</label>
+            <input
+              required
+              type="email"
+              className={inputClass}
+              value={inviteForm.email}
+              onChange={(e) => setInviteForm({ ...inviteForm, email: e.target.value })}
+              placeholder="nom@mn3j-group.com"
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Fonction</label>
+            <input
+              className={inputClass}
+              value={inviteForm.role}
+              onChange={(e) => setInviteForm({ ...inviteForm, role: e.target.value })}
+              placeholder="Ex. Chef de chantier BTP"
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Niveau d'accès</label>
+            <select
+              className={`${inputClass} bg-white`}
+              value={inviteForm.access}
+              onChange={(e) => setInviteForm({ ...inviteForm, access: e.target.value })}
+            >
+              {accessOptions.map((a) => (
+                <option key={a} value={a}>{a}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center justify-end gap-3 pt-2">
+            <button type="button" onClick={() => setInviteOpen(false)} className="text-sm font-semibold text-muted px-4 py-2.5">
+              Annuler
+            </button>
+            <button type="submit" className="bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors">
+              Envoyer l'invitation
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 }
