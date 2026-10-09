@@ -138,6 +138,19 @@ export default function AdminChantiers() {
 
   const open = chantiers.find((p) => p.id === openId) || null;
 
+  // Cartes de stats globales (maquette) — budget cumulé = somme des budgets
+  // par chantier (src/data/adminData.js → projectExtras), en M FCFA ; les
+  // chantiers sans budget connu (projectExtras manquant) comptent pour 0
+  // plutôt que d'être exclus du total, pour rester honnête sur le nombre de
+  // chantiers couverts par ce chiffre.
+  const totalBudget = chantiers.reduce((sum, p) => sum + (projectExtras[p.id]?.budget || 0), 0);
+  const chStats = [
+    { label: "Chantiers au total", value: chantiers.length, color: "#1B3A63" },
+    { label: "En cours", value: chantiers.filter((p) => p.status === "En cours").length, color: "#E6A23C" },
+    { label: "Réalisés", value: chantiers.filter((p) => p.status === "Réalisé").length, color: "#7DBF3F" },
+    { label: "Budget cumulé", value: `${Math.round(totalBudget)} M FCFA`, color: "#2B5AA0" },
+  ];
+
   return (
     <>
       {/* Le fondu d'entrée reste sur ce conteneur, pas sur la racine : le
@@ -146,6 +159,18 @@ export default function AdminChantiers() {
           temps de l'animation si l'un des deux est déjà ouvert au montage
           (cas du lien "Nouveau chantier" du tableau de bord). */}
       <div className="space-y-8 admin-fade-up">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {chStats.map((s) => (
+            <div key={s.label} className="bg-white border border-black/5 rounded-lg p-5 flex items-center gap-3.5 hover:shadow-card transition-shadow">
+              <span className="w-2.5 h-9 rounded shrink-0" style={{ background: s.color }} />
+              <div className="min-w-0">
+                <div className="text-[12.5px] text-muted whitespace-nowrap">{s.label}</div>
+                <div className="text-xl font-display font-extrabold text-navy mt-0.5 whitespace-nowrap">{s.value}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="flex flex-wrap items-center gap-3 justify-between">
         <div className="flex flex-wrap gap-2">
           {filters.map((f) => {
