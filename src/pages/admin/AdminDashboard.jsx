@@ -216,11 +216,11 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <div className="grid md:grid-cols-4 gap-5">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
         {/* 1. Chiffre d'affaires — carte mise en avant, courbe de fond */}
         <motion.div
           {...cardMotion(0)}
-          className="relative overflow-hidden rounded-lg p-6 bg-gradient-to-br from-navy to-blue text-white hover:shadow-card transition-shadow duration-300"
+          className="relative overflow-hidden rounded-lg p-5 sm:p-6 bg-gradient-to-br from-navy to-blue text-white hover:shadow-card transition-shadow duration-300"
         >
           <span className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-white/[0.06]" />
           <div className="flex justify-between items-center relative">
@@ -229,7 +229,7 @@ export default function AdminDashboard() {
               {caDelta >= 0 ? "▲" : "▼"} {Math.abs(caDelta)} %
             </span>
           </div>
-          <div className="font-display font-extrabold text-[32px] mt-2.5 relative">
+          <div className="font-display font-extrabold text-[26px] sm:text-[32px] mt-2.5 relative">
             <CountUp value={caTotal} /> <span className="text-[15px] font-semibold text-white/80 ml-1">M FCFA</span>
           </div>
           <div className="mt-2.5 relative">
@@ -238,14 +238,14 @@ export default function AdminDashboard() {
         </motion.div>
 
         {/* 2. Chantiers actifs — fraction + mix de statuts */}
-        <motion.div {...cardMotion(1)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+        <motion.div {...cardMotion(1)} className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 hover:shadow-card transition-shadow duration-300">
           <div className="flex justify-between items-center">
             <span className="text-[13px] text-muted">Chantiers actifs</span>
             <span className="w-9 h-9 rounded-lg bg-[#fdf1dc] flex items-center justify-center shrink-0">
               <HardHat size={16} className="text-[#A8650F]" />
             </span>
           </div>
-          <div className="font-display font-extrabold text-[32px] text-navy mt-2">
+          <div className="font-display font-extrabold text-[26px] sm:text-[32px] text-navy mt-2">
             <CountUp value={enCours} /> <span className="text-[15px] font-semibold text-muted ml-1">/ {projects.length}</span>
           </div>
           <div className="flex gap-1 mt-3.5 h-2 rounded overflow-hidden">
@@ -270,14 +270,14 @@ export default function AdminDashboard() {
         </motion.div>
 
         {/* 3. Devis en attente — mini-courbe de tendance */}
-        <motion.div {...cardMotion(2)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+        <motion.div {...cardMotion(2)} className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 hover:shadow-card transition-shadow duration-300">
           <div className="flex justify-between items-center">
             <span className="text-[13px] text-muted">Devis en attente</span>
             <span className="w-9 h-9 rounded-lg bg-[#e6eef8] flex items-center justify-center shrink-0">
               <FileText size={16} className="text-blue" />
             </span>
           </div>
-          <div className="font-display font-extrabold text-[32px] text-navy mt-2">
+          <div className="font-display font-extrabold text-[26px] sm:text-[32px] text-navy mt-2">
             <CountUp value={nouveauxDevis} />
           </div>
           <div className="mt-1.5">
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
         </motion.div>
 
         {/* 4. Taux de conversion — jauge directement dans la carte */}
-        <motion.div {...cardMotion(3)} className="bg-white border border-black/5 rounded-lg p-6 hover:shadow-card transition-shadow duration-300">
+        <motion.div {...cardMotion(3)} className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 hover:shadow-card transition-shadow duration-300">
           <span className="text-[13px] text-muted">Taux de conversion</span>
           <div className="flex items-center gap-3 mt-1">
             <ConversionGauge percent={tauxConversion} />
@@ -303,8 +303,8 @@ export default function AdminDashboard() {
         </motion.div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.3s" }}>
+      <div className="grid lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="lg:col-span-2 bg-white border border-black/5 rounded-lg p-5 sm:p-6 admin-fade-up" style={{ animationDelay: "0.3s" }}>
           <div className="flex justify-between items-start gap-4 flex-wrap">
             <div>
               <h2 className="text-navy font-semibold text-sm">Chiffre d'affaires mensuel</h2>
@@ -347,15 +347,15 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.38s" }}>
+        <div className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 admin-fade-up" style={{ animationDelay: "0.38s" }}>
           <h2 className="text-navy font-semibold text-sm">Répartition par pôle</h2>
           <div className="text-xs text-muted mt-1 mb-2">Part du budget cumulé des chantiers</div>
           <PoleDonutChart segments={poleSegments} totalLabel={`${poleTotal}M`} />
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.44s" }}>
+      <div className="grid lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 admin-fade-up" style={{ animationDelay: "0.44s" }}>
           <h2 className="text-navy font-semibold text-sm">Pipeline des devis</h2>
           <div className="text-xs text-muted mt-1">{quotes.length} demandes reçues</div>
           <div className="flex flex-col gap-4 mt-5">
@@ -381,7 +381,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-up" style={{ animationDelay: "0.5s" }}>
-          <div className="px-6 py-4 border-b border-black/5 flex items-center justify-between">
+          <div className="px-5 sm:px-6 py-4 border-b border-black/5 flex items-center justify-between">
             <h2 className="text-navy font-semibold text-sm">Derniers devis</h2>
             <Link to="/admin/devis" className="text-blue text-xs font-semibold flex items-center gap-1 hover:underline">
               Voir tout <ArrowRight size={13} />
@@ -389,7 +389,7 @@ export default function AdminDashboard() {
           </div>
           <ul className="divide-y divide-black/5">
             {recentQuotes.map((q) => (
-              <li key={q.id} className="px-6 py-3 flex items-center gap-3 hover:bg-surface transition-colors">
+              <li key={q.id} className="px-5 sm:px-6 py-3 flex items-center gap-3 hover:bg-surface transition-colors">
                 <Avatar name={q.name} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
@@ -405,7 +405,7 @@ export default function AdminDashboard() {
           </ul>
         </div>
 
-        <div className="bg-white border border-black/5 rounded-lg p-6 admin-fade-up" style={{ animationDelay: "0.56s" }}>
+        <div className="bg-white border border-black/5 rounded-lg p-5 sm:p-6 admin-fade-up" style={{ animationDelay: "0.56s" }}>
           <h2 className="text-navy font-semibold text-sm mb-4">Activité récente</h2>
           <div className="flex flex-col">
             {activity.map((a, i) => (
@@ -425,7 +425,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="bg-white border border-black/5 rounded-lg overflow-hidden admin-fade-up" style={{ animationDelay: "0.62s" }}>
-        <div className="px-6 py-4 border-b border-black/5 flex items-center justify-between flex-wrap gap-2">
+        <div className="px-5 sm:px-6 py-4 border-b border-black/5 flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-navy font-semibold text-sm">Suivi des chantiers</h2>
             <div className="text-[11.5px] text-muted mt-0.5">
