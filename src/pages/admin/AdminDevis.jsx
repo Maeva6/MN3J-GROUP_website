@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Trash2, Download, ArrowLeftRight } from "lucide-react";
+import { Trash2, Download, ArrowLeftRight, Kanban, Table2, LayoutGrid } from "lucide-react";
 import { quotes as initialQuotes, quoteStatuses, quoteStatusStyles } from "../../data/adminData";
 import Modal from "../../components/admin/Modal";
 import { exportToCsv } from "../../utils/exportCsv";
@@ -26,6 +26,12 @@ function formatDate(iso) {
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" }).replace(".", "");
 }
+
+const views = [
+  { key: "kanban", label: "Kanban", icon: Kanban },
+  { key: "tableau", label: "Tableau", icon: Table2 },
+  { key: "cartes", label: "Cartes", icon: LayoutGrid },
+];
 
 const columnColors = {
   "Nouveau": "#2B5AA0",
@@ -56,6 +62,7 @@ const labelClass = "text-xs font-semibold text-muted";
 export default function AdminDevis() {
   const showToast = useAdminToast();
   const [quotes, setQuotes] = useState(initialQuotes);
+  const [view, setView] = useState("kanban");
   const [selected, setSelected] = useState(null);
   const [addOpen, setAddOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
@@ -135,10 +142,19 @@ export default function AdminDevis() {
       </div>
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-xs text-muted flex items-center gap-2">
-          <ArrowLeftRight size={14} className="text-blue shrink-0" />
-          Glissez une carte d'une colonne à l'autre pour changer le statut d'un devis.
-        </p>
+        <div className="flex items-center gap-1.5 bg-surface border border-black/5 rounded-full p-1">
+          {views.map(({ key, label, icon: Icon }) => (
+            <button
+              key={key}
+              onClick={() => setView(key)}
+              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-colors ${
+                view === key ? "bg-navy text-white" : "text-muted hover:text-navy"
+              }`}
+            >
+              <Icon size={14} /> {label}
+            </button>
+          ))}
+        </div>
         <button
           onClick={() => exportToCsv("devis-mn3j-group.csv", quotes, csvColumns)}
           className="inline-flex items-center gap-2 text-xs font-semibold text-navy border border-black/10 px-4 py-2 rounded-full hover:border-navy/40 transition-colors shrink-0"
@@ -147,6 +163,14 @@ export default function AdminDevis() {
         </button>
       </div>
 
+      {view === "kanban" && (
+        <p className="text-xs text-muted flex items-center gap-2 -mt-2">
+          <ArrowLeftRight size={14} className="text-blue shrink-0" />
+          Glissez une carte d'une colonne à l'autre pour changer le statut d'un devis.
+        </p>
+      )}
+
+      {view === "kanban" && (
       <div className="overflow-x-auto pb-2">
         <div className="grid grid-cols-4 gap-4 min-w-[960px]">
           {quoteStatuses.map((status) => {
@@ -219,6 +243,107 @@ export default function AdminDevis() {
           })}
         </div>
       </div>
+      )}
+
+      {view === "tableau" && (
+        <div className="bg-white border border-black/5 rounded-lg overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[720px]">
+              <thead>
+                <tr className="text-left text-xs text-muted uppercase tracking-wide">
+                  <th className="px-5 py-3 font-medium">Client</th>
+                  <th className="px-5 py-3 font-medium">Type de projet</th>
+                  <th className="px-5 py-3 font-medium">Budget</th>
+                  <th className="px-5 py-3 font-medium">Date</th>
+                  <th className="px-5 py-3 font-medium">Statut</th>
+                  <th className="px-5 py-3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {quotes.map((q) => (
+                  <tr
+                    key={q.id}
+                    onClick={() => setSelected(q)}
+                    className="border-t border-black/5 cursor-pointer hover:bg-surface transition-colors"
+                  >
+                    <td className="px-5 py-3 font-medium text-navy">
+                      <div className="flex items-center gap-3">
+                        <span className="w-[26px] h-[26px] rounded-full bg-[#E6EEF8] text-navy flex items-center justify-center font-display font-bold text-[10px] shrink-0">
+                          {initials(q.name)}
+                        </span>
+                        <div className="min-w-0">
+                          <div className="truncate">{q.name}</div>
+                          <div className="text-[11px] text-muted font-normal">DV-{q.id}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-3 text-ink">{q.projectType}</td>
+                    <td className="px-5 py-3 font-semibold text-navy whitespace-nowrap">{q.budget}</td>
+                    <td className="px-5 py-3 text-muted whitespace-nowrap">{formatDate(q.date)}</td>
+                    <td className="px-5 py-3">
+                      <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${quoteStatusStyles[q.status]}`}>{q.status}</span>
+                    </td>
+                    <td className="px-5 py-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          remove(q.id);
+                        }}
+                        className="text-red-500 hover:text-red-700"
+                        aria-label="Supprimer"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {quotes.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="px-5 py-8 text-center text-muted text-sm">
+                      Aucune demande de devis pour l'instant.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {view === "cartes" && (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {quotes.map((q) => (
+            <div
+              key={q.id}
+              onClick={() => setSelected(q)}
+              className="bg-white border border-black/5 rounded-lg p-4 cursor-pointer hover:shadow-card hover:-translate-y-0.5 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-muted">DV-{q.id}</span>
+                <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${quoteStatusStyles[q.status]}`}>{q.status}</span>
+              </div>
+              <div className="flex items-center gap-3 mt-3">
+                <span className="w-9 h-9 rounded-full bg-[#E6EEF8] text-navy flex items-center justify-center font-display font-bold text-xs shrink-0">
+                  {initials(q.name)}
+                </span>
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold text-ink truncate">{q.name}</div>
+                  <div className="text-[12px] text-muted truncate">{q.projectType}</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3.5 pt-3 border-t border-black/5">
+                <span className="font-display font-bold text-[13.5px] text-navy truncate">{q.budget}</span>
+                <span className="text-xs text-muted whitespace-nowrap">{formatDate(q.date)}</span>
+              </div>
+            </div>
+          ))}
+          {quotes.length === 0 && (
+            <div className="sm:col-span-2 lg:col-span-3 bg-white border border-black/5 rounded-lg p-10 text-center text-muted text-sm">
+              Aucune demande de devis pour l'instant.
+            </div>
+          )}
+        </div>
+      )}
       </div>
 
       <Modal open={!!selected} onClose={() => setSelected(null)} title="Détail de la demande">
