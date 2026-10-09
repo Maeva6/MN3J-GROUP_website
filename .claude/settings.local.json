@@ -5,7 +5,16 @@
       "WebFetch(domain:www.pexels.com)",
       "Bash(grep -n \"Taux de conversion devis\\\\|Activité récente\\\\|^      </div>$\\\\|Suivi des chantiers\" AdminDashboard.jsx)",
       "Bash(npx vite *)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(tasklist)",
+      "PowerShell(Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Select-Object ProcessId, @{N='Mem\\(MB\\)';E={[math]::Round\\($_.WorkingSetSize/1MB,1\\)}}, CommandLine | Format-Table -AutoSize -Wrap)",
+      "Bash(rm -rf node_modules/.vite)",
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:5199/)",
+      "Bash(curl -s -o /dev/null -w \"main.jsx: %{time_total}s\\\\n\" http://localhost:5199/src/main.jsx)",
+      "Bash(curl -s -o /dev/null -w \"App.jsx\\(again,cached\\): %{time_total}s\\\\n\" http://localhost:5199/src/main.jsx)",
+      "Bash(curl -s -o /dev/null -w \"still up: %{http_code}\\\\n\" http://localhost:5199/)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 5199 -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force; \"stopped PID $_\" })"
     ]
   }
 }

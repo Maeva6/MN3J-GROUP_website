@@ -42,6 +42,20 @@ function AdminLoader() {
   );
 }
 
+// Loader local au contenu (pas toute la page) : utilisé pour chaque page
+// admin individuelle, afin que la Suspense la plus proche soit CELLE-CI et
+// non celle qui englobe AdminLayout. Sans ça, chaque première visite d'une
+// page démonte/remonte toute la mise en page (sidebar, en-tête, providers)
+// le temps de charger son chunk lazy — perçu comme un rechargement complet
+// et lent à chaque navigation, même si le chunk lui-même est petit.
+function AdminPageLoader() {
+  return (
+    <div className="flex items-center justify-center py-24">
+      <div className="w-8 h-8 rounded-full border-[3px] border-navy/15 border-t-navy animate-spin" />
+    </div>
+  );
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -113,13 +127,13 @@ export default function App() {
               </Suspense>
             }
           >
-            <Route index element={<AdminDashboard />} />
-            <Route path="chantiers" element={<AdminChantiers />} />
-            <Route path="devis" element={<AdminDevis />} />
-            <Route path="clients" element={<AdminClients />} />
-            <Route path="planning" element={<AdminPlanning />} />
-            <Route path="media" element={<AdminMedia />} />
-            <Route path="parametres" element={<AdminParametres />} />
+            <Route index element={<Suspense fallback={<AdminPageLoader />}><AdminDashboard /></Suspense>} />
+            <Route path="chantiers" element={<Suspense fallback={<AdminPageLoader />}><AdminChantiers /></Suspense>} />
+            <Route path="devis" element={<Suspense fallback={<AdminPageLoader />}><AdminDevis /></Suspense>} />
+            <Route path="clients" element={<Suspense fallback={<AdminPageLoader />}><AdminClients /></Suspense>} />
+            <Route path="planning" element={<Suspense fallback={<AdminPageLoader />}><AdminPlanning /></Suspense>} />
+            <Route path="media" element={<Suspense fallback={<AdminPageLoader />}><AdminMedia /></Suspense>} />
+            <Route path="parametres" element={<Suspense fallback={<AdminPageLoader />}><AdminParametres /></Suspense>} />
           </Route>
         </Route>
         <Route path="*" element={<SiteLayout><NotFound /></SiteLayout>} />
