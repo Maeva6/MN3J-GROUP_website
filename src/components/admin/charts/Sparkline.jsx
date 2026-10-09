@@ -38,15 +38,20 @@ export default function Sparkline({ values, color, fillOpacity = 0.35, height = 
         </linearGradient>
       </defs>
       <path d={area} fill={`url(#${gradientId})`} className="admin-chart-fade" />
+      {/* Pas d'animation "dessin" par stroke-dasharray ici (contrairement à
+          RevenueLineChart) : ce SVG utilise preserveAspectRatio="none" pour
+          s'étirer exactement à la taille de la carte, et cet étirement non
+          uniforme combiné à vector-effect="non-scaling-stroke" fait que les
+          navigateurs calculent mal la longueur du tracé — le trait animé
+          s'arrêtait au milieu au lieu de rejoindre le bord droit. Un simple
+          fondu (comme le remplissage) reste fiable quelle que soit l'échelle. */}
       <path
         d={line}
         fill="none"
         stroke={color}
         strokeWidth="1.6"
         vectorEffect="non-scaling-stroke"
-        pathLength={300}
-        style={{ strokeDasharray: 300, strokeDashoffset: 300 }}
-        className="admin-chart-draw"
+        className="admin-chart-fade"
       />
     </svg>
   );
