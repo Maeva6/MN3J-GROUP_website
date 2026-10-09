@@ -233,7 +233,7 @@ export default function AdminDashboard() {
             <CountUp value={caTotal} /> <span className="text-[15px] font-semibold text-white/80 ml-1">M FCFA</span>
           </div>
           <div className="mt-2.5 relative">
-            <Sparkline values={monthlyRevenue.current} color="#7DBF3F" fillOpacity={0.25} />
+            <Sparkline values={monthlyRevenue.current} color="#7DBF3F" fillOpacity={0.45} />
           </div>
         </motion.div>
 

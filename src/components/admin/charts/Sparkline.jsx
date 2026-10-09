@@ -1,6 +1,11 @@
+import { useId } from "react";
+
 // Mini-courbe compacte pour les cartes KPI (pas d'axes, pas de survol) —
 // même technique de dessin animé que RevenueLineChart (pathLength normalisé).
-export default function Sparkline({ values, color, fillOpacity = 0.18, height = 40 }) {
+export default function Sparkline({ values, color, fillOpacity = 0.35, height = 40 }) {
+  // useId() renvoie des deux-points (":r0:"), invalides dans une référence
+  // url(#id) — on les retire pour un identifiant d'id SVG sûr.
+  const gradientId = `sparkline-fill-${useId().replace(/:/g, "")}`;
   const max = Math.max(...values);
   const min = Math.min(...values);
   const range = max - min || 1;
@@ -20,7 +25,19 @@ export default function Sparkline({ values, color, fillOpacity = 0.18, height = 
 
   return (
     <svg viewBox="0 0 100 30" preserveAspectRatio="none" style={{ width: "100%", height }}>
-      <path d={area} fill={color} fillOpacity={fillOpacity} className="admin-chart-fade" />
+      <defs>
+        {/* Dégradé plutôt qu'un aplat transparent uniforme : un creux réel
+            dans les données (le CA peut reculer un mois avant de remonter)
+            laissait voir le fond sombre de la carte à travers le remplissage
+            plat, donnant l'impression que la ligne "flottait" au-dessus d'un
+            trou. Le dégradé reste visible juste sous le tracé même dans un
+            creux, donc la forme se lit comme une seule courbe continue. */}
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={color} stopOpacity={fillOpacity} />
+          <stop offset="1" stopColor={color} stopOpacity={fillOpacity * 0.15} />
+        </linearGradient>
+      </defs>
+      <path d={area} fill={`url(#${gradientId})`} className="admin-chart-fade" />
       <path
         d={line}
         fill="none"
