@@ -19,6 +19,14 @@ const csvColumns = [
 // Gestion locale (en mémoire) — à connecter au formulaire de contact réel et à
 // une API back-end pour la persistance (voir TODO dans src/pages/Contact.jsx).
 
+// Les dates sont stockées en ISO ("2026-08-05") pour rester triables/export-
+// ables ; affichées au format court "02 sept. 2026" sur les cartes et la fiche.
+function formatDate(iso) {
+  const d = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" }).replace(".", "");
+}
+
 const columnColors = {
   "Nouveau": "#2B5AA0",
   "Contacté": "#E6A23C",
@@ -186,7 +194,7 @@ export default function AdminDevis() {
                     >
                       <div className="flex justify-between text-[11px] text-muted">
                         <span className="font-semibold">DV-{q.id}</span>
-                        <span>{q.date}</span>
+                        <span>{formatDate(q.date)}</span>
                       </div>
                       <div className="text-sm font-semibold text-ink mt-2 truncate">{q.name}</div>
                       <span className="inline-block mt-2 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-navy/5 text-navy">
@@ -248,7 +256,7 @@ export default function AdminDevis() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted">Date</span>
-              <span className="font-medium text-navy">{selected.date}</span>
+              <span className="font-medium text-navy">{formatDate(selected.date)}</span>
             </div>
             <div>
               <span className="text-muted block mb-1">Message</span>
