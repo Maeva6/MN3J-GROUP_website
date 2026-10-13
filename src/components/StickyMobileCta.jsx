@@ -3,15 +3,20 @@ import { FileText, Phone } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
 import { useLanguage } from "../i18n/LanguageContext";
 
-// Boutons d'action flottants (mobile uniquement) : le CTA de la navbar
-// disparaît derrière le menu hamburger sur petit écran, donc ces bulles
-// gardent la prise de contact accessible pendant le défilement. Flottants
-// (pas une barre pleine largeur) : ils se posent par-dessus le contenu sans
-// réserver d'espace, donc sans créer de bande vide sous le Footer.
+// Boutons d'action flottants, visibles sur toutes les tailles d'écran :
+// - Sur mobile, le CTA de la navbar disparaît derrière le menu hamburger, donc
+//   ces bulles gardent la prise de contact accessible pendant le défilement.
+// - Sur desktop, le lien "Contact" de la navbar se fond dans les autres liens
+//   de menu (texte simple, pas un bouton) — le bouton devis y était donc peu
+//   visible, d'où cette version flottante élargie (icône + texte) qui reste
+//   repérable sans devoir chercher dans le menu.
+// Flottants (pas une barre pleine largeur) : ils se posent par-dessus le
+// contenu sans réserver d'espace, donc sans créer de bande vide sous le Footer.
 // - Bouton "devis" : sur toutes les pages, sauf la page contact elle-même
 //   (qui a déjà son propre formulaire de demande de devis).
-// - Bouton "appel" : uniquement sur la page d'accueil, pour ne pas surcharger
-//   les autres pages d'un deuxième bouton flottant.
+// - Bouton "appel" : uniquement sur la page d'accueil et mobile uniquement
+//   (sur desktop, le numéro est déjà visible dans l'en-tête/footer), pour ne
+//   pas surcharger les autres pages d'un deuxième bouton flottant.
 export default function StickyMobileCta() {
   const { t } = useLanguage();
   const { pathname } = useLocation();
@@ -22,12 +27,12 @@ export default function StickyMobileCta() {
   if (!isHome && !showQuoteButton) return null;
 
   return (
-    <div className="md:hidden fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
       {isHome && (
         <a
           href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
           aria-label={t("common.call")}
-          className="w-[52px] h-[52px] shrink-0 rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.18)] border border-black/10 flex items-center justify-center text-navy"
+          className="md:hidden w-[52px] h-[52px] shrink-0 rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,0.18)] border border-black/10 flex items-center justify-center text-navy"
         >
           <Phone size={20} />
         </a>
@@ -36,9 +41,12 @@ export default function StickyMobileCta() {
         <Link
           to="/contact"
           aria-label={t("common.requestQuote")}
-          className="w-14 h-14 shrink-0 rounded-full bg-green shadow-[0_4px_16px_rgba(0,0,0,0.18)] flex items-center justify-center text-[#12310F]"
+          className="group flex items-center justify-center gap-2.5 shrink-0 h-14 w-14 md:w-auto md:pl-5 md:pr-6 rounded-full bg-green shadow-[0_4px_16px_rgba(0,0,0,0.18)] text-[#12310F] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green/30 transition-all"
         >
-          <FileText size={22} />
+          <FileText size={22} className="shrink-0" />
+          <span className="hidden md:inline font-bold text-sm whitespace-nowrap">
+            {t("common.requestQuote")}
+          </span>
         </Link>
       )}
     </div>
