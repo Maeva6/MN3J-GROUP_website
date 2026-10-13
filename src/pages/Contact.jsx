@@ -236,25 +236,17 @@ export default function Contact() {
             />
 
             <div>
-              <div className="text-xs font-semibold text-muted mb-2.5">{t("contact.projectTypeQuestion")}</div>
-              <div className="flex flex-wrap gap-2.5">
-                {projectTypes.map((label, i) => {
-                  const active = typeIndex === i;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => setTypeIndex(i)}
-                      className={`px-4 py-2 rounded-full text-[13px] font-semibold border transition-colors ${
-                        active ? "bg-navy text-white border-navy" : "border-black/10 text-muted hover:border-navy/40"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
-              <input type="hidden" name="projectType" value={projectTypes[typeIndex] ?? ""} />
+              <label className="text-xs font-semibold text-muted">{t("contact.projectTypeQuestion")}</label>
+              <select
+                name="projectType"
+                value={projectTypes[typeIndex] ?? ""}
+                onChange={(e) => setTypeIndex(projectTypes.indexOf(e.target.value))}
+                className="w-full mt-1.5 border border-black/10 rounded-md px-4 py-2.5 text-sm bg-white"
+              >
+                {projectTypes.map((label) => (
+                  <option key={label}>{label}</option>
+                ))}
+              </select>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
