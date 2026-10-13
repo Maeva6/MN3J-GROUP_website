@@ -96,4 +96,7 @@ h1, h2, h3, h4 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -1,9 +1,13 @@
+import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import NotFound from "./NotFound";
 import { services, maintenanceService } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
+
+const MotionLink = motion(Link);
 
 export default function PoleDetail() {
   const { poleId } = useParams();
@@ -79,28 +83,32 @@ export default function PoleDetail() {
       )}
 
       <div className="container-page py-16">
-        <div className="max-w-xl mx-auto text-center mb-12">
+        <Reveal className="max-w-xl mx-auto text-center mb-12">
           <span className="eyebrow">{t("services.subTypesTitle")}</span>
           <h2 className="text-2xl text-navy font-display font-semibold mt-2">
             {t(`data.services.${pole.id}.title`)}
           </h2>
-        </div>
+        </Reveal>
 
         {isMaintenance ? (
           <div className="grid sm:grid-cols-2 gap-5">
-            {subItems.map((item) => (
-              <div key={item.title} className="bg-white border border-black/5 rounded-md p-5">
+            {subItems.map((item, i) => (
+              <Reveal key={item.title} delay={(i % 2) * 0.08} className="bg-white border border-black/5 rounded-md p-5">
                 <h4 className="text-navy font-semibold text-sm">{item.title}</h4>
                 <p className="text-muted text-xs leading-relaxed mt-2">{item.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
-            {subItems.map((item) => (
-              <Link
+            {subItems.map((item, i) => (
+              <MotionLink
                 key={item.id}
                 to={`/services/${pole.id}/${item.id}`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
                 className="group block rounded-lg overflow-hidden border border-black/5 bg-white hover:shadow-card transition-shadow"
               >
                 <PhotoFrame
@@ -118,7 +126,7 @@ export default function PoleDetail() {
                     {t("services.discoverCta")}
                   </span>
                 </div>
-              </Link>
+              </MotionLink>
             ))}
           </div>
         )}
@@ -137,13 +145,13 @@ export default function PoleDetail() {
       </div>
 
       <div className="bg-green py-14">
-        <div className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
+        <Reveal as="div" className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-[#12310F] text-2xl font-display font-bold">{t("common.ctaTitle")}</h3>
             <p className="text-[#20431A] text-sm mt-1">{t("common.ctaText")}</p>
           </div>
           <Link to="/contact" className="btn-dark">{t("common.requestQuote")}</Link>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

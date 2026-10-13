@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import Reveal from "./Reveal";
 
 export default function Faq() {
   const { t } = useLanguage();
@@ -9,16 +10,19 @@ export default function Faq() {
 
   return (
     <section className="section container-page py-24">
-      <div className="max-w-xl mx-auto text-center mb-14">
+      <Reveal className="max-w-xl mx-auto text-center mb-14">
         <span className="eyebrow">{t("faqPage.eyebrow")}</span>
         <h2 className="text-3xl text-navy mt-3">{t("faqPage.title")}</h2>
-      </div>
+      </Reveal>
 
       <div className="max-w-3xl mx-auto space-y-3">
         {items.map((item, i) => {
           const isOpen = openIndex === i;
           return (
-            <div key={item.question} className="border border-black/5 rounded-lg bg-white overflow-hidden">
+            // Délai plafonné (modulo 6) : au-delà, les dernières questions
+            // d'une longue FAQ n'ont pas à attendre plusieurs secondes avant
+            // d'apparaître.
+            <Reveal key={item.question} delay={(i % 6) * 0.05} className="border border-black/5 rounded-lg bg-white overflow-hidden">
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
@@ -34,7 +38,7 @@ export default function Faq() {
               {isOpen && (
                 <p className="text-muted text-sm leading-relaxed px-6 pb-5">{item.answer}</p>
               )}
-            </div>
+            </Reveal>
           );
         })}
       </div>

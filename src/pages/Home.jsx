@@ -7,6 +7,7 @@ import StatsBar from "../components/StatsBar";
 import ProjectCard from "../components/ProjectCard";
 import SocialIcons from "../components/SocialIcons";
 import Testimonials from "../components/Testimonials";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { services } from "../data/services";
 import { projects } from "../data/projects";
@@ -84,11 +85,11 @@ export default function Home() {
 
       {/* POLES D'ACTIVITE */}
       <section className="section container-page py-24">
-        <div className="max-w-xl mx-auto text-center mb-14">
+        <Reveal as="div" className="max-w-xl mx-auto text-center mb-14">
           <span className="eyebrow">{t("home.polesEyebrow")}</span>
           <h2 className="text-3xl text-navy mt-3">{t("home.polesTitle")}</h2>
           <p className="text-muted mt-3 text-sm leading-relaxed">{t("home.polesText")}</p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(({ id, icon: Icon, featuredSub, subImages, brand }, i) => {
@@ -98,8 +99,9 @@ export default function Home() {
                 key={id}
                 to={`/services/${id}`}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2, margin: "-60px" }}
+                transition={{ delay: (i % 3) * 0.08, duration: 0.4 }}
                 className="group rounded-md overflow-hidden border border-black/5 hover:shadow-card hover:-translate-y-1 transition-all bg-white flex flex-col"
               >
                 <div className="p-7 pb-5">
@@ -147,11 +149,11 @@ export default function Home() {
         {/* Toutes les déclinaisons de piscines, pour que les nouvelles
             (spas, fontaine, cascades, sona, hammam) soient visibles dès l'accueil */}
         <div className="mt-20">
-          <div className="max-w-xl mx-auto text-center mb-10">
+          <Reveal className="max-w-xl mx-auto text-center mb-10">
             <span className="eyebrow">{t("home.poolTypesEyebrow")}</span>
             <h3 className="text-2xl text-navy font-display font-semibold mt-2">{t("home.poolTypesTitle")}</h3>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          </Reveal>
+          <Reveal as="div" delay={0.1} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {t("data.services.piscines.subItems").map((item) => (
               <Link
                 key={item.id}
@@ -170,20 +172,20 @@ export default function Home() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* DERNIERS CHANTIERS */}
       <section className="bg-surface py-24">
         <div className="container-page">
-          <div className="max-w-xl mx-auto text-center mb-14">
+          <Reveal className="max-w-xl mx-auto text-center mb-14">
             <span className="eyebrow">{t("home.realisationsEyebrow")}</span>
             <h2 className="text-3xl text-navy mt-3">{t("home.realisationsTitle")}</h2>
-          </div>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
-            {projects.slice(0, 3).map((p) => (
-              <ProjectCard key={p.id} project={p} />
+            {projects.slice(0, 3).map((p, i) => (
+              <ProjectCard key={p.id} project={p} index={i} />
             ))}
           </div>
           <div className="text-center mt-10">
@@ -198,13 +200,7 @@ export default function Home() {
       {/* Carte flottante (pas une barre pleine largeur) pour éviter tout effet
           "footer" avant d'arriver au vrai Footer, plus bas sur la page. */}
       <section className="container-page py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl bg-gradient-to-r from-navy to-blue px-6 md:px-10 py-10 shadow-card flex flex-col md:flex-row items-center justify-between gap-6"
-        >
+        <Reveal className="rounded-2xl bg-gradient-to-r from-navy to-blue px-6 md:px-10 py-10 shadow-card flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <span className="text-[#A9E072] text-[11px] font-semibold uppercase tracking-wider">
               {t("home.followEyebrow")}
@@ -214,14 +210,14 @@ export default function Home() {
             </p>
           </div>
           <SocialIcons variant="dark" size="lg" animated />
-        </motion.div>
+        </Reveal>
       </section>
 
       <Testimonials />
 
       {/* CTA */}
       <div className="bg-green py-14">
-        <div className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
+        <Reveal as="div" className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-[#12310F] text-2xl font-display font-bold">{t("common.ctaTitle")}</h3>
             <p className="text-[#20431A] text-sm mt-1">{t("common.ctaText")}</p>
@@ -229,7 +225,7 @@ export default function Home() {
           <Link to="/contact" className="btn-dark">
             {t("common.requestQuote")}
           </Link>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import NotFound from "./NotFound";
 import { services } from "../data/services";
@@ -47,7 +48,7 @@ export default function SubServiceDetail() {
       </PhotoFrame>
 
       <div className="container-page py-12 grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 space-y-8">
+        <Reveal as="div" className="md:col-span-2 space-y-8">
           <div>
             <h2 className="text-navy font-display font-semibold text-xl mb-3">{t("projectDetail.descriptionTitle")}</h2>
             <p className="text-muted text-sm leading-relaxed">{sub.description}</p>
@@ -66,9 +67,9 @@ export default function SubServiceDetail() {
               ))}
             </ul>
           </div>
-        </div>
+        </Reveal>
 
-        <aside className="space-y-4">
+        <Reveal as="aside" delay={0.12} className="space-y-4">
           <div className="border border-black/5 rounded-lg p-6 bg-surface">
             <h3 className="text-navy font-semibold text-sm mb-2">{t("services.quoteForThis")}</h3>
             <Link to="/contact" className="btn-primary w-full justify-center mt-2">
@@ -91,7 +92,7 @@ export default function SubServiceDetail() {
               ))}
             </ul>
           </div>
-        </aside>
+        </Reveal>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Star, Quote } from "lucide-react";
 import { testimonials } from "../data/testimonials";
 import { useLanguage } from "../i18n/LanguageContext";
+import Reveal from "./Reveal";
 
 function initials(name) {
   return name
@@ -17,15 +18,15 @@ export default function Testimonials() {
 
   return (
     <section className="section container-page py-24">
-      <div className="max-w-xl mx-auto text-center mb-14">
+      <Reveal className="max-w-xl mx-auto text-center mb-14">
         <span className="eyebrow">{t("home.testimonials.eyebrow")}</span>
         <h2 className="text-3xl text-navy mt-3">{t("home.testimonials.title")}</h2>
         <p className="text-muted mt-3 text-sm leading-relaxed">{t("home.testimonials.subtitle")}</p>
-      </div>
+      </Reveal>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {testimonials.map(({ id, name, role, poleId, rating }) => (
-          <div key={id} className="bg-white border border-black/5 rounded-lg p-7 relative">
+        {testimonials.map(({ id, name, role, poleId, rating }, i) => (
+          <Reveal key={id} delay={(i % 2) * 0.1} className="bg-white border border-black/5 rounded-lg p-7 relative">
             <Quote size={28} className="text-green/30" />
             <div className="flex items-center gap-1 mt-3 mb-3">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -54,7 +55,7 @@ export default function Testimonials() {
                 {t(`data.services.${poleId}.tagline`)}
               </Link>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

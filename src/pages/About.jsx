@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { ShieldCheck, HeartHandshake, Sparkle, Users, BadgeCheck } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -44,7 +45,7 @@ export default function About() {
       </PhotoFrame>
 
       <section className="container-page py-16 grid md:grid-cols-2 gap-12 items-center">
-        <div>
+        <Reveal>
           <span className="block text-[10px] uppercase tracking-[0.2em] text-muted mt-1">
             {t("about.editoAccent")}
           </span>
@@ -56,42 +57,44 @@ export default function About() {
           <Link to="/services" className="text-blue text-sm font-semibold mt-4 inline-block hover:underline">
             {t("about.discoverServices")}
           </Link>
-        </div>
-        <PhotoFrame tone="green" src={aboutEditoImg} alt={t("about.editoImageLabel")} label={t("about.editoImageLabel")} className="h-72 rounded-lg" />
+        </Reveal>
+        <Reveal delay={0.12}>
+          <PhotoFrame tone="green" src={aboutEditoImg} alt={t("about.editoImageLabel")} label={t("about.editoImageLabel")} className="h-72 rounded-lg" />
+        </Reveal>
       </section>
 
       <section className="bg-surface py-16">
         <div className="container-page">
-          <div className="max-w-xl mx-auto text-center mb-12">
+          <Reveal className="max-w-xl mx-auto text-center mb-12">
             <span className="eyebrow">{t("about.valuesEyebrow")}</span>
             <h2 className="text-2xl text-navy font-display font-semibold mt-2">
               {t("about.valuesTitle")}
             </h2>
-          </div>
+          </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {values.map(({ icon: Icon, key }) => (
-              <div key={key} className="bg-white border border-black/5 rounded-md p-6">
+            {values.map(({ icon: Icon, key }, i) => (
+              <Reveal key={key} delay={(i % 5) * 0.06} className="bg-white border border-black/5 rounded-md p-6">
                 <div className="w-11 h-11 rounded-lg bg-navy flex items-center justify-center mb-4">
                   <Icon size={18} className="text-white" />
                 </div>
                 <h3 className="text-navy font-semibold text-sm">{t(`about.values.${key}.title`)}</h3>
                 <p className="text-muted text-xs leading-relaxed mt-2">{t(`about.values.${key}.text`)}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       <section className="container-page py-16">
-        <div className="max-w-xl mx-auto text-center mb-12">
+        <Reveal className="max-w-xl mx-auto text-center mb-12">
           <span className="eyebrow">{t("about.teamEyebrow")}</span>
           <h2 className="text-2xl text-navy font-display font-semibold mt-2">
             {t("about.teamTitle")}
           </h2>
-        </div>
+        </Reveal>
         <div className="grid md:grid-cols-4 gap-6">
-          {team.map((m) => (
-            <div key={m.roleKey} className="text-center">
+          {team.map((m, i) => (
+            <Reveal key={m.roleKey} delay={(i % 4) * 0.08} className="text-center">
               <PhotoFrame tone="navy" className="h-40 w-40 rounded-full mx-auto mb-4" />
               <h4 className="text-navy font-semibold text-sm">{m.name ?? t("about.teamPlaceholderName")}</h4>
               <p className="text-muted text-xs mt-1">{t(`about.roles.${m.roleKey}`)}</p>
@@ -100,31 +103,31 @@ export default function About() {
                   {t(`about.bios.${m.roleKey}`)}
                 </p>
               )}
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="bg-navy-dark py-16">
         <div className="container-page">
-          <div className="max-w-xl mx-auto text-center mb-10">
+          <Reveal className="max-w-xl mx-auto text-center mb-10">
             <span className="eyebrow">{t("about.certificationsEyebrow")}</span>
             <h2 className="text-2xl text-white font-display font-semibold mt-2">
               {t("about.certificationsTitle")}
             </h2>
-          </div>
+          </Reveal>
           <div className="grid md:grid-cols-4 gap-6">
-            {certifications.map((c) => (
-              <div key={c} className="border border-white/10 rounded-md p-5 text-center text-white/90 text-sm">
+            {certifications.map((c, i) => (
+              <Reveal key={c} delay={(i % 4) * 0.08} className="border border-white/10 rounded-md p-5 text-center text-white/90 text-sm">
                 {c}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       <div className="bg-green py-14">
-        <div className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
+        <Reveal as="div" className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-[#12310F] text-2xl font-display font-bold">{t("common.ctaTitle")}</h3>
             <p className="text-[#20431A] text-sm mt-1">{t("common.ctaText")}</p>
@@ -137,7 +140,7 @@ export default function About() {
               {t("common.requestQuote")}
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

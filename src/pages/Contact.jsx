@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { siteConfig } from "../data/siteConfig";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -56,13 +57,13 @@ export default function Contact() {
     <div>
       <Seo title={t("seo.contact.title")} description={t("seo.contact.description")} />
 
-      <div className="container-page py-14">
+      <Reveal as="div" className="container-page py-14">
         <span className="eyebrow">{t("contact.eyebrow")}</span>
         <h1 className="text-3xl text-navy font-display font-semibold mt-2">{t("contact.title")}</h1>
-      </div>
+      </Reveal>
 
       <div className="container-page pb-20 grid md:grid-cols-3 gap-10">
-        <div className="space-y-8 flex flex-col">
+        <Reveal as="div" className="space-y-8 flex flex-col">
           <div>
             <h3 className="text-navy font-semibold text-sm flex items-center gap-2 mb-1">
               <MapPin size={15} /> {t("contact.addressLabel")}
@@ -115,9 +116,9 @@ export default function Contact() {
               <PhotoFrame tone="navy" label={t("contact.mapLabel")} className="flex-1 min-h-[220px] rounded-lg" />
             )}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="md:col-span-2 bg-surface rounded-lg p-8">
+        <Reveal as="div" delay={0.12} className="md:col-span-2 bg-surface rounded-lg p-8">
           <h2 className="text-navy font-display font-semibold text-xl mb-1">{t("contact.formTitle")}</h2>
           <p className="text-muted text-sm mb-6">{t("contact.formSubtitle")}</p>
 
@@ -164,7 +165,7 @@ export default function Contact() {
               <button type="submit" className="btn-primary">{t("contact.fields.send")}</button>
             </div>
           </form>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

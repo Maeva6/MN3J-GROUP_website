@@ -6,15 +6,20 @@ import { statusStyles, progressBarClass } from "../data/projects";
 import { services } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, index = 0 }) {
   const { t } = useLanguage();
   const brand = services.find((s) => s.id === project.poleId)?.brand;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2, margin: "-60px" }}
+      // Index % 3 (pas l'index absolu) : la grille est en 3 colonnes, donc
+      // seule la position dans la RANGÉE doit décaler l'apparition — sinon
+      // une longue liste filtrée ferait attendre les dernières cartes
+      // plusieurs secondes avant de jouer leur animation.
+      transition={{ duration: 0.45, delay: (index % 3) * 0.08 }}
     >
       <Link
         to={`/chantiers/${project.id}`}

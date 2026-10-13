@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import PhotoFrame from "../components/PhotoFrame";
 import ProjectCard from "../components/ProjectCard";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { projects } from "../data/projects";
 import { services } from "../data/services";
@@ -99,8 +100,8 @@ export default function Projects() {
             <p className="text-muted text-sm">{t("projectsPage.noResults")}</p>
           ) : (
             <div className="grid md:grid-cols-3 gap-6">
-              {coreProjects.map((p) => (
-                <ProjectCard key={p.id} project={p} />
+              {coreProjects.map((p, i) => (
+                <ProjectCard key={p.id} project={p} index={i} />
               ))}
             </div>
           )}
@@ -112,7 +113,8 @@ export default function Projects() {
           const brandPole = brandedPoles.find((s) => s.brand === brand);
           const list = brandProjects(brand);
           return (
-            <section
+            <Reveal
+              as="section"
               key={brand}
               className="mt-14 border-2 border-green/25 rounded-2xl bg-green/5 p-6 md:p-8"
             >
@@ -132,12 +134,12 @@ export default function Projects() {
                 <p className="text-muted text-sm">{t("projectsPage.noResults")}</p>
               ) : (
                 <div className="grid md:grid-cols-3 gap-6">
-                  {list.map((p) => (
-                    <ProjectCard key={p.id} project={p} />
+                  {list.map((p, i) => (
+                    <ProjectCard key={p.id} project={p} index={i} />
                   ))}
                 </div>
               )}
-            </section>
+            </Reveal>
           );
         })}
       </div>

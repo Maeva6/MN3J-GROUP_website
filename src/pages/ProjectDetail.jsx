@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { MapPin, Calendar, Clock, User, Check } from "lucide-react";
 import PhotoFrame from "../components/PhotoFrame";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { projects, statusStyles, beforeImages, progressBarClass } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -43,7 +44,7 @@ export default function ProjectDetail() {
       </PhotoFrame>
 
       <div className="container-page py-12 grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 space-y-10">
+        <Reveal as="div" className="md:col-span-2 space-y-10">
           <div>
             <h2 className="text-navy font-display font-semibold text-xl mb-3">{t("projectDetail.descriptionTitle")}</h2>
             <p className="text-muted text-sm leading-relaxed">{t(`data.projects.${project.id}.description`)}</p>
@@ -82,9 +83,9 @@ export default function ProjectDetail() {
               <BeforeAfterSlider beforeSrc={beforeImages[project.poleId]} afterSrc={project.image} />
             </div>
           )}
-        </div>
+        </Reveal>
 
-        <aside className="space-y-4">
+        <Reveal as="aside" delay={0.12} className="space-y-4">
           <div className="border border-black/5 rounded-lg p-6 bg-surface">
             <h3 className="text-navy font-semibold text-sm mb-4">{t("projectDetail.infoTitle")}</h3>
             <ul className="space-y-3 text-sm text-muted">
@@ -107,7 +108,7 @@ export default function ProjectDetail() {
           <Link to="/contact" className="btn-primary w-full justify-center">
             {t("projectDetail.similarProject")}
           </Link>
-        </aside>
+        </Reveal>
       </div>
     </div>
   );

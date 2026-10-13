@@ -1,9 +1,13 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PhotoFrame from "../components/PhotoFrame";
+import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { services, maintenanceService } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 import servicesHeroImg from "../assets/images/services-piscine-vue.jpg";
+
+const MotionLink = motion(Link);
 
 export default function Services() {
   const { t } = useLanguage();
@@ -24,12 +28,14 @@ export default function Services() {
 
       <div className="container-page py-16">
         <div className="grid md:grid-cols-2 gap-6">
-          {services.map((pole) => {
+          {services.map((pole, i) => {
             const Icon = pole.icon;
             return (
-              <Link
+              <Reveal
                 key={pole.id}
+                as={MotionLink}
                 to={`/services/${pole.id}`}
+                delay={(i % 2) * 0.08}
                 className="group flex gap-5 rounded-lg overflow-hidden border border-black/5 bg-white hover:shadow-card transition-shadow p-4"
               >
                 <PhotoFrame
@@ -57,12 +63,13 @@ export default function Services() {
                     {t("services.discoverCta")}
                   </span>
                 </div>
-              </Link>
+              </Reveal>
             );
           })}
         </div>
 
-        <Link
+        <Reveal
+          as={MotionLink}
           to={`/services/${maintenanceService.id}`}
           className="mt-6 flex items-center justify-between gap-4 flex-wrap border border-black/5 rounded-lg p-5 bg-surface hover:shadow-card transition-shadow"
         >
@@ -71,17 +78,17 @@ export default function Services() {
             <p className="text-muted text-xs mt-1">{t("data.services.entretien.description")}</p>
           </div>
           <span className="text-green-dark font-semibold text-sm shrink-0">{t("services.discoverCta")}</span>
-        </Link>
+        </Reveal>
       </div>
 
       <div className="bg-green py-14">
-        <div className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
+        <Reveal as="div" className="container-page flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-[#12310F] text-2xl font-display font-bold">{t("common.ctaTitle")}</h3>
             <p className="text-[#20431A] text-sm mt-1">{t("common.ctaText")}</p>
           </div>
           <Link to="/contact" className="btn-dark">{t("common.requestQuote")}</Link>
-        </div>
+        </Reveal>
       </div>
     </div>
   );
