@@ -212,7 +212,7 @@ export default function Contact() {
       </div>
 
       {/* DEVIS + HORAIRES/CARTE */}
-      <div id="devis" className="container-page pt-16 pb-20 grid lg:grid-cols-3 gap-10 items-start">
+      <div id="devis" className="container-page pt-16 pb-20 grid lg:grid-cols-3 gap-10 items-stretch">
         <Reveal as="div" className="lg:col-span-2 bg-white border border-black/5 rounded-xl shadow-card p-6 md:p-10 relative overflow-hidden">
           <span className="absolute top-0 left-0 right-0 h-[5px] bg-gradient-to-r from-navy via-blue to-green" aria-hidden="true" />
           <div className="flex flex-wrap items-start justify-between gap-4">
@@ -302,8 +302,8 @@ export default function Contact() {
           </form>
         </Reveal>
 
-        <Reveal as="div" delay={0.12} className="flex flex-col gap-5">
-          <div className="bg-navy rounded-xl p-7 text-white relative overflow-hidden">
+        <div className="flex flex-col gap-5 h-full">
+          <Reveal as="div" delay={0.12} className="bg-navy rounded-xl p-7 text-white relative overflow-hidden shrink-0">
             <span className="absolute w-44 h-44 rounded-full bg-green/25 blur-2xl -right-14 -top-14" aria-hidden="true" />
             <div className="relative flex items-center justify-between gap-3 flex-wrap">
               <h3 className="font-display font-semibold text-lg">{t("contact.hoursLabel")}</h3>
@@ -326,10 +326,14 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="bg-white border border-black/5 rounded-xl shadow-card overflow-hidden">
-            <div className="relative h-56 bg-surface">
+          <Reveal
+            as="div"
+            delay={0.2}
+            className="bg-white border border-black/5 rounded-xl shadow-card overflow-hidden flex-1 flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all"
+          >
+            <div className="relative flex-1 min-h-[224px] bg-surface">
               {siteConfig.map.lat != null && siteConfig.map.lng != null ? (
                 <iframe
                   title={t("contact.mapLabel")}
@@ -341,7 +345,7 @@ export default function Contact() {
                 <PhotoFrame tone="navy" label={t("contact.mapLabel")} className="w-full h-full" />
               )}
             </div>
-            <div className="p-5 flex items-center justify-between gap-3 flex-wrap">
+            <div className="p-5 flex items-center justify-between gap-3 flex-wrap shrink-0">
               <div className="flex items-center gap-3 min-w-0">
                 <span className="w-10 h-10 rounded-lg bg-green/10 flex items-center justify-center shrink-0">
                   <MapPin size={17} className="text-green-dark" />
@@ -362,8 +366,8 @@ export default function Contact() {
                 {t("contact.directionsCta")} →
               </a>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </div>
   );
