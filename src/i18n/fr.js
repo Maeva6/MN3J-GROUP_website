@@ -178,6 +178,7 @@ export const fr = {
       "Piscine haut de gamme",
       "Décoration",
       "BTP & finitions",
+      "Ingénierie",
       "Formation aquatique",
     ],
     budgetOptions: [

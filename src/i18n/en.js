@@ -178,6 +178,7 @@ export const en = {
       "High-end pool",
       "Decoration",
       "Construction & finishing",
+      "Engineering",
       "Aquatic training",
     ],
     budgetOptions: [
