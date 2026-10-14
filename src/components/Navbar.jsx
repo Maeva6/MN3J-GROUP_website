@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -8,10 +8,31 @@ import { services, maintenanceService } from "../data/services";
 
 function PoleDropdown({ pole, t }) {
   const subItems = t(`data.services.${pole.id}.subItems`);
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  // Ferme explicitement au clic : en pur CSS (group-hover/group-focus-within),
+  // le lien cliqué garde le focus après la navigation, donc le menu restait
+  // ouvert jusqu'à ce qu'on clique ailleurs. Ici le clic force la fermeture
+  // même si la souris n'a pas bougé.
+  const close = () => setOpen(false);
+
+  const handleBlur = (e) => {
+    if (!containerRef.current?.contains(e.relatedTarget)) setOpen(false);
+  };
+
   return (
-    <div className="relative group">
+    <div
+      ref={containerRef}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={handleBlur}
+    >
       <NavLink
         to={`/services/${pole.id}`}
+        onClick={close}
         className={({ isActive }) =>
           `inline-flex items-center gap-1.5 ${
             isActive ? "text-navy font-semibold" : "hover:text-navy transition-colors"
@@ -24,16 +45,21 @@ function PoleDropdown({ pole, t }) {
             {pole.brand}
           </span>
         )}
-        <ChevronDown size={14} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+        <ChevronDown size={14} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </NavLink>
 
-      <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-40">
+      <div
+        className={`${
+          open ? "visible opacity-100 translate-y-0" : "invisible opacity-0 translate-y-1"
+        } transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-40`}
+      >
         <div className="bg-white rounded-lg shadow-card border border-black/5 p-4">
           <ul className="space-y-1">
             {subItems.map((item) => (
               <li key={item.id}>
                 <Link
                   to={`/services/${pole.id}/${item.id}`}
+                  onClick={close}
                   className="block px-2.5 py-2 rounded-md hover:bg-surface transition-colors text-sm text-ink"
                 >
                   {item.title}
@@ -44,6 +70,7 @@ function PoleDropdown({ pole, t }) {
               <li>
                 <Link
                   to={`/services/${maintenanceService.id}`}
+                  onClick={close}
                   className="block px-2.5 py-2 rounded-md hover:bg-surface transition-colors text-sm text-green-dark font-semibold"
                 >
                   {t("data.services.entretien.title")}
@@ -57,7 +84,7 @@ function PoleDropdown({ pole, t }) {
                 {t(`data.services.${pole.id}.brandNote`)}
               </p>
             )}
-            <Link to={`/services/${pole.id}`} className="text-xs font-semibold text-blue hover:underline px-2.5">
+            <Link to={`/services/${pole.id}`} onClick={close} className="text-xs font-semibold text-blue hover:underline px-2.5">
               {t("services.discoverCta")}
             </Link>
           </div>
